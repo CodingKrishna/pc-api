@@ -1,0 +1,97 @@
+<head>
+		<link rel="stylesheet" href="resources/css/tutorials.css" />
+</head>
+<!-- content -->
+<div class="page-content gradient-grey padding-none">
+	<!-- main content -->
+	<div class="grid-row">
+	<div  class="box-shadow-none">
+		<main>
+			<section>
+				<div class="grid-col-row clear-fix p-12">
+					<!-- page title -->
+						<div class="page-title">
+							<div class="">
+								<h1>{{currentTopic.topicName}}</h1>
+							</div>
+						</div>
+					<!-- / page title -->
+					<div class="grid-col grid-md-3 sidebar">
+						<aside class="widget-navigation">
+							<ul>
+								<li ng-class="{'active':topic.topicName==currentTopic.topicName}" class="pointer-cursor" ui-sref="tutorialsconcept({ technologyKey: currentTechnology, conceptKey:topic.topicName})" ng-repeat="topic in currentTopics"><a>{{topic.topicName}}</a></li>
+							</ul>
+						</aside>
+						<!-- widget pages -->
+					</div>
+					<!--  Right panel content -->
+					<div class="grid-col grid-md-8 sidebar relative m-l-10" >
+						<div>
+							<!-- tabs -->
+							<div class="tabs">
+								<div class="block-tabs-btn clear-fix">
+									<div class="tabs-btn active" data-tabs-id="tabs1">Tutorial</div>
+									<div class="tabs-btn" data-tabs-id="tabs2">Programs</div>
+									<div class="tabs-btn" data-tabs-id="tabs3">Quiz</div>
+								</div>
+								<!-- tabs keeper -->
+								<div class="tabs-keeper">
+									<!-- tabs container -->
+									<div class="container-tabs active" data-tabs-id="cont-tabs1" > 
+										<html-template content="contentData"></html-template>										
+										<!-- <div class="tutorial-download-buttons-margin" >
+											<a class="cws-button border-radius large bt-color-1 alt"
+											data-ui-sref="tutorial({projectPath:'{{topicDetailsResponse.projectPath}}' })">Download Project </a>
+										</div> -->
+										<!-- <button type="button" class="cws-button border-radius bt-color-3" ng-click="toggleBoolean('showEditor')">Try Yourself</button> -->
+									</div>
+									<!--/tabs container -->
+									
+									<!-- tabs container -->
+									<div class="container-tabs" data-tabs-id="cont-tabs2">
+										<html-template content="programsData"></html-template>
+									</div>
+									<!--/tabs container -->
+									<!-- tabs container -->
+									<div class="container-tabs" data-tabs-id="cont-tabs3" >
+										<html-template content="quizData"></html-template>
+										<div class="tutorial-download-buttons-margin" ng-if="quizData">
+											<a class="cws-button border-radius bt-color-3 m-l-17 pull-right" data-ng-click="submitQuiz()">Submit</a>
+										</div>
+									</div>
+									<!--/tabs container -->
+										<!-- AddToAny BEGIN -->
+
+								</div>
+								<!--/tabs keeper -->
+							</div>
+							<!-- /tabs -->
+						</div>
+						<div class="overlay absolute" ng-class="{'show':contentLoader}"></div>
+						<div class="content-loader " ng-class="{'show':contentLoader}"><i class="fa fa-spin fa-spinner"></i></div>
+					</div>
+				</div>
+			</section>
+		</main>
+		</div>
+	</div>
+	<!-- / main content -->
+</div>
+<div class="overlay" ng-class="{'show':showPopup}" ng-click="toggleBoolean('showPopup')"></div>
+<div class="popup popup-quiz" ng-class="{'show':showPopup,'bordercolor-brightgreen':quizSuccessMsg,'bordercolor-red':quizErrorMsg}">
+	<div class="popup-content">
+		<div class="popup-close-btn" ng-class="{'bgcolor-brightgreen':quizSuccessMsg,'bgcolor-red':quizErrorMsg}"><img src="resources/img/home/x.png" class="pointer-cursor close-image" ng-click="toggleBoolean('showPopup')"></div>
+		<div class="mar-38px text-center">
+			<div class="color-red font-18 quiz-info-msg " ng-if="quizErrorMsg">{{quizErrorMsg}}</div>
+			<div class="color-brightgreen font-18 quiz-info-msg " ng-if="quizSuccessMsg">{{quizSuccessMsg }}</div>
+			<div>
+				<button ng-if="quizErrorMsg" type="button" class="cws-button border-radius alt" ng-click="toggleBoolean('showPopup')">OK</button>
+				<button ng-if="quizSuccessMsg" type="button" class="cws-button border-radius  bt-color-3 alt" ng-click="toggleBoolean('showPopup')">OK</button>	
+			</div>
+		</div>
+	</div>
+</div>
+<div class="overlay" ng-class="{'show':showEditor}" ng-click="toggleBoolean('showEditor')"></div>
+<div class="popup grid-md-8 left-0" ng-class="{'show':showEditor}">
+	<ng-include src="'views/tutorials/editor-template.html'"></ng-include>
+</div>

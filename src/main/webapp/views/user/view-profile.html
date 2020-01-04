@@ -1,0 +1,251 @@
+<style>
+	.jumbotron{
+		min-height: 175px !important;
+	}
+	.m-l-45{
+	    margin-left: 45px;
+	}
+	.f-s-23{
+		font-size: 23px;
+	}
+	.m-l-50{
+		margin-left: 50px !important;
+	}
+	.m-r-165{
+		margin-right: 165px !important;
+	}
+	.view-resume{
+		padding: 6px;
+	}
+</style>
+<div>
+	<div class="jumbotron color-white p-t-0 ">
+		<div class="row">
+			<div class="row profile n-p-b n-p-l">
+				<div class="grid-md-8 std-info n-p-l m-b-0">
+					<div class="row no-padding">
+						<div class="student-img grid-md-1">
+							<img src="resources/img/user.png">
+						</div>
+						<div class="grid-md-11 profile-left-area">
+							<div class="row n-p-t">
+								<div class="grid-md-12 student-name no-padding"><h3 class="n-m-t">{{completeProfile.user.userName}}</h3></div>
+								<span ng-repeat="currentEmployer in completeProfile.work.workExp" ng-if="currentEmployeremployerstatus=='currentEmployer'">{{currentEmployer.designation}} at {{currentEmployer.employer}}</span>
+								<nav class="grid-md-12 student-social-nav no-padding"> 
+									<ul>
+										<li><a href="https://www.facebook.com/{{candidateProfile.social.socialInfo.facebookId}}" target="_blank"><span><i class="fa fa-facebook color-fb"></i></span></a></li>
+										<li><a href="https://twitter.com/{{candidateProfile.social.socialInfo.twitterId}}" target="_blank"><span><i class="fa fa-twitter color-twitter"></i></span></a></li>
+										<li><a href="https://www.linkedin.com/in/{{candidateProfile.social.socialInfo.linkedIn}}" target="_blank"><span><i class="fa fa-linkedin color-linkedin"></i></span></a></li>
+										<li><a href="https://web.skype.com/{{candidateProfile.social.socialInfo.skypeId}}" target="_blank"><span><i class="fa fa-skype color-skype"></i></span></a></li>
+										<li class="download-cv" ng-if="folderPath"><a href="./user/downloadresumes/{{folderPath}}/{{filePath}}/{{fileType}}"><i class="fa fa-download" aria-hidden="true">  Download CV </i></a></li>
+										<li ng-click="showResume()" class="download-cv"><i class="fa fa-file-text-o view-resume" aria-hidden="true"> View Resume</i></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="row">
+						<div class="grid-md-12 no-padding">
+							<div class="m-l-15"><span><i class="fa fa-clock-o"></i> </span> Member Since, {{completeProfile.user.createdOn | date:'dd'}} {{completeProfile.user.createdOn | date:'MMMM'}}, {{completeProfile.user.createdOn | date:'yyyy'}}</div>
+							<div class="m-t-10px m-l-15"><span><i class="fa fa-map-marker"></i> </span> {{completeProfile.user.address.present.address}}</div>
+						</div>
+					</div> -->
+					<div class="row about-desc">
+						<div class="f-s-23 m-l-10 color-white">
+							Profile Summary
+						</div>
+						<div class="row">
+							<div class="grid-md-12">
+								<p class="justify m-l-20">
+									{{completeProfile.userBasicInfo.profileSummary}}
+								</p>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="grid-md-4">
+				<video ng-src="{{selfIntoVideoPath}}" width="280" height="240" controls></video>
+				<!-- <video width="280" height="240" controls>
+ 					 <source ng-src="{{selfIntoVideoPath | trustUrl }} " type="video/mp4">
+				</video> -->
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="bg-white">
+	<div class="row">
+		<div class="row n-p-t">
+			<div class="grid-md-12 clear-fix">
+					<div class="row no-padding">
+					<div class="grid-md-12 no-padding">
+						<div class="row about-panel no-padding">
+							<div class="grid-md-4 experience">
+								<div class="listing-inner">
+									<div class="row ex-text">
+										<i class="grid-md-2 about-panel-icon fa fa-clock-o"></i>
+										 <span class="grid-md-10  no-padding">Experience</span> 		
+										 <strong class="grid-md-10 no-padding">
+											{{completeProfile.userExperianceInfo.yearsOfExperiance}}Years {{completeProfile.userExperianceInfo.monthsOfExperiace}}Months
+										 </strong>
+									</div>
+								</div>
+							</div>
+							<div class="grid-md-4 experience">
+								<div class="listing-inner">
+									<div class="row ex-text">
+										<i class="grid-md-2 about-panel-icon fa fa-area-chart"></i>
+										 <span class="grid-md-10  no-padding">Age</span> 		
+										 <strong class="grid-md-10 no-padding">
+										{{userAge}} Years.
+										 </strong>
+									</div>
+								</div>
+							</div>
+							<div class="grid-md-4 experience">
+								<div class="listing-inner">
+									<div class="row ex-text">
+										<i class="grid-md-2 about-panel-icon fa fa-inr"></i>
+										 <span class="grid-md-10  no-padding">Current Salary</span> 		
+										 <strong class="grid-md-10 no-padding">
+											{{completeProfile.userExperianceInfo.curentSalaryInLakhs}}Lakhs {{completeProfile.userExperianceInfo.curentSalaryInThousands}}Thousands
+										 </strong>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row about-panel no-padding">
+							<div class="grid-md-4 experience">
+								<div class="listing-inner">
+									<div class="row ex-text">
+										<i class="grid-md-2 about-panel-icon fa fa-rocket"></i>
+										 <span class="grid-md-10  no-padding">Expected Salary</span> 		
+										 <strong class="grid-md-10 no-padding">
+											{{completeProfile.userExperianceInfo.expectedSalaryInLakhs}}Lakhs {{completeProfile.userExperianceInfo.expectedSalaryInThousands}}Thousands
+										 </strong>
+									</div>
+								</div>
+							</div>
+							<div class="grid-md-4 experience">
+								<div class="listing-inner">
+									<div class="row ex-text">
+										<i class="grid-md-2 about-panel-icon fa fa-globe"></i>
+										 <span class="grid-md-10  no-padding">Languages</span> 		
+										 <strong class="grid-md-10 no-padding">
+											<span ng-repeat="tag in userLanguagesList">{{tag.language.languageName}}, </span>
+										 </strong>
+									</div>
+								</div>
+							</div>
+							<div class="grid-md-4 experience">
+								<div class="listing-inner">
+									<div class="row ex-text">
+										<i class="grid-md-2 about-panel-icon fa fa-graduation-cap"></i>
+										 <span class="grid-md-10  no-padding">Education Levels</span> 		
+										 <strong class="grid-md-10 no-padding">
+											Certificate
+										 </strong>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="row about-desc">
+					<div class="heading">
+						<span class="details-icon"><i  class="fa fa-user f-s-23"></i></span> 
+						Profile Summary
+					</div>
+					<div class="row">
+						<div class="grid-md-12">
+							<p class="justify m-l-45">
+								{{completeProfile.userBasicInfo.profileSummary}}
+							</p>
+						</div>
+					
+					</div>
+					
+				</div> -->
+				<div class="row" id="education" ng-if ="completeProfile.education.educationInfo.length">
+					<div class="heading">
+						<span class="details-icon"><i class="fa fa-graduation-cap"></i></span> 
+						EDUCATION
+					</div>
+					<div class="edu-desc relative">
+						<ul>
+							<li ng-repeat="edu in completeProfile.education.educationInfo">
+								<div class="row edu-title no-padding text-bold">
+								  <h6 class="inline-block no-margin text-bold">{{edu.educationType}}: {{edu.branch}} </h6><span class="text-bold"> {{edu.yearOfPassing}}</span>
+								  <span class="edu-institute block">{{edu.instituteName}}</span>
+								</div>
+								<p class="justify">
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="row" id="professionalskills" ng-if ="completeProfile.skillset.skills.length">
+					<div class="heading">
+						<span class="details-icon"><i class="fa fa-briefcase"></i></span> 
+					SKILLS
+					</div>
+					<div class="edu-desc relative">
+						<div class="row tech-skills">
+							<span class="tech-skill" ng-repeat="skill in completeProfile.skillset.skills" ng-class="coursesBgColors[($index%4)]">
+								{{skill.text}}
+							</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row" id="workexp" ng-if="completeProfile.work.workExp.length">
+					<div class="heading">
+						<span class="details-icon"><i class="fa fa-briefcase"></i></span> 
+						Work Experience
+					</div>
+					<div class="edu-desc relative">
+						<ul>
+							<li ng-repeat="work in completeProfile.work.workExp">
+								<div class="row edu-title no-padding">
+								  <h6 class="inline-block no-margin text-bold">{{work.designation}} </h6><span>( {{work.monthStart}} {{work.yearStart}} - {{work.monthEnd}} {{work.yearEnd}} )</span>
+								  <span class="edu-institute block text-bold">{{work.employer}}</span>
+								</div>
+								<p class="justify">
+									{{work.jobProfile}}
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="row" id="project" ng-if="completeProfile.project.projectInfo.length">
+					<div class="heading">
+						<span class="details-icon"><i class="fa fa-briefcase"></i></span> 
+						Projects
+					</div>
+					<div class="edu-desc relative">
+						<ul>
+							<li ng-repeat="project in completeProfile.project.projectInfo">
+								<div class="row edu-title no-padding">
+								  <h6 class="inline-block no-margin text-bold">{{project.projectTitle}} </h6><span>( {{project.startDate | date:'yyyy-MM-dd'}} - {{project.endDate | date:'yyyy-MM-dd'}} )</span>
+								  <span class="edu-institute block">{{project.instituteName}}</span>
+								</div>
+								<p class="justify">
+									{{project.desc}}
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+	</div>
+</div>
+</div>
+<div class="overlay" ng-class="{'show':showCoursePurchaseForm}" ng-click="toggleBoolean('showCoursePurchaseForm')"></div>
+<div class="popup log-popup grid-md-8 grid-lg-2 grid-xs-12 m-r-165" ng-class="{'show':showCoursePurchaseForm}" style="z-index:99999">
+	<div class="row"><span ng-click="toggleBoolean('showCoursePurchaseForm')" class="pull-right color-red pointer-cursor "><i class="fa fa-times"></i></span></h4></div>
+    <div class="row ">
+		<embed src="{{resumePath}}" class="m-l-50" width="800px" height="600px" />
+	</div>
+</div>
+
+</div>

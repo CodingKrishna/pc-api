@@ -1,0 +1,30 @@
+<div class="user-info-cards">
+	<div class="header-title-bdr bordered-blue">
+		<h3 class="pro-title">Pricing table</h3>
+	</div>
+	<div class="cont-data-pad">
+		<div class="row">
+			<div class="grid-md-4" ng-repeat="product in pricingPlanList">
+				<article class="pricing-table ">
+					<div class="header-pt clear-fix"><!--
+					 --><h3 ng-class="pricingBgColors[($index%3)]">{{product.planType}}</h3>
+					</div>
+					<div  class="price-pt"><sup><i class="fa fa-rupee"></i></sup>{{product.planPrice}}</div>
+					<p>per {{product.planValidity}} <span>month</span><span ng-if="$index>0">s</span></p>
+					<ul class="planDetails">
+						<li><span>{{product.planavailability}} Product</span></li>
+						<li><span>{{product.staffLogin}} Staff Login</span></li>
+						<li><span>{{product.availableProfiles}} File Upload</span></li>
+						<li ng-if="product.techSupport"><span>Technical Suppport will be provided</span></li>
+						<li ng-if="!product.techSupport"><span>No Technical Suppport</span></li>
+						<li><span>Easy Control</span></li>
+					</ul>
+					<button type="button" class="cws-button border-radius alt" ng-click="purchasePlan(product)">Purchase Plan</button>
+				</article>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

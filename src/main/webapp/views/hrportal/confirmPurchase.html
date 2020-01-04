@@ -1,0 +1,21 @@
+<div class="grid-row bg-white">
+	<h3>Your order has been Placed Successfully</h3>
+	<div class="row">
+		<table class="jobslist-table bordered" >
+			<tr>
+				<th>S.No</th>
+				<th>Plan Chosen</th>
+				<th>validity</th>
+				<th>Price</th>
+				<th>profiles</th>
+			</tr>
+			<tr>
+				<td>{{$index+1}}</td>
+				<td>{{purchasedPlan.plan.planType}}</td>
+				<td>{{purchasedPlan.plan.planValidity}} months</td>
+				<td><i class="fa fa-rupee"></i> {{purchasedPlan.plan.planPrice}}</td>
+				<td>{{purchasedPlan.plan.availableProfiles}}</td>
+			</tr>
+		</table>
+	</div>
+</div>

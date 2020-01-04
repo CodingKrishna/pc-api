@@ -1,0 +1,93 @@
+<style>
+.support-form textarea {
+    border: 1px solid #e6e6e6 ;
+    width: 100%;
+    max-width: 100%;
+    padding: 7px;
+   }
+   
+.support-form .error-msg {
+   	text-align: center;
+    font-size: 12px;
+    color: red;
+    margin-top: 0px;
+    margin-left: 15px;
+}
+.support-form .success{
+	color:red;
+	font-size:20px;
+	text-align: center;  
+} 
+.support-form label{
+	line-height:2.4;  
+} 
+</style>
+
+<div class="page-content gradient-grey padding-none">
+	<div class="grid-row" >
+		<div  class="box-shadow-none" style="min-height:500px ">
+				<section class="support-form p-0" style="position:relative;">
+					<div class="row clear-fix p-12">
+						<div class="row page-title">
+							<div class="">
+								<h1>Technical Consulting</h1>
+							</div>
+						</div>
+						<div class="row">
+							<div class="grid-md-1">&nbsp;</div>
+							<p class="grid-md-10 color-gray">Dear Professionals, we are  providing technical support in design functionalities, implementation, trouble-shooting 
+							functions and resolving issues. Our consultants are technical specialists with 8+ years experience who works 
+							with clients across the all kinds of businesses domains and technical domains.If you need technical support submit your details here.</p>
+						</div>
+						<div ng-if="supportFormMessage" class="success row">{{supportFormMessage}}</div>
+						<div class="row">
+							<div class="grid-md-2"> &nbsp; </div>
+							<div class="grid-md-8 relative no-margin">
+								<form name=form.supportForm> 
+									<div class="row">
+										<label class="grid-md-3 pull-left">Name:</label>
+										<span class="grid-md-9 pull-left">
+											<input type="text" name="name" placeholder="Enter your  name" data-ng-model="support.name" required/>
+											<span class="error-msg absolute" ng-if="form.supportForm.name.$dirty && form.supportForm.name.$error.required">Name is required</span>
+										</span>	
+									</div>
+									<div class="row">
+										<label class="grid-md-3 pull-left">Mobile No:</label>
+										<span class="grid-md-9 pull-left">
+											<input type="text" name="mobile" placeholder="Enter your mobile number" data-ng-model="support.mobileNo" required/>
+											<span class="error-msg absolute" ng-if="form.supportForm.mobile.$dirty && form.supportForm.mobile.$error.required">Mobile Number required</span>	
+										</span>
+									</div>
+									<div class="row">
+										<label class="grid-md-3 pull-left">Email:</label>
+										<span class="grid-md-9 pull-left">
+											<input type="text" name="email" placeholder="Enter your email" data-ng-model="support.emailId" required/>
+											<span class="error-msg absolute" ng-if="form.supportForm.email.$dirty && form.supportForm.email.$error.required">Email is required</span>	
+										</span>
+									</div>
+									<div class="row">
+										<label class="grid-md-3 pull-left">Needed Technology:</label>
+										<span class="grid-md-9 pull-left">
+											<input type="text" name="technology" placeholder="In which technology you want support" data-ng-model="support.requiredTechnology" required/>
+											<span class="error-msg absolute" ng-if="form.supportForm.technology.$dirty && form.supportForm.technology.$error.required">Needed Technology</span>	
+										</span>
+									</div>
+									<div class="row">
+										<label class="grid-md-3 pull-left">Description:</label>
+										<span class="grid-md-9 pull-left">
+											<textarea name="description" placeholder="Description" data-ng-model="support.desc" required/></textarea>
+											<span class="error-msg absolute" ng-if="form.supportForm.description.$dirty && form.supportForm.description.$error.required">Description is required</span>	
+										</span>
+									</div>
+									<div class="row">
+										<label class="grid-md-3 pull-left">&nbsp;</label>
+										<button type="button" class="cws-button bt-color-3 border-radius alt  pull-right"  style="float:right;" ng-click="saveSupport()">Submit <i class="fa fa-angle-right"></i></button>
+									</div>
+								</form>
+							</div>
+						</div>			
+					</div>
+			</section>
+		</div>
+	</div>
+</div>		

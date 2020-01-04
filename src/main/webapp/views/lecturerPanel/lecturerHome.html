@@ -1,0 +1,132 @@
+<html ng-app="lecturerModule"> 
+<head>
+	<link rel="stylesheet" href="./resources/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="./resources/css/main.css" />
+	<link rel="stylesheet" href="./resources/css/app.css" />
+	<style>
+	body{
+		background-color: #eee;
+	}
+	.nav-bar li{
+	    margin:0px;
+		padding:9px 23px;
+		color:cornflowerblue;
+	    cursor: pointer;
+		font-size:14px;
+	    border-bottom:1px solid #EEEEEE;
+		border-left:4px solid #EEEEEE;
+	}
+	.course-title{
+		margin-left:8px;
+		font-size:16px;   
+	} 
+	.course-name{
+	    margin-left:23px;
+	}
+	.nav-bar  li:hover{
+		pointer:cursor;
+		background:#fbfbfb;
+		border-left:4px solid dodgerblue;
+	}
+	.nav-bar  li :hover{
+		color:#262626;
+	}
+	.bg-color-white{
+		background-color:#fff; 
+	}
+	ul li:before{
+		content:""; 
+	}
+	ul li, ol li{
+		line-height:1.4;
+		padding-left:0;
+		position:relative;  
+	}
+	.course-structure a{
+		color: cornflowerblue;
+    	padding: 16px 12px;
+    	
+	}
+	</style>
+</head>
+<body ng-controller="lecturerHomeCtrl">
+	<div class="row p-0">
+		<div class="sticky-wrapper">
+			<div class="sticky-menu">
+				<div class="grid-row clear-fix">
+					<!-- logo -->
+					<a data-ui-sref="home" class="logo">
+						<img src="./resources/img/pc-logo.png">
+						<h1>Pioneer Coders</h1>
+					</a>
+					<!-- / logo -->
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div class="row p-0">
+		<div class="grid-md-2 lecturerpanel bg-color-white p-0" style="min-height:92vh">
+			<h3 class="text-center">Courses List</h3>
+			<ul class="p-l-0 " data-ng-repeat="course in coursesList">
+				<li  class="nav-bar" data-ng-repeat="(title, courseData) in course">
+					<span class="course-title">{{title}}</span>
+					<ul class="p-l-0 ">
+						<li class="course-name" data-ng-repeat="cData in courseData track by $index" ng-click="selectACourse(cData)">
+							{{cData.courseName}}
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="grid-md-3 bg-color-white course-structure" style="min-height:92vh">
+			<h4>{{courseName}}</h4>
+			<div ng-repeat="topics in currentIndexData">
+				<a ng-click="getTemplateData(courseName,topics.topic)">{{topics.topic}}</a>
+				<div ng-if="currentIndexData.length<=3">
+					<div ng-repeat="(title,subtopics) in topics">
+						<h5>{{title}}</h5>
+						<div ng-repeat="sb in subtopics">
+							<a ng-click="getTemplateData(title,sb.topic,courseName)">{{sb.topic}}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-md-7">
+			<div class="">{{data}}</div>
+		</div>
+	</div>
+</body>
+
+
+<!-- lib Start -->
+<script type="text/javascript" src="./resources/js/lib/angular.min.js"></script>
+<script type="text/javascript" src="./resources/js/lib/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="./resources/js/lib/angular-messages.min.js"></script>
+<script type="text/javascript" src="./resources/js/lib/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="./resources/js/lib/jquery.min.js"></script>
+<script type="text/javascript" src="./resources/js/lib/angular-md5.js"></script>
+<!-- lib End-->
+
+<!-- Modules Start-->
+<script type="text/javascript" src="./resources/js/app.js"></script>
+<script type="text/javascript" src="./resources/js/route.js"></script>
+<!-- Modules End-->
+
+<!-- Directives Starts -->
+<script type="text/javascript" src="./resources/js/directives/utilDirectives.js"></script>
+<!-- Directives Ends -->
+
+<!-- Services Start-->
+<!-- Services End-->
+
+<!-- Controllers Start-->
+<script type="text/javascript" src="./resources/js/controllers/lecturerHomeCtrl.js"></script>
+
+
+<!-- Controllers End-->
+
+<!-- Utils Start -->
+<script type="text/javascript" src="./resources/js/constants.js"></script>
+<!-- Utils Ends -->
+</html>

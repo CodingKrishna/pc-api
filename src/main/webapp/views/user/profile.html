@@ -1,0 +1,839 @@
+<style>
+#red-slider .md-thumb:after, #red-slider .md-track-fill{
+    background-color: greenyellow !important;
+    border-color: greenyellow !important;
+}
+#red-slider .md-focus-thumb, #red-slider .md-focus-ring{
+    background-color: greenyellow;
+}
+.top-8{
+	top:8px;
+}
+</style>
+<div class="container no-padding">
+	<div class="row profile-card ">
+		<div class="user-info-cards">
+			<div class=" header-title-bdr bordered-blue"><h3 class="pro-title">Profile</h3></div>
+			<div class="cont-data-pad">
+		<section>
+		<div class="tabs">
+			<div class="block-tabs-btn clear-fix">
+				<div class="tabs-btn active" data-tabs-id="tabs1">Basic Info</div>
+				<div class="tabs-btn" data-tabs-id="tabs2">Address</div>
+				<div class="tabs-btn" data-tabs-id="tabs3">Education</div>
+				<div class="tabs-btn" data-tabs-id="tabs4">Skill Set</div>
+				<div class="tabs-btn" data-tabs-id="tabs5">Work Exp</div>
+				<div class="tabs-btn" data-tabs-id="tabs6">Projects</div>
+				<div class="tabs-btn" data-tabs-id="tabs7">Social Info</div>
+			</div>
+			<!-- tabs keeper -->
+			<div class="tabs-keeper">
+				<!-- tabs container -->
+				<div class="container-tabs active" data-tabs-id="cont-tabs1" >
+						<div class="user-info-cards">
+							<div class="header-title-bdr bordered-blue">
+								<h3 class="pro-title">Personal Information</h3>
+								 <span class="float-right" ng-if="!formEdit.isBasicInfoEdited">
+										<button class="width-80px" ng-click="toggleView('isMobileEdited','formEdit')">
+											<span ><h3 class="pro-title edit-icon-txt">Edit</h3></span><i class="fa fa-edit fa-2x"></i>
+										</button>
+								</span>
+							</div>
+							<div class="cont-data-pad">
+								<div class="row">
+									<label class="grid-md-2"><b>Name:</b> </label>
+									<div class="grid-md-4">{{completeProfile.user.userName}}</div>
+								</div>
+								<div class="row">
+									<label class="grid-md-2"><b>Email Id:</b> </label>
+									<div class="grid-md-4"> {{completeProfile.user.emailId}}</div>
+								</div>
+								<div class="row">
+									<label class="grid-md-2"><b>Mobile No:</b></label>
+									 <div class="grid-md-4 no-padding" ng-if="formEdit.isMobileEdited">	
+									 	<input type="text" name="mobile No" placeholder="Mobile No" required data-ng-model="completeProfile.user.mobileNo" ng-pattern="/^[0-9]{10,10}$/"  ng-maxlength="10" maxlength="10">
+									 </div>
+									 <span class="grid-md-3" ng-if="!formEdit.isMobileEdited">{{completeProfile.user.mobileNo}}</span>
+									 <div class="grid-md-2">
+										<button ng-if="formEdit.isMobileEdited" class="cws-button bt-color-3 border-radius alt icon-right pull-right" ng-click="updateMobileNo()">Save</button>
+								 	</div>
+								</div>
+							</div>
+						</div>
+						<div class="user-info-cards">
+							<div class="header-title-bdr bordered-blue">
+								<h3 class="pro-title">Basic Info</h3>
+								<div class="text-center success-msg" ng-if="addSuccessMsg">Saved Successfully</div>
+								<span class="float-right" ng-if="!formEdit.isBasicInfoEdited">
+									<button class="width-80px" ng-click="toggleView('isBasicInfoEdited','formEdit')">
+										<span ><h3 class="pro-title edit-icon-txt">Edit</h3></span><i class="fa fa-edit fa-2x"></i>
+									</button>
+								</span>
+							</div>
+							<div class="cont-data-pad">
+								<div class="row">
+									<div class ="row">
+										<label class="grid-md-3">Date of birth</label>
+										<div class="grid-md-4 no-padding relative" ng-if="formEdit.isBasicInfoEdited">
+											<input class="form-field grid-md-12 no-margin" type="text" name ="dob"  uib-datepicker-popup ng-model="completeProfile.userBasicInfo.dob" is-open="dobCalendar.opened" datepicker-options="dateOptions" ng-required="false" close-text="Close" />
+										     <span class="form-field-icon absolute">
+								               <button type="button" class="btn btn-md btn-sky-blue bg-color-1 color-white" ng-click="openCalendar('dobCalendar')"><i class="fa fa-calendar"></i></button>
+								             </span>
+										</div>
+										<div class="grid-md-4" ng-if="!formEdit.isBasicInfoEdited">
+											{{completeProfile.userBasicInfo.dob | date:'yyyy-MM-dd'}}
+										</div>
+									</div>
+									<div class="row no-pading form-group">
+										<label class="grid-md-3">Upload Resume</label>
+										<div class="grid-md-5" ng-if="formEdit.isBasicInfoEdited">
+											<div class="">
+											<tc-file-input label="Click Here To Choose a File" ng-model="completeProfile.userBasicInfo.resumePath" placeholder="No File Choosen" required="required" ></tc-file-input><!-- multiple="true" -->
+											</div>
+											<div>
+												<label class="grid-md-3"></label>
+												<span>{{infoMsg}}</span>
+												<button type="button" class="cws-button  bt-color-4 border-radius small alt" ng-click="selectUpload(completeProfile.userBasicInfo.resumePath, 'htmlForms', $event)">Upload File</button>
+											</div>
+										</div>
+										<div class="grid-md-4" ng-if="!formEdit.isBasicInfoEdited">
+											{{userUpdatedResumePath}}
+										</div>
+									</div>
+									<div class="row no-pading form-group">
+										<label class="grid-md-3">Self Introduction Video</label>
+										<div class="grid-md-5"  ng-if="formEdit.isBasicInfoEdited">
+											<div class="">
+											<tc-file-input label="Click Here To Choose a File" ng-model="completeProfile.userBasicInfo.selfIntroVideoPath" placeholder="No File Choosen"></tc-file-input>
+											</div>
+											<div>
+												<label class="grid-md-3"></label>
+												<span>{{videoInfoMsg}}</span>
+												<button type="button" class="cws-button  bt-color-4 border-radius small alt" ng-click="selectVedioUpload(completeProfile.userBasicInfo.selfIntroVideoPath, 'htmlForms', $event)">Upload Video</button>
+											</div>
+										</div>
+										<div class="grid-md-4" ng-if="!formEdit.isBasicInfoEdited">
+											{{userUpdatedVideoPath}}
+										</div>
+									</div>
+									<div class="row">
+										<label class="grid-md-3">Languages Known</label>
+										<div class="grid-md-9 no-padding" ng-if="formEdit.isBasicInfoEdited">
+										
+											<!-- <tags-input class="no-margin" ng-model="completeProfile.userBasicInfo.languages" add-on-paste="true" allowed-tags-pattern="^[a-zA-Z0-9]*$">
+												<auto-complete min-length="0" debounce-delay="0" source="loadLanguages($query)"></auto-complete> 
+											</tags-input> -->
+											<tags-input ng-model="languagesList" display-property="languageName">
+										      <auto-complete source="loadLanguages($query)"></auto-complete>
+										  </tags-input> 
+										</div>
+										<div class="grid-md-9" ng-if="!formEdit.isBasicInfoEdited">
+											<div class="full-width"   ng-repeat="tag in userLanguagesList track by $index">
+												<span style="overflow:hidden;"  class="tags-input-read tags-read tag-item-read" >{{tag.language.languageName}} </span>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<label class="grid-md-3">Skills</label>
+										<div class="grid-md-9 no-padding" ng-if="formEdit.isBasicInfoEdited">
+										
+											<!-- <tags-input class="no-margin" ng-model="completeProfile.userBasicInfo.languages" add-on-paste="true" allowed-tags-pattern="^[a-zA-Z0-9]*$">
+												<auto-complete min-length="0" debounce-delay="0" source="loadLanguages($query)"></auto-complete> 
+											</tags-input> -->
+											 <tags-input ng-model="skillsList" display-property="name">
+											      <auto-complete source="loadTags($query)"></auto-complete>
+											  </tags-input>  
+										</div>
+										<div class="grid-md-9" ng-if="!formEdit.isBasicInfoEdited">
+											<div class="full-width"   ng-repeat="tag in userUpdatedSkillList track by $index">
+												<span style="overflow:hidden;"  class="tags-input-read tags-read tag-item-read" >{{tag.technology.name}} </span>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<label class="grid-md-3">Profile Summary</label>
+										<div class="grid-md-9 no-padding" ng-if="formEdit.isBasicInfoEdited">
+											<textarea ng-model="completeProfile.userBasicInfo.profileSummary" rows="3" class=no-margin" placeholder="Profile Summary"></textarea>
+										</div>
+										<div class="grid-md-9" ng-if="!formEdit.isBasicInfoEdited">
+											{{completeProfile.userBasicInfo.profileSummary}}
+										</div>
+									</div>
+									<div class="row p-r-0" ng-if="formEdit.isBasicInfoEdited">
+										<div class="grid-md-10"></div>
+										<div class="grid-md-2 p-r-0">
+											<button class="cws-button bt-color-3 border-radius alt icon-right pull-right" ng-click="updateUserBasicInfo()">Save</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				 
+				</div>
+				<!--/tabs container -->
+				
+				<!-- tabs container -->
+				<div class="container-tabs" data-tabs-id="cont-tabs2">
+						<div class="user-info-cards">
+						<div class="header-title-bdr bordered-orange">
+							<h3 class="pro-title">Current Address</h3>
+							<div class="text-center success-msg" ng-if="addSuccessMsg">Saved Successfully</div>
+						</div>
+						<div class="cont-data-pad grid-col-12">
+							<div class="lft-box">
+								<div class="row">
+									<!-- <h3 class="pro-title-inner float-left">Permanent Address</h3> -->
+									<span class="float-right " ng-if="formEdit.isAddressEdited">
+										<button class="width-80px" ng-click="toggleView('isAddressEdited','formEdit')">
+											<span ><h3 class="pro-title edit-icon-txt">Edit</h3></span><i class="fa fa-edit fa-2x"></i>
+										</button>
+									</span>
+								</div>
+								<form>
+									<div class="grid-md-12" ng-if="!formEdit.isAddressEdited">
+										<textarea rows="3" placeholder="Address" name="address" value="Address"
+											ng-model="completeProfile.address.address"></textarea>
+									</div>
+									<div class="grid-md-12 readonly-mode-textarea"
+										ng-if="formEdit.isAddressEdited">
+										{{completeProfile.address.address}}</div>
+										
+									<div class="grid-md-12 readonly-mode"
+										ng-if="formEdit.isAddressEdited">{{completeProfile.address.city.cityName}}</div>	 
+									<select ng-if="!formEdit.isAddressEdited" ng-model="completeProfile.address.city.id" ng-options="city.id as city.cityName for city in cityList">
+										<option value="">Select City</option>
+										<!--  <option ng-repeat="city in cityList" value="{{city.cityName}}">{{city.cityName}}</option> -->
+									</select>	
+									
+									<div class="grid-md-12 readonly-mode"
+										ng-if="formEdit.isAddressEdited">{{completeProfile.address.state.stateName}}</div>	 
+									<select ng-if="!formEdit.isAddressEdited" ng-model="completeProfile.address.state.id" ng-options="state.id as state.stateName for state in stateList">
+										<option value="">Select State</option>
+										<!--  <option ng-repeat="city in cityList" value="{{city.cityName}}">{{city.cityName}}</option> -->
+									</select> 	
+									
+									<div class="grid-md-12 readonly-mode"
+										ng-if="formEdit.isAddressEdited">{{completeProfile.address.country.countryName}}</div>	
+									<select ng-if="!formEdit.isAddressEdited" ng-model="completeProfile.address.country.id" ng-options="country.id as country.countryName for country in countryList">
+										<option value="">Select Country</option>
+										<!--  <option ng-repeat="country in countryList" value="{{country.countryName}}">{{country.countryName}}</option> -->
+									</select>
+									
+									<div ng-if="!formEdit.isAddressEdited">
+										<input type="text" placeholder="Pincode" ng-model="completeProfile.address.pincode" />
+									</div>
+									<div class="grid-md-12 readonly-mode"
+										ng-if="formEdit.isAddressEdited">
+										{{completeProfile.address.pincode}}</div>
+								
+								<div class="float-right"> 
+									<button class="cws-button bt-color-3 border-radius alt icon-right"
+										ng-if="!formEdit.isAddressEdited" ng-click="saveAddress()">Save
+									</button>
+								</div>	
+								</form>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+				<!--/tabs container -->
+				<!-- tabs container -->
+				<div class="container-tabs" data-tabs-id="cont-tabs3" >
+					<div class="user-info-cards" >
+						<div class="header-title-bdr bordered-orange">			
+							<div class="header-title-bdr ">
+								<h3 class="pro-title">Education</h3>
+								<div class="text-center success-msg" ng-if="eduSuccessMsg">Saved Successfully</div>
+							</div>
+						</div>
+						<div>
+						</div>
+						<div class="cont-data-pad grid-col-12" style="clear:both;">
+							<div class="row no-padding">
+								<div class="lft-box" ng-repeat="edu in completeProfile.education">
+									<div style="width:90%;">
+										<h3 class="pro-title-inner-below float-left">Education {{$index+1}}</h3>					
+										<span class="float-right pro-btn-edit" ng-if="!formEdit.isEducationEdited">
+											<button class="width-80px" ng-click="toggleView('isEducationEdited','formEdit')">
+												<span ><h3 class="pro-title edit-icon-txt">Edit</h3></span><i class="fa fa-edit fa-2x"></i>
+											</button>
+										</span>
+										<span class="float-right" ng-if="$index>=1 && formEdit.isEducationEdited"><i class="fa fa-times-circle fa-lg clr-red" ng-click="removeEducation($index,edu)"></i>
+										</span>
+									</div>
+									<form>
+										<select ng-if="formEdit.isEducationEdited"
+											ng-model="edu.educationType">
+											<option value="">Select Education Type</option>
+											<option ng-repeat="eduType in eduTypes" value="{{eduType}}">{{eduType}}</option>
+										</select>
+										<div class="grid-md-12 readonly-mode"
+											ng-if="!formEdit.isEducationEdited">{{edu.educationType}}</div>
+					
+										<!-- <div ng-if="formEdit.isEducationEdited">
+											<input type="text" placeholder="School/University"
+												ng-model="edu.instituteName" />
+										</div>
+										<div class="grid-md-12 readonly-mode"
+											ng-if="!formEdit.isEducationEdited">{{edu.institute}}</div> -->
+										
+										<div class="grid-md-12 readonly-mode"
+										ng-if="!formEdit.isEducationEdited">{{edu.institute.instituteName}}</div>	
+									<select ng-if="formEdit.isEducationEdited" ng-model="edu.institute.id" ng-options="institute.id as institute.instituteName for institute in instituteList">
+										<option value="">Select Institute</option>
+										<!--  <option ng-repeat="country in countryList" value="{{country.countryName}}">{{country.countryName}}</option> -->
+									</select>
+									
+									<div class="grid-md-12 readonly-mode"
+										ng-if="!formEdit.isEducationEdited">{{edu.university.universityName}}</div>	
+									<select ng-if="formEdit.isEducationEdited" ng-model="edu.university.id" ng-options="university.id as university.universityName for university in universityList">
+										<option value="">Select University</option>
+									</select>
+										
+										
+										<div ng-if="formEdit.isEducationEdited">
+											<input type="text" placeholder="Branch" ng-model="edu.branch" />
+										</div>
+										<div class="grid-md-12 readonly-mode"
+											ng-if="!formEdit.isEducationEdited">{{edu.branch}}</div>
+					
+										<div ng-if="formEdit.isEducationEdited">
+											<input type="text" placeholder="Year of Passing"
+												ng-model="edu.yearOfPassing" />
+										</div>
+										<div class="grid-md-12 readonly-mode"
+											ng-if="!formEdit.isEducationEdited">{{edu.yearOfPassing}}</div>
+										<div ng-if="formEdit.isEducationEdited">
+											<input type="text" placeholder="Percentage"
+												ng-model="edu.percentage" />
+										</div>
+										<div class="grid-md-12 readonly-mode"
+											ng-if="!formEdit.isEducationEdited">{{edu.percentage}}</div>
+									</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="grid-md-2">
+									<button class="cws-button bt-color-3 border-radius alt icon-right" ng-if="formEdit.isEducationEdited" ng-click="addEduInfoPanel()">Add
+									</button>
+								</div>	
+								<div class="float-right">
+								<button class="cws-button bt-color-3 border-radius alt icon-right" ng-if="formEdit.isEducationEdited" ng-click="updateEducation()">
+								Save</button><!-- end ngIf: formEdit.isProjectEdited -->
+							</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<!--/tabs container -->
+				<div class="container-tabs" data-tabs-id="cont-tabs4" >
+					<div class="user-info-cards">
+						<div class="header-title-bdr bordered-pink">
+							<div class="header-title-bdr ">
+								<h3 class="pro-title">Skills Info</h3>
+								<div class="text-center success-msg" ng-if="skillsetSuccessMsg">Saved Successfully</div>
+							</div>			
+						</div>
+						<div class="cont-data-pad grid-col-12">
+							<div class="full-width" ng-if="formEdit.isSkillsetEdited">
+								<div>
+									<h3 class="pro-title-inner-below full-width float-left">Select your
+										skills</h3>
+								</div>
+							 <tags-input ng-model="skillsList" display-property="name">
+							      <auto-complete source="loadTags($query)"></auto-complete>
+							  </tags-input> 
+							</div>
+							<div class="full-width" ng-if="!formEdit.isSkillsetEdited">
+								<div>
+									<div ><h3 class="pro-title-inner-below float-left selected-txt-skill" >Selected Skills</h3>
+									<span class="pull-right pro-btn-edit" ng-if="!formEdit.isSkillsetEdited">
+										<button ng-click="toggleView('isSkillsetEdited','formEdit')">
+											<span><h3 class="pro-title edit-icon-txt-skill">Edit</h3><i class="fa fa-edit fa-2x pull-right"></i></span>
+										</button>
+									</span>
+									</div>
+								</div>
+								<div class="full-width"   ng-repeat="tag in completeProfile.skill.skills track by $index">
+									<span style="overflow:hidden;"  class="tags-input-read tags-read tag-item-read" >{{tag.text}} </span>
+								</div>
+							</div>
+							<div class="row clear-fix">
+								<div class="grid-md-4">Communication Skills</div>
+								 <div class="grid-md-7" >
+								 	<md-content style="display:inline !important;background-color:none;">
+										<div layout>
+							               <md-slider flex md-discrete ng-model="completeProfile.skill.basicSkills.commRating" step="1" min="1" max="10" aria-label="rating"></md-slider>
+							               <div flex="20" layout layout-align="center center">
+							                  <input flex type="number" ng-model="completeProfile.skill.basicSkills.commRating" aria-label="rating" aria-controls="rating-slider">
+							               </div>
+							            </div>
+								 </md-content>
+								 </div>
+								 <!-- <div ng-if="completeProfile.skillset.commRating" class="grid-md-7">{{completeProfile.skillset.commRating}}</div> -->
+								 <div class="grid-md-4" >Analytical Skills</div>
+								 <div class="grid-md-7">
+								 	<md-content style="display:inline !important;background-color:none;">
+									<div layout>
+						               <md-slider flex md-discrete class="md-primary" ng-model="completeProfile.skill.basicSkills.analyticalRating" step="1" min="1" max="10" aria-label="rating"></md-slider>
+						               <div flex="20" layout layout-align="center center">
+						                  <input flex type="number" ng-model="completeProfile.skill.basicSkills.analyticalRating" aria-label="completeProfile.skillset.analyticalRating" aria-controls="rating-slider">
+						               </div>
+						            </div>
+								 </md-content>
+								 </div>
+								 <!-- <div ng-if="completeProfile.skillset.analyticalRating" class="grid-md-7">{{completeProfile.skillset.analyticalRating}}</div> -->
+								<!-- <input class="grid-md-7" ng-model="completeProfile.skillset.commRating" type="range" min="1" max="10" step="1" list="tickmarks"/>
+								<datalist id="tickmarks">
+								  <option value="1" label="1">
+								  <option value="2">
+								  <option value="3">
+								  <option value="4">
+								  <option value="5" label="50%">
+								  <option value="6">
+								  <option value="7">
+								  <option value="8">
+								  <option value="9">
+								  <option value="10" label="100%">
+								</datalist>
+								<label class="grid-md-1 font-18 text-bold">{{completeProfile.skillset.commRating}}</label>
+							</div>
+							<div class="row clear-fix">
+								<div class="grid-md-4">Analytical Skills</div>
+								<input class="grid-md-7" ng-model="completeProfile.skillset.analyticalRating" type="range" min="1" max="10" step="1" list="tickmarks"/>
+								<datalist id="tickmarks">
+								  <option value="1" label="1">
+								  <option value="2">
+								  <option value="3">
+								  <option value="4">
+								  <option value="5" label="50%">
+								  <option value="6">
+								  <option value="7">
+								  <option value="8">
+								  <option value="9">
+								  <option value="10" label="100%">
+								</datalist> 
+								<label class="grid-md-1 font-18 text-bold">{{completeProfile.skillset.analyticalRating}}</label>-->
+							</div>
+							<div class="float-right" ng-if="formEdit.isSkillsetEdited">
+								<button class="cws-button bt-color-3 border-radius alt icon-right"
+									ng-click="submitskillset()">Save
+								</button>
+							</div>
+						</div>
+					</div>
+					</div>
+						
+				
+				<div class="container-tabs" data-tabs-id="cont-tabs5" >
+				<div class="user-info-cards">
+					<div class="header-title-bdr bordered-blue">
+						<h3 class="pro-title">Experience</h3>
+						<div class="text-center success-msg" ng-if="TotalExpSuccessMsg">Saved Successfully</div>
+						<span class="float-right" ng-if="!formEdit.isTotalWorkExpEdited">
+							<button class="width-80px" ng-click="toggleView('isTotalWorkExpEdited','formEdit')">
+								<span ><h3 class="pro-title edit-icon-txt">Edit</h3></span><i class="fa fa-edit fa-2x"></i>
+							</button>
+						</span>
+					</div>
+					<div class="cont-data-pad">
+						<div class="row clear-fix">
+							<div class="grid-md-3">
+								<div class="row p-0">
+									<label class="grid-md-12 p-0">Current Salary</label>
+									<div class="grid-md-12 p-0">
+										<div class="grid-md-6 p-0">
+											<label>Lakhs</label>
+										</div>
+										<div class="row p-0" ng-if="formEdit.isTotalWorkExpEdited">
+											<select ng-model="completeProfile.userExperianceInfo.curentSalaryInLakhs" class="grid-md-8 p-0" ng-options="salary for salary in salaryList"></select>
+										</div>
+									</div>
+									<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isTotalWorkExpEdited">
+										{{completeProfile.userExperianceInfo.curentSalaryInLakhs}}
+									</div>
+								</div>
+							</div>
+							<div class="grid-md-3">
+								<div class="row p-0">
+									<label class="grid-md-12 p-0">&nbsp;</label>
+									<div class="grid-md-12 p-0">
+										<div class="grid-md-6 p-0">
+											<label>Thousands</label>
+										</div>
+										<div class="row p-0" ng-if="formEdit.isTotalWorkExpEdited">
+											<select ng-model="completeProfile.userExperianceInfo.curentSalaryInThousands" class="grid-md-8 p-0" ng-options="salary for salary in salaryListInThousands"></select>
+										</div>
+									</div>
+									<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isTotalWorkExpEdited">
+										{{completeProfile.userExperianceInfo.curentSalaryInThousands}}
+									</div>
+								</div>
+							</div>
+							<div class="grid-md-3">
+								<div class="row p-0">
+									<label class="grid-md-12 p-0">Expected Salary</label>
+									<div class="grid-md-12 p-0">
+										<div class="grid-md-6 p-0">
+											<label>Lakhs</label>
+										</div>
+										<div class="row p-0" ng-if="formEdit.isTotalWorkExpEdited">
+											<select ng-model="completeProfile.userExperianceInfo.expectedSalaryInLakhs" class="grid-md-8 p-0" ng-options="salary for salary in salaryList"></select>
+										</div>
+									</div>
+									<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isTotalWorkExpEdited">
+										{{completeProfile.userExperianceInfo.expectedSalaryInLakhs}}
+									</div>
+								</div>
+							</div>
+							<!-- <div class="grid-md-3">
+								<label class="grid-md-12">Expected Salary</label>
+								<div class="row">
+								<div class="grid-md-6" ng-if="formEdit.isTotalWorkExpEdited">
+									<select ng-model="completeProfile.userExperianceInfo.expectedSalaryInLakhs" ng-options="salary for salary in salaryList"></select>
+								</div>
+									<div>
+										<div>
+											<label class="grid-md-6">Lakhs</label>
+										</div>
+										<div class="grid-md-6 readonly-mode" ng-if="!formEdit.isTotalWorkExpEdited">
+											{{completeProfile.userExperianceInfo.expectedSalaryInLakhs}}
+										</div>
+									</div>
+								</div>
+							</div> -->
+							<div class="grid-md-3">
+								<div class="row p-0">
+									<label class="grid-md-12 p-0">&nbsp;</label>
+									<div class="grid-md-12 p-0">
+										<div class="grid-md-6 p-0">
+											<label>Thousands</label>
+										</div>
+										<div class="row p-0" ng-if="formEdit.isTotalWorkExpEdited">
+											<select  ng-model="completeProfile.userExperianceInfo.expectedSalaryInThousands" class="grid-md-8 p-0" ng-options="salary for salary in salaryListInThousands"></select>
+										</div>
+									</div>
+									<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isTotalWorkExpEdited">
+										{{completeProfile.userExperianceInfo.expectedSalaryInThousands}}
+									</div>
+								</div>
+							</div>
+							<!-- <div class="grid-md-3">
+							<div class="row">
+								<div class="grid-md-6" ng-if="formEdit.isTotalWorkExpEdited">
+									<select  ng-model="completeProfile.userExperianceInfo.expectedSalaryInThousands" ng-options="salary for salary in salaryListInThousands"></select>
+								</div>
+								<label class="grid-md-6">Thousands</label>
+							</div>
+								<div class="grid-md-6 readonly-mode" ng-if="!formEdit.isTotalWorkExpEdited">
+									{{completeProfile.userExperianceInfo.expectedSalaryInThousands}}
+								</div>
+							</div> -->
+							<div class="grid-md-3">
+								<div class="row p-0">
+									<label class="grid-md-12 p-0">Experience:</label>
+									<div class="grid-md-12 p-0">
+										<div class="grid-md-6 p-0">
+											<label>Years</label>
+										</div>
+										<div class="row p-0" ng-if="formEdit.isTotalWorkExpEdited">
+											<select ng-model="completeProfile.userExperianceInfo.yearsOfExperiance" class="grid-md-8 p-0" ng-options="years for years in yearsOfExperience"></select>
+										</div>
+									</div>
+									<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isTotalWorkExpEdited">
+										{{completeProfile.userExperianceInfo.yearsOfExperiance}}
+									</div>
+								</div>
+							</div>
+							<!-- <div class="grid-md-3">
+							<div class="row">
+								
+								<div class="grid-md-6" ng-if="formEdit.isTotalWorkExpEdited">
+									<select ng-model="completeProfile.userExperianceInfo.yearsOfExperiance" ng-options="years for years in yearsOfExperience"></select>
+								</div>
+								<label class="grid-md-6"><strong>Experience:</strong></label>
+								<label class="grid-md-6">Years</label>
+							</div>
+								<div class="grid-md-6 readonly-mode" ng-if="!formEdit.isTotalWorkExpEdited">
+									{{completeProfile.userExperianceInfo.yearsOfExperiance}}
+								</div>
+							</div> -->
+							<div class="grid-md-3">
+								<div class="row p-0">
+									<label class="grid-md-12 p-0">&nbsp;</label>
+									<div class="grid-md-12 p-0">
+										<div class="grid-md-6 p-0">
+											<label>Months</label>
+										</div>
+										<div class="row p-0" ng-if="formEdit.isTotalWorkExpEdited">
+											<select  ng-model="completeProfile.userExperianceInfo.monthsOfExperiace" class="grid-md-8 p-0" ng-options="months for months in monthsOfExperience"></select>
+										</div>
+									</div>
+									<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isTotalWorkExpEdited">
+										{{completeProfile.userExperianceInfo.monthsOfExperiace}}
+									</div>
+								</div>
+							</div>
+							<div class="grid-md-3">
+								<div class="row p-0">
+									<label class="grid-md-12 p-0">&nbsp;</label>
+									<div class="grid-md-12 p-0">
+										<div class="row p-0">
+											<div class="grid-md-3 float-right">
+												<button class="cws-button bt-color-3 border-radius alt icon-right" style="margin-top: 15px;"
+															ng-if="formEdit.isTotalWorkExpEdited" ng-click="updateTotalExp()">Save
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="grid-md-3 float-right">
+							<div class="grid-md-12">&nbsp;</div>
+							<button class="cws-button bt-color-3 border-radius alt icon-right"
+								ng-if="formEdit.isTotalWorkExpEdited" ng-click="updateTotalExp()">Save
+							</button>
+							</div> -->
+						</div>
+					</div>
+				</div>
+				<div class="user-info-cards">
+				<div class="header-title-bdr bordered-palegreen">	
+					<div class="header-title-bdr ">
+						<h3 class="pro-title">Work Experience</h3>
+						<div class="text-center success-msg" ng-if="workExpSuccessMsg">Saved Successfully</div>
+					</div>
+				</div>
+				<div class="cont-data-pad grid-col-12">
+					<div class="row no-padding">
+						<div class="lft-box" ng-repeat="employer in completeProfile.employersInfo">
+							<div class="">
+								<h3 class="pro-title-inner-below float-left">Employer {{$index+1}}</h3>
+								<span class="float-right">
+										<span ng-if="($index>=1 && formEdit.isWorkExpEdited)" class="float-right"> <i class="fa fa-times-circle fa-lg clr-red" ng-click="removeWorkExp($index,employer)"></i></span>
+										<button class="width-80px" ng-if="!formEdit.isWorkExpEdited" ng-click="toggleView('isWorkExpEdited','formEdit')">
+											<span ><h3 class="pro-title edit-icon-txt">Edit</h3></span><i class="fa fa-edit fa-2x"></i>
+										</button>
+								</span>
+							</div>
+							<form>
+								<div ng-if="formEdit.isWorkExpEdited" class="clear-fix">
+										<input type="text" placeholder="Employer" ng-model="employer.employer" />
+								</div>
+								<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isWorkExpEdited">
+									{{employer.employer}}
+								</div>
+								<div ng-if="formEdit.isWorkExpEdited" class="clear-fix">
+									<select  ng-model="employer.employerStatus" ng-options="status.status as status.status for status in employerStatus"></select>
+								</div>
+								<div class="grid-md-12 readonly-mode-pro-des-textarea" ng-if="!formEdit.isWorkExpEdited">
+									{{employer.employerStatus}}
+								</div>
+								<div ng-if="formEdit.isWorkExpEdited">
+										<div class="row">
+									<select  class="grid-md-3 p-l-0" ng-model="employer.monthStart"><option ng-repeat="month in months" ng-value="Month">{{month}}</option></select>
+									<select  class="grid-md-2 p-l-0" ng-model="employer.yearStart"><option ng-repeat="year in years">{{year}}</option></select> 
+									<div class="grid-md-2 text-center m-t-10">To</div>
+									<select  class="grid-md-3 p-l-0" ng-model="employer.monthEnd" ><option ng-repeat="month in months">{{month}}</option></select>
+									<select  class="grid-md-2 p-l-0" ng-model="employer.yearEnd"><option ng-repeat="year in years">{{year}}</option></select>
+								</div>
+								</div>
+								<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isWorkExpEdited">
+									{{employer.monthStart}} {{employer.yearStart}} - {{employer.monthEnd}} {{employer.yearEnd}}
+								</div>
+								<div ng-if="formEdit.isWorkExpEdited">
+									<input type="text" placeholder="Designation" ng-model="employer.designation" />
+								</div>
+								<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isWorkExpEdited">
+									{{employer.designation}}
+								</div>
+								<div ng-if="formEdit.isWorkExpEdited">
+									<textarea type="text" placeholder="Job Profile" ng-model="employer.jobProfile"></textarea>
+								</div>
+								<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isWorkExpEdited">
+									{{employer.jobProfile}}
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="row">
+						<div class="grid-md-2">
+							<button class="cws-button bt-color-3 border-radius alt icon-right" ng-if="formEdit.isWorkExpEdited" ng-click="addWorkExpPanel()">
+								Add</button>
+						</div>
+						<div class="float-right">
+							<button class="cws-button bt-color-3 border-radius alt icon-right"
+								ng-if="formEdit.isWorkExpEdited" ng-click="updateWorkExp()">Save
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+					<div class="container-tabs" data-tabs-id="cont-tabs6" >
+							<div class="user-info-cards">
+						<div class="header-title-bdr bordered-palegreen">	
+							<div class="header-title-bdr ">
+								<h3 class="pro-title">Project</h3>
+								<div class="text-center success-msg" ng-if="projectSuccessMsg">Saved Successfully</div>
+							</div>
+						</div>
+						<div class="cont-data-pad grid-col-12">
+							<div class="row no-padding">
+								<div class="lft-box" ng-repeat="pro in completeProfile.project">
+									<div class="">
+										<h3 class="pro-title-inner-below float-left">Project {{$index+1}}</h3>
+										<span class="float-right">
+												<span ng-if="($index>=1 && formEdit.isProjectEdited)" class="float-right"> <i class="fa fa-times-circle fa-lg clr-red" ng-click="removeProject($index,pro)"></i></span>
+												<button class="width-80px" ng-if="!formEdit.isProjectEdited" ng-click="toggleView('isProjectEdited','formEdit')">
+												<span ><h3 class="pro-title edit-icon-txt">Edit</h3></span><i class="fa fa-edit fa-2x"></i>
+											</button>
+										</span>
+									</div>
+									<form>
+										<div ng-if="formEdit.isProjectEdited">
+											<input type="text" placeholder="Project Name" ng-model="pro.projectTitle"/>
+										</div>
+										<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isProjectEdited">
+											{{pro.projectTitle}}
+										</div>
+										<div ng-if="formEdit.isProjectEdited">
+											<textarea type="text" placeholder="Project Description" ng-model="pro.desc"></textarea>
+										</div>
+										<div class="grid-md-12 readonly-mode-pro-des-textarea" ng-if="!formEdit.isProjectEdited">
+											{{pro.desc}}
+										</div>
+										<div ng-if="formEdit.isProjectEdited" class="row clear-fix no-padding">
+											<div class="grid-md-12 relative no-padding">
+												<input class="form-field grid-md-12" type="text" name ="dob" placeholder="yyyy-mm-dd" uib-datepicker-popup ng-model="pro.startDate" is-open="startCalendar.opened" datepicker-options="dateOptions" ng-required="false" close-text="Close" />
+											     <span class="form-field-icon absolute">
+									               <button type="button" class="btn btn-sm btn-sky-blue bg-color-1 color-white" ng-click="openCalendar('startCalendar')"><i class="fa fa-calendar"></i></button>
+									             </span>
+											</div>
+										</div>
+										<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isProjectEdited">
+											{{pro.startDate | date:'yyyy-MM-dd'}}
+										</div>
+										<div ng-if="formEdit.isProjectEdited" class="row no-padding clear-fix">
+											<div class="grid-md-12 relative no-padding">
+												 <input class="form-field grid-md-12" type="text" name ="end date" placeholder="yyyy-mm-dd" uib-datepicker-popup ng-model="pro.endDate" is-open="endCalendar.opened" datepicker-options="dateOptions" ng-required="false" close-text="Close" />
+											     <span class="form-field-icon absolute">
+									               <button type="button" class="btn btn-sm btn-sky-blue bg-color-1 color-white" ng-click="openCalendar('endCalendar')"><i class="fa fa-calendar"></i></button>
+									             </span> 
+											</div>
+										</div>
+										<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isProjectEdited">
+											{{pro.endDate | date:'yyyy-MM-dd'}}
+										</div>
+										<div ng-if="formEdit.isProjectEdited">
+											<input type="text" placeholder="Project Responsibilities" ng-model="pro.responsibilities" />
+										</div>
+										<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isProjectEdited">
+											{{pro.responsibilities}}
+										</div>
+										<div class="grid-md-12 readonly-mode"
+										ng-if="!formEdit.isProjectEdited">{{pro.projectdomain.projectDomainName}}</div>	
+									<select ng-if="formEdit.isProjectEdited" ng-model="pro.projectdomain.id" ng-options="projectDomain.id as projectDomain.projectDomainName for projectDomain in projectDomainList">
+										<option value="">Select Project Domain</option>
+									</select>
+									</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="grid-md-2">
+									<button class="cws-button bt-color-3 border-radius alt icon-right" ng-if="formEdit.isProjectEdited" ng-click="addProjectPanel()">
+									Add</button>
+								</div>
+								<div class="float-right">
+									<button class="cws-button bt-color-3 border-radius alt icon-right"
+										ng-if="formEdit.isProjectEdited" ng-click="updateProject()">Save
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+					
+				<div class="container-tabs" data-tabs-id="cont-tabs7">
+						<div class="user-info-cards">
+							<div class="header-title-bdr bordered-palegreen">	
+								<div class="header-title-bdr ">
+									<h3 class="pro-title">Social Info</h3>
+									<div class="text-center success-msg" ng-if="socialSuccessMsg">Saved Successfully</div>
+								</div>
+							</div>
+							<div class="cont-data-pad grid-col-12">
+								<div class="row no-padding">
+								<div class="lft-box">
+					
+									<div class="">
+										<span class="float-right">
+												<button class="width-80px" ng-if="!formEdit.isSocialInfoEdited" ng-click="toggleView('isSocialInfoEdited','formEdit')">
+												<span ><h3 class="pro-title edit-icon-txt">Edit</h3></span><i class="fa fa-edit fa-2x"></i>
+											</button>
+										</span>
+									</div>
+									<form>
+										<div ng-if="formEdit.isSocialInfoEdited">
+											<input type="text" placeholder="Facebook ID" ng-model="completeProfile.social.facebookId" />
+										</div>
+										<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isSocialInfoEdited">
+											{{completeProfile.social.facebookId}}
+										</div>
+										<div ng-if="formEdit.isSocialInfoEdited">
+											<input type="text" placeholder="Twitter ID" ng-model="completeProfile.social.twitterId"/>
+										</div>
+										<div class="grid-md-12 readonly-mode-pro-des-textarea" ng-if="!formEdit.isSocialInfoEdited">
+											{{completeProfile.social.twitterId}}
+										</div>
+										<div ng-if="formEdit.isSocialInfoEdited">
+											<input type="text" placeholder="Skype ID" ng-model="completeProfile.social.skypeId" />
+										</div>
+										<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isSocialInfoEdited">
+											{{completeProfile.social.skypeId}}
+										</div>
+										<div ng-if="formEdit.isSocialInfoEdited">
+											<input type="text" placeholder="Whats app Number" ng-model="completeProfile.social.whatsappNo" />
+										</div>
+										<div class="grid-md-12 readonly-mode" ng-if="!formEdit.isSocialInfoEdited">
+											{{completeProfile.social.whatsappNo}}
+										</div>
+									</form>
+								</div>
+								</div>
+								<div class="float-right">
+									<button class="cws-button bt-color-3 border-radius alt icon-right"
+										ng-if="formEdit.isSocialInfoEdited" ng-click="updateSocialInfo()">Save
+									</button>
+								</div>
+							</div>
+						</div>
+		</div>
+			</div>
+			<!--/tabs keeper -->
+		</div>
+		<!-- /tabs -->
+				</section>
+			</div>
+		</div>
+	</div>	
+</div>
+	<div class="overlay absolute" ng-class="{'show':contentLoader}"></div>
+	<div class="content-loader " ng-class="{'show':contentLoader}"><i class="fa fa-spin fa-spinner"></i></div>
+</div>
+<div class="overlay" ng-class="{'show':showPopup}" ng-click="toggleBoolean('showPopup')"></div>
+<div class="popup popup-quiz" ng-class="{'show':showPopup}">
+	<div class="popup-content">
+		<div class="popup-close-btn"><img src="resources/img/home/x.png" class="pointer-cursor close-image" ng-click="toggleBoolean('showPopup')"></div>
+		<div class="row pad-0 mar-l-5 popup-msg m-t-30">
+			<div class="text-center"><strong>File Format is not supported.</strong></div>
+			<div class="text-center" ng-if="fileFormatMsg"><strong>{{fileFormatMsg}}</strong></div>
+		</div>
+		<span></span>
+		<div class="popup-msg text-center">
+			<button class="cws-button bt-color-3 border-radius alt" ng-click="toggleBoolean('showPopup')">OK</button>
+		</div>
+	</div>
+</div>	

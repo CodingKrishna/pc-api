@@ -1,0 +1,68 @@
+<style>
+.display-block{
+	display:block !important;
+}
+.border-bottom {
+	    border-bottom: 2px solid #18bb7c;
+}
+.inline {
+	display: inline-block;
+    float: left;
+    margin-right: 16px;
+}
+.visible-label {
+	line-height: 0.8;
+}
+.radio+.radio {
+	margin-top:0px;
+}
+</style>
+<div class="container no-padding">
+	<div class="row profile-card ">
+		<div class="user-info-cards">
+			<div class=" header-title-bdr bordered-blue"><h3 class="pro-title">Show your profile in Recruiter portal with Visibility on</h3></div>
+			<div class="cont-data-pad">
+				<div  class="row">
+					<div class="row">
+						<label class="grid-md-2">Settings</label>
+						<div class="grid-md-1 radio">
+							<input  type="radio" class="inline" ng-model="visibility" id="rc1" ng-value="true" >
+							<label  for="rc1" class="visible-label"> On</label>
+						</div>
+						<div class="grid-md-1 radio">
+							<input type="radio"  class="inline"  ng-model="visibility" id="rc2" ng-value="false" >
+							<label for="rc2" class="visible-label"> Off</label>
+						</div>
+					</div>
+					<div class="grid-md-2" style="float:right;">
+						<button class="button-fullwidth cws-button bt-color-3 border-radius alt full-width" ng-click="updateUserVisisbility()">Save</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+<div class="overlay" ng-class="{'show':showPopup}" ng-click="toggleBoolean('showPopup')"></div>
+<div class="popup popup-quiz" ng-class="{'show':showPopup}">
+	<div class="popup-content">
+		<div class="popup-close-btn"><img src="resources/img/home/x.png" class="pointer-cursor close-image" ng-click="toggleBoolean('showPopup')"></div>
+		<div class="row pad-0 mar-l-5 popup-msg text-center m-t-30 font-18">Successfully Saved
+		</div>
+		<div class="popup-msg text-center">
+			<button class="cws-button bt-color-3 border-radius alt" ng-click="toggleBoolean('showPopup')">OK</button>
+		</div>
+	</div>
+</div>
+
+
+<!-- <div class="row">
+	<label class="grid-md-2 no-padding">Settings</label>
+	<div class="grid-md-1">
+		<input  type="radio" class="inline" ng-model="visibility" id="1" ng-value="true" >
+		<label class="visible-label"> On</label>
+	</div>
+	<div class="grid-md-1">
+		<input type="radio"  class="inline"  ng-model="visibility" id="2" ng-value="false" >
+		<label class="visible-label"> Off</label>
+	</div>
+</div> -->

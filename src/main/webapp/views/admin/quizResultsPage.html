@@ -1,0 +1,31 @@
+<h4>Online Exam Result List ...</h4>
+  <button class="cws-button bt-color-3 pull-right alt border-radius m-b-10" ng-click="exportToExcel('#tableToExport')">Export to Excel</button>
+ <div id="tableToExport">
+<table class="row tc-table" export-csv="csv" separator=";" datatable="ng">
+	<thead>
+		<tr>
+			<th class="grid-md-1">S.NO</th>
+			<th class="grid-md-1">NAME</th>
+			<th class="grid-md-1">EMAIL ID</th>
+			<th class="grid-md-1">MOBILE NO</th>
+			<th class="grid-md-1">JAVA</th>
+			<th class="grid-md-1">HTML</th>
+			<th class="grid-md-1">CSS</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr data-ng-repeat="obj in newResultsList">
+			<td class="grid-md-1">{{$index+1}}</td>
+			<td class="grid-md-1">{{obj.user.userName}}</td>
+			<td class="grid-md-1">{{obj.user.emailId}}</td>
+			<td class="grid-md-1">{{obj.user.mobileNo}}</td>
+			<td class="grid-md-1" ng-if="obj.marks[0]">{{obj.marks[0].totalMarks}}</td>
+			<td class="grid-md-1" ng-if="!obj.marks[0]">-</td>
+			<td class="grid-md-1" ng-if="obj.marks[1]">{{obj.marks[1].totalMarks}}</td>
+			<td class="grid-md-1" ng-if="!obj.marks[1]">-</td>
+			<td class="grid-md-1" ng-if="obj.marks[2]">{{obj.marks[2].totalMarks}}</td>
+			<td class="grid-md-1" ng-if="!obj.marks[2]">-</td>
+		</tr>
+	</tbody>	
+</table>
+</div>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title> :: Pioneer Coders | Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<link rel="shortcut icon" type="image/png" href="resources/img/pclogo2.png"/>
+<!-- style -->
+<link rel="stylesheet" href="resources/css/font-awesome.min.css" />
+<link rel="stylesheet" href="resources/css/main.css" />
+<link rel="stylesheet" href="resources/css/adminStyles.css" />
+<link rel="stylesheet" href="resources/css/app.css" />
+<link rel="stylesheet" href="resources/css/hr-portal.css" />
+<style>
+	body {
+	/* 	background-color: #FFF;
+		-webkit-box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.75);
+		-moz-box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.75);
+		box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.75); */
+	}
+	.container{
+		max-width: 1344px;
+	}
+	.container-shadow {-webkit-box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.75);
+		-moz-box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.75);
+		box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.75);}
+
+	.container-head {max-width: 1350px; margin:0 auto;}
+	
+	.navbar {
+		background-color: #00304C;
+		border-color: #00304C;
+		position: relative;
+		/* min-height: 60px; */
+	}
+	.header-right{
+		display: inline-flex;
+    	padding-top: 25px;
+	}
+	nav ul {
+		padding: 0;
+		margin: 0;
+	}
+	
+	nav ul li {
+		display: inline-block; 
+		position: relative;
+	}
+	 ul li:before{
+	content:""; 
+	}
+	nav ul li a {
+		padding: 15px;
+		cursor: pointer;
+		display: block;
+		text-decoration: none;
+		font-weight: 500;
+		color: #87a3bc;
+		transition: all 0.5s ease-out;
+	}
+	nav ul li:hover ul {
+		opacity: 1;
+		transform: scaleY(1);
+		visibility: visible;
+	}
+	nav ul li > ul {
+	  margin-top: 0;
+	  text-align: left;
+	  opacity: 0;
+	  visibility: hidden;
+	  position: absolute;
+	  top: 101%;
+	  top: calc(100% + 1px);
+	  transform: scaleY(0);
+	  transform-origin: 0 0 0;
+	  transition: all 0.5s ease 0s;
+	  z-index: 99999;
+	  background: #011B39;
+	  padding: 0;
+	}
+	.page-content {
+		background-color: #F4F4F4;
+	}
+	.side-menu {
+		list-style: none;
+		margin: 0;
+		margin-top: 15px;
+    	padding: 0;
+    	border-bottom: 1px dotted #fff;
+	}
+	.side-menu li {
+		/* padding: 5px 15px;
+    	background-color: #fbfbfb; */
+    	text-decoration: none;
+    	color: #737373;   
+    	transition: all 0.3s;
+    	display: block;
+    	padding: 10px;
+    	border-bottom:1px dotted #f3f3f3;
+	}
+	.side-menu li a{
+		padding-left: 10px;
+	    font-size: 15px;
+	    color: #737373;
+	    font-weight: 500;
+	}
+	.side-menu li:hover{
+	     background-color: #17cbcb;
+	    /* background-color:#f5f5f5; */
+    	border-bottom: 1px dotted #fff;
+    	color:#262626;
+    	
+	}
+	.popup {
+		left: 25%;
+		right: 25%;
+	}
+	.flex {
+		display: flex;
+	}
+	.flex-1 {
+		flex: 1;
+	}
+	.flex-2 {
+		flex: 2;
+	}
+	.flex-3 {
+		flex: 3;
+	}
+	.flex-4 {
+		flex: 4;
+	}
+	.flex-5 {
+		flex: 5;
+	}
+	.flex-6 {
+		flex: 6;
+	}
+	.view-content {
+		/* min-height: calc(100vh - 60px); */
+		min-height:calc(91.5vh - 0px);
+	}
+	.padrgt10 {padding-right:10px;}
+	/* .page-content{padding:0 0;} */
+	input[type="text"], input[type="password"] {
+    border: 1px solid #e6e6e6;
+    line-height: 34px;
+    height: 36px;
+    font-size: 14px;
+    color: #727272;
+    width: 100%;
+    transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+}
+	
+	
+/* ----------------------------------------------------------------------------------------------------------------- */	
+	
+	.pc-admin-logo {float:left; padding-bottom:8px; padding-left:10px;}
+	.pc-admin-txt-logo {display: -webkit-inline-box; color:#ffffff; font-family: 'Merriweather'; font-weight: 400; padding-left:20px; margin-top:4%; }
+	
+	ul li, ol li.lftNav  {line-height: 18px; font-size:15px; padding-left: 0px!important; position: relative;  color: #737373;}
+	
+	.lftNav>ul li>a:focus, .lftNav>ul li>a:hover {background-color: #f5f5f5; color: #262626;}	
+	
+</style>
+<!--styles -->
+</head>
+<body ng-app="pcAdminModule" ng-controller="pcAdminCtrl">
+	<div class='navbar' ng-if="isAdminLoggedIn">
+		<div class="container-head container-shadow p-0">
+			<div class="row p-0">
+				<div class="pull-left font-21 color-white">
+					<img src="resources/img/pioneer-logo-admin.png" class="pc-admin-logo">
+					<span class="pc-admin-txt-logo">PC Admin</span>
+				</div>
+				<div class="pull-right padrgt10">
+					<ul class="header-right">
+						<!-- <li><a class="color-white">Users Management</a></li> -->
+						<li ng-click="logout()">
+							<a><strong style="color:#fff;">Logout </strong> <i class="fa fa-power-off color-red"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="page-content gradient-grey">
+		<div class="container container-shadow  p-0 bg-white">
+			<section class="row flex p-0 view-content">
+				<div class="grid-md-2 flex-1 p-0" ng-if="isAdminLoggedIn" style="border-right: 1px solid">
+					<div class="text-center p-15">
+						<i class="fa fa-user fa-5x"></i>
+					</div>
+					<aside class="widget-pages">
+						<h2>Complete Info</h2>
+						<hr class="divider-big">
+						<ul>
+							<li class="has-child"><a>Users</a>
+								<ul class="" style="display: none;">
+									<li ui-sref="users"><a>All Users</a></li>
+									<li ui-sref="interviewUsers"><a>Interview Users</a></li>
+									<li ui-sref="internUsers"><a>Intern Users</a></li>
+									<li ui-sref="trainingUsers"><a>Training Users</a></li>
+									<li ui-sref="campusUsers"><a>Campus Users</a></li>
+									<li ui-sref="oursourcing"><a>Out Resourcing</a></li>
+								</ul>
+							</li>
+							<li class="has-child"><a>External Support</a>
+								<ul class="" style="display: none;">
+										<li ui-sref="instructors"><a>Instructors List</a></li>
+										<li ui-sref="contactus"><a>ContactUs List</a></li>
+										<li ui-sref="supports"><a>Supports List</a></li>
+								</ul>
+							</li>
+							<li class="has-child"><a>Exam</a>
+								<ul class="" style="display: none;">
+										<li ui-sref="quizresults"><a>Quiz Results</a></li>
+										<li ui-sref="addquestions"><a>Add Questions</a></li>
+								</ul>
+							</li>
+							<li class="has-child"><a>Pay Info</a>
+								<ul class="" style="display: none;">
+										<li ui-sref="payments"><a>Payments List</a></li>
+										<li ui-sref="expendature"><a>Expendatures List</a></li>
+								</ul>
+							</li>
+						</ul>
+					</aside>
+					<!-- <ul class="lftNav side-menu">
+						<li ui-sref="users"><a>Users</a></li>
+						<li ui-sref="instructors"><a>Instructors List</a></li>
+						<li ui-sref="contactus"><a>ContactUs List</a></li>
+						<li ui-sref="supports"><a>Supports List</a></li>
+						<li ui-sref="quizresults"><a>Quiz Results</a></li>
+						<li ui-sref="payments"><a>Payments List</a></li>
+						<li ui-sref="expendature"><a>Expendatures List</a></li>
+						<li ui-sref="addquestions"><a>Add Questions</a></li>
+						<li ui-sref="balancesheet"><a>Balance Sheet</a></li>
+					</ul> -->
+				</div>
+				<div class="grid-md-10 flex-5 p-15">
+					<ui-view></ui-view>
+				</div>
+			</section>
+		</div>
+	</div>
+</body>
+<!-- lib Start -->
+<script type="text/javascript" src="resources/js/lib/jquery.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-messages.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-sanitize.min.js"></script>
+<script src="resources/js/lib/ui-bootstrap-tpls-2.2.0.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/prism.js"></script>
+<script type="text/javascript" src="resources/js/lib/countUp.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-md5.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-touch.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-carousel.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/tags-input.js"></script>
+<script type="text/javascript" src="resources/js/lib/webcam.js"></script>
+<script type="text/javascript" src="resources/js/lib/webcam-directive.js"></script>
+<script type="text/javascript" src="resources/js/lib/editor.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-animate.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-aria.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-material.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-datatables.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/ui-bootstrap-tpls-2.2.0.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/jQuery.datatables.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/rzslider.js"></script>
+
+<!-- lib End-->
+
+<!-- Modules Start-->
+<script type="text/javascript" src="resources/js/app.js"></script>
+<script type="text/javascript" src="resources/js/adminApp.js"></script>
+<script type="text/javascript" src="resources/js/adminRoute.js"></script>
+<!-- Modules End-->
+
+<!-- Directives Starts -->
+<script type="text/javascript" src="resources/js/directives/utilDirectives.js"></script>
+<!-- Directives Ends -->
+
+<!-- Services Start-->
+<script type="text/javascript" src="resources/js/services/commonService.js"></script>
+<script type="text/javascript" src="resources/js/services/userService.js"></script>
+<script type="text/javascript" src="resources/js/services/supportService.js"></script>
+<script type="text/javascript" src="resources/js/services/contactusService.js"></script>
+<script type="text/javascript" src="resources/js/services/instructorService.js"></script>
+<script type="text/javascript" src="resources/js/services/adminService.js"></script>
+<script type="text/javascript" src="resources/js/hrportal/services/desktopService.js"></script>
+<script type="text/javascript" src="resources/js/hrportal/services/studentDetailsService.js"></script>
+<!-- Services End-->
+
+<!-- Controllers Start-->
+<script type="text/javascript" src="resources/js/controllers/admin/dashboardCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/admin/usersCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/admin/supportsListCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/admin/paymentsListCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/admin/expendatureListCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/admin/balanceSheetCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/admin/addquestionsCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/admin/contactUsCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/admin/instructorsCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/admin/quizResultsListCtrl.js"></script>
+
+<!-- Controllers End-->
+
+<!-- Utils Start -->
+<script type="text/javascript" src="resources/js/constants.js"></script>
+<script type="text/javascript" src="resources/js/util.js"></script>
+<script type="text/javascript" src="resources/js/components.js"></script>
+<!-- Utils Ends -->
+
+
+<!--  ace editor for code  -->
+<script type="text/javascript" src="https://rawgithub.com/ajaxorg/ace-builds/v1.1.1/src-min-noconflict/ace.js"></script>
+<script type="text/javascript" src="resources/js/directives/ui-ace.js"></script>
+
+</html>

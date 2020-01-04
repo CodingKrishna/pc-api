@@ -1,0 +1,113 @@
+<style>
+.adjusticon{
+bottom: 50px !important;
+right: 65px !important;
+}
+.adjustimg{
+    height: 130px !important;
+    width: 60% !important;
+    margin-left: 5px !important;
+    float:left;
+   
+}
+</style>
+<div>
+	<div class="user-info-cards">
+		<div class="header-title-bdr bordered-blue">
+			<h3 class="pro-title">College Information</h3>
+		</div>
+		<div class="cont-data-pad">
+						
+							<div class="container-tabs" data-tabs-id="cont-tabs2">
+						<div class="user-info-cards">
+						<div class="header-title-bdr bordered-orange">
+							<h3 class="pro-title">College Information</h3>
+							<div class="text-center success-msg" ng-if="addSuccessMsg">Saved Successfully</div>
+						</div>
+						<div class="cont-data-pad grid-col-12">
+							<div class="lft-box">
+								<div>
+									<span class="float-right" ng-if="!formEdit.iscollegeEdited">
+										<button class="width-80px" ng-click="toggleView('iscollegeEdited','formEdit')" style="margin-top: 110px;">
+											<span ><h3 class="pro-title edit-icon-txt">Edit</h3></span><i class="fa fa-edit fa-2x"></i>
+										</button>
+									</span>
+								</div>
+								<form class="profile-card">
+										<div ng-click="changePhoto()" class="overlay {{profilePicChangeForm ? 'show' : ''}}"></div>
+										<div class="popup profile-pic-popup {{profilePicChangeForm ? 'show' : ''}}">
+											<div ng-if="profilePicChangeForm === 'take_photo'" ng-include="'./views/user/profile-pic-capture.html'"></div>
+											<div ng-if="profilePicChangeForm === 'upload'" ng-include="'./views/user/profile-pic-upload.html'"></div>
+										</div>
+									<div  class="profile-pic" ng-mouseenter="$profileHovered=true" ng-mouseleave="$profileHovered=false" style="display: inline;">
+										<img id="user_profile_pic" ng-src="user/getprofilepic?userId={{loggedInUser.id}}&folderPath={{folderPath}}" class="img-responsive adjustimg" style=" border-radius:unset !important;display: inline;" alt="UserPIC">
+										<div class="change-profle-pic-container animated adjusticon {{$profileHovered? 'animated fadeInUp': 'animated fadeOutDown'}}" style="margin-left: 50px;">
+											<i class="fa fa-upload icon" ng-click="changePhoto('upload')"></i>
+											<i class="fa fa-camera icon" ng-click="changePhoto('take_photo')"></i>
+										</div>
+									</div>
+									<div class="row relative">
+										<div ng-if="formEdit.iscollegeEdited">
+											<input type="text" placeholder="College Name" ng-model="college.instituteName" />
+										</div>
+										<div class="grid-md-12 readonly-mode"
+											ng-if="!formEdit.iscollegeEdited">
+											{{college.instituteName}}
+										</div>
+									</div>
+									<div class="row relative">
+									<div class="grid-md-12 readonly-mode"
+										ng-if="!formEdit.iscollegeEdited">{{college.university.universityName}}</div>	 
+									<select ng-if="formEdit.iscollegeEdited" ng-model="college.university.id" ng-options="university.id as university.universityName for university in universityList">
+										<option value="">Select University</option>								
+									</select> 
+									</div>
+									<div class="row relative">
+										<div ng-if="formEdit.iscollegeEdited">
+											<input type="text" placeholder="College Phone No" ng-model="college.collegePhoneNo" />
+										</div>
+										<div class="grid-md-12 readonly-mode"
+											ng-if="!formEdit.iscollegeEdited">
+											{{college.collegePhoneNo}}
+										</div>
+									</div>
+										<div class="row relative">
+											<div ng-if="formEdit.iscollegeEdited">
+												<input type="text" placeholder="Enter Date" name ="dob"  uib-datepicker-popup ng-model="college.startDate" is-open="dobCalendar.opened" datepicker-options="dateOptions" ng-required="false" close-text="Close" />
+												<span class="form-field-icon absolute">
+										         <button type="button" class="btn btn-md btn-sky-blue bg-color-1 color-white" ng-click="openCalendar('dobCalendar')"><i class="fa fa-calendar"></i></button>
+										        </span>
+											</div>
+											<div class="grid-md-12 readonly-mode"
+											ng-if="!formEdit.iscollegeEdited">
+												{{college.startDate | date:'yyyy-MM-dd'}}
+											</div>
+										</div>
+									<div class="row relative">
+										<div class="grid-md-12" ng-if="formEdit.iscollegeEdited">
+										<textarea rows="3" placeholder="Description" name="description" value="description"
+											ng-model="college.description"></textarea>
+									</div>
+									<div class="grid-md-12 readonly-mode-textarea"
+										ng-if="!formEdit.iscollegeEdited">
+										{{college.description}}</div>
+									</div>
+								
+								<div class="float-right"> 
+									<button class="cws-button bt-color-3 border-radius alt icon-right"
+										ng-if="formEdit.iscollegeEdited" ng-click="savePoCollegeDetails()">Save
+									</button>
+								</div>	
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			<!-- <div class="row">
+				<div class="grid-md-4"><b>Name:</b> {{loggedInUser.userName}}</div>
+				<div class="grid-md-5"><b>Email Id:</b> {{loggedInUser.emailId}}</div>
+				<div class="grid-md-3"><b>Mobile No:</b> {{loggedInUser.mobileNo}}</div>
+			</div> -->
+		</div>
+	</div>
+</div>

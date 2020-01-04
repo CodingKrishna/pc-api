@@ -1,0 +1,335 @@
+<style>
+	.carousel-demo {
+		height: 1000px;
+		position: relative;
+	}
+	.carousel-demo>ul:hover {
+		cursor: move;
+	}
+	.carousel-demo>ul, .carousel-demo>ul>li, .carousel-demo>ul[rn-carousel]>li>div {
+		height: inherit;
+	    margin: 0;
+	}
+	.rn-carousel-controls {
+		top: 35%;
+		width: 100%;
+		position: absolute;
+		transform: translateY(50%);
+	}
+	.rn-carousel-indicator{
+		left: 0;
+		right: 0;
+		bottom: 0;
+		position: absolute;
+		text-align: center;
+    }
+    div.rn-carousel-indicator span:hover {
+		cursor: pointer;
+    }
+	.carousel-demo>ul>li:before {
+		display: none;
+	}
+	.bgimage {
+		pointer-events: none;
+	}
+	.subscribeMsg {
+		color: #18bb7c;
+	    font-size: 20px;
+	    font-weight: bold;
+	    text-align: center;
+	}
+</style>
+<div>
+	<!--Carousel panel-->
+	 <div class="carousel-demo">
+		<ul rn-carousel rn-carousel-controls rn-carousel-auto-slide rn-carousel-buffered rn-carousel-index="$carouselIndex" class="carousel1">
+			<li ng-repeat="slide in slides track by slide.id" ng-class="'id-' + slide.id">
+				<!-- <div ng-style="{'background-image': 'url(' + slide.img + ')'}"  class="bgimage full-width"></div> -->
+				<img ng-src="{{slide.img}}" class="bgimage full-width" orgWidth="1903" orgHeight="594" usemap="#image-maps-2017-03-18-151024"/>
+				<!-- <map name="image-maps-2017-03-18-151024" id="ImageMapsCom-image-maps-2017-03-18-151024">
+					<area id="1" alt="Alt" title="Title" href="www.pioneercoders.com" shape="rect" coords="1077,245,1278,280" style="outline:none;" target="_self" data-maphilight='Maphilight' />
+					<area id="2" alt="Alt 2" title="Title 2" href="http://www.pioneercoders.com/" shape="rect" coords="1076,297,1215,332" style="outline:none;" target="_self" data-maphilight='DM 2' />
+				</map> -->
+			</li>
+		</ul>
+		<div class="rn-carousel-indicator custom-indicator">
+			<span ng-repeat="slide in slides" ng-class="{active: $index==$parent.$carouselIndex}" ng-click="$parent.$carouselIndex = $index">
+				<i class="fa" ng-class="$index==$parent.$carouselIndex ? 'fa-dot-circle-o': 'fa-circle-o'"></i>
+			</span>
+		</div>
+	</div>
+	<!-- /Carousel panel -->
+
+	<!-- Popular Courses panel -->
+	<section class="padding-section">
+		<div class="grid-row clear-fix">
+			<div class="grid-col-row">
+				<h2 class="center-text">Popular Courses</h2>
+				<a ng-href="#courses/{{course.id}}/{{course.courseName}}" class="course-item grid-col grid-col-4 margin-top" ng-repeat="course in coursesList | limitTo:3" ng-if="course.isFeaturedCourse">
+					<div class="course-hover">
+						<img ng-src="{{course.imgPath}}">
+					</div>
+					<div class="course-name clear-fix">
+						<span class="price" ng-if="course.price==0">Free</span>
+						<span class="price" ng-if="course.price!=0"><span><i class="fa fa-rupee"> </i></span> {{course.price | number: 0}}</span>
+						<h3>{{course.courseName}}</h3>
+					</div>
+					<div class="course-date clear-fix card-min-height" ng-class="coursesBgColors[($index%3)]">
+						<div class="day"><i class="fa fa-calendar"></i>{{course.courseStartDate | date}}</div><div class="time"><i class="fa fa-clock-o"></i>{{course.courseStartDate | date:'hh:mm'}}</div>
+						<div class="divider"></div>
+						<div class="description">{{course.shortDesc}}</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+	<!-- /Popular Courses panel -->
+	
+	<hr class="divider-color" />
+
+	<!-- Counter panel -->
+	<div class="parallaxed">
+		<div class="parallax-image">
+			<img src="resources/img/home/parallax.png" alt="">
+		</div>
+		<div class="them-mask bg-color-1"></div>
+		<div class="grid-row">
+			<div class="grid-col-row clear-fix">
+				<div class="grid-col grid-col-3 alt">
+					<div class="counter-block">
+						<i class="fa fa-book"></i>
+						<div class="counter" id="courseCount">15</div>
+						<div class="counter-name">Courses</div>
+					</div>
+				</div>
+				<div class="grid-col grid-col-3 alt">
+					<div class="counter-block">
+						<i class="fa fa-users"></i>
+						<div class="counter" id="lessonsCount">150+</div>
+						<div class="counter-name">Students</div>
+					</div>							
+				</div>
+				<div class="grid-col grid-col-3 alt">
+					<div class="counter-block">
+						<i class="fa fa-pencil"></i>
+						<div class="counter" id="studentsCount">540</div>
+						<div class="counter-name">Lessons</div>
+					</div>
+				</div>
+				<div class="grid-col grid-col-3 alt">
+					<div class="counter-block last">
+						<i class="fa fa-calendar"></i>
+						<div class="counter" id="eventsCount">15+</div>
+						<div class="counter-name">Events</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Counter panel -->
+
+	<hr class="divider-color" />
+
+	<!--How we work panel  --> 
+	<div class="bg-lightgray" style="padding-top:25px ">
+		<div class="container  p-b-10">
+			<h1 class="text-center text-color m-0 ">How We Work</h1>
+			<div class="time-line">
+				<div class="line-element">
+					<div class="action">
+						<div class="action-block">
+							<span><i class="fa fa-search"></i></span>
+							<div class="text">
+								<h3>Search your course</h3>
+								<p>Select the course what suites for your career growth and we will validate </p>
+							</div>
+						</div>
+					</div>
+					<div class="level">
+						<div class="level-block">Step 1</div>
+					</div>
+				</div>
+				<div class="line-element color-2">
+					<div class="level">
+						<div class="level-block">Step 2</div>
+					</div>
+					<div class="action">
+						<div class="action-block">
+							<span><i class="fa fa-desktop"></i></span>
+							<div class="text">
+								<h3>Take A Sample Lesson</h3>
+								<p>Take 2 days demo classes and you can validate our training's and environment.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="line-element color-3">
+					<div class="action">
+						<div class="action-block">
+							<span><i class="fa fa-shopping-cart"></i></span>
+							<div class="text">
+								<h3>Purchase the Course</h3>
+								<p>You can opt to purchase the course and attend the trainings.</p>
+							</div>
+						</div>
+					</div>
+					<div class="level">
+						<div class="level-block">Step 3</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /How we work panel -->
+
+	<hr class="divider-color" />
+
+	<!--About us panel -->
+	<section class="fullwidth-background padding-section">
+		<div class="grid-row clear-fix">
+			<h2 class="center-text">About Us</h2>
+			<div class="grid-col-row">
+				<div class="grid-col grid-col-6">
+					<h3>Why We Are Better</h3>
+					<p>The people who trained by us will be ready for any challenge in Real Time Projects.</p>
+					<!-- accordions -->
+					<pc-accordion class="accordions">
+						<accordion-item>
+							<accordion-title>Trainings by industry experts.</accordion-title>
+							<accordion-content>
+							Our trainers are 10+yrs experince in IT industry with different project experince.
+							</accordion-content>
+						</accordion-item>
+						<accordion-item>
+							<accordion-title>Learning through case studies.</accordion-title>
+							<accordion-content>
+							We have plan of live project work out for learning through casestudies.
+							</accordion-content>
+						</accordion-item>
+						<accordion-item>
+							<accordion-title>Focus on individul person.</accordion-title>
+							<accordion-content>We always focus on each and every person by making sure that our training batch not more than 10 peoples.</accordion-content>
+						</accordion-item>
+		 				<accordion-item>
+							<accordion-title>Fulltime Practical oriented lab section.</accordion-title>
+							<accordion-content>We make sure that all the lab sessions will be practiced and our lab sessions are fullday.</accordion-content>
+						</accordion-item>
+					</pc-accordion>	
+				</div>
+				<div class="grid-col grid-col-6">
+					<div>
+						<div class="gallery-item picture">
+							<img src="resources/img/home/1170x580-img-6.jpg" alt>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>		
+	<!--/About us panel-->
+
+	<hr class="divider-color" />
+
+	<!--Get in touch with us panel -->
+	<div class="parallaxed">
+		<div class="parallax-image" data-parallax-left="0.5" data-parallax-top="0.3" data-parallax-scroll-speed="0.5">
+			<img src="resources/img/home/parallax.png" alt="">
+		</div>
+		<div class="them-mask bg-color-2"></div>
+		<div class="grid-row center-text">
+			<div class="font-style-1 margin-none">Get In Touch With Us</div>
+			<div class="divider-mini"></div>
+			<p class="parallax-text"> Get in touch with us by leaving your email id. we will update the latest IT news and trainigs.</p>
+			<form class="subscribe relative" name="form.subscribe" novalidate>
+				<input type="text" name="email" value="" size="40" placeholder="Enter your email" aria-required="true"  ng-pattern="/^[a-zA-Z]+[a-zA-Z0-9._-]+@[a-z]+\.[a-z]{2,5}$/" data-ng-model="subscribe.subscriberEmail" required>
+				<input type="submit" value="subscribe"  ng-disabled="form.subscribe.$invalid" data-ng-click="saveSubscribeEmail(subscribe.subscriberEmail)">
+				<div style="left: 21px;" class="error-msg absolute color-red" ng-if="form.subscribe.email.$error.required && form.subscribe.email.$dirty">Email Is Required</div>
+				<div style="left: 21px;" class="error-msg absolute color-red" ng-if="form.subscribe.email.$error.pattern">Invalid Email</div>
+				<div class="subscribeMsg" ng-if="subscribeSuccessMsg">{{subscribeSuccessMsg}}</div>
+			</form>
+		</div>
+	</div>
+	<!--/Get in touch with us panel -->
+
+	<hr class="divider-color" />
+
+	<!--Lecturers panel -->
+	<section class="grid-row clear-fix padding-section">
+		<h2 class="center-text">Our Skilled Lecturers</h2>
+		<div class="grid-col-row">
+			<div class="grid-col grid-col-6">
+				<div class="item-instructor bg-color-1">
+					<a href="" class="instructor-avatar">
+						<img src="resources/img/home/user.jpg" data-at2x="http://placehold.it/210x220" alt>
+					</a>
+					<div class="info-box">
+						<h3>Hari Krishna</h3>
+						<span class="instructor-profession">Expert in Java</span>
+						<div class="divider"></div>
+						<p>Having 7+ years of Experience in JAVA.</p>
+						<div class="social-link">
+							<a title="facebook"  target="_blank" href="https://www.facebook.com/codingkrishna" class="fa fa-facebook"></a>
+							<a title="linkedin" target="_blank" href="https://in.linkedin.com/in/coding-krishna-600b53124" class="fa fa-linkedin-square"></a>
+							<a title="twitter"  href="" class="fa fa-twitter"></a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="item-instructor bg-color-2">
+					<a href="" class="instructor-avatar">
+						<img src="resources/img/home/user.jpg" data-at2x="http://placehold.it/210x220" alt>
+					</a>
+					<div class="info-box">
+						<h3>Sandeep</h3>
+						<span class="instructor-profession">Expert in UI</span>
+						<div class="divider"></div>
+						<p>Having 5+ years of Experience in UI.</p>
+						<div class="social-link">
+							<a title="facebook" href="" class="fa fa-facebook"></a>
+							<a title="linkedin" href="" class="fa fa-linkedin-square"></a>
+							<a title="twitter"  href="" class="fa fa-twitter"></a>
+						</div>
+					</div>
+				</div>		
+			</div>
+			<div class="grid-col grid-col-6">
+				<div class="item-instructor bg-color-3">
+					<a href="" class="instructor-avatar">
+					 <img src="resources/img/home/user.jpg" data-at2x="http://placehold.it/210x220" alt>
+					</a>
+					<div class="info-box">
+						<h3>Bhaskar</h3>
+						<span class="instructor-profession">Expert in UI</span>
+						<div class="divider"></div>
+						<p>Having 10+ years of Experience in UI.</p>
+						<div class="social-link">
+							<a title="facebook" target="_blank" href="https://en-gb.facebook.com/people/Bhaskar-Bytecode/100010116554536" class="fa fa-facebook"></a>
+							<a title="linkedin" target="_blank"  href="https://in.linkedin.com/in/bhaskar-bytecode-6a9321106" class="fa fa-linkedin-square"></a>
+							<a title="twitter"  href="" class="fa fa-twitter"></a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="item-instructor bg-color-6">
+					<a href="" class="instructor-avatar">
+					 <img src="resources/img/home/user.jpg" data-at2x="http://placehold.it/210x220" alt>
+					</a>
+					<div class="info-box">
+						<h3>Karthik</h3>
+						<span class="instructor-profession">Expert in Android</span>
+						<div class="divider"></div>
+						<p>Having 6+ years of Experience in Android.</p>
+						<div class="social-link">
+							<a title="facebook" href="" class="fa fa-facebook"></a>
+							<a title="linkedin" href="" class="fa fa-linkedin-square"></a>
+							<a title="twitter"  href="" class="fa fa-twitter"></a>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+	</section>
+	<!--/Lecturers panel-->
+</div>

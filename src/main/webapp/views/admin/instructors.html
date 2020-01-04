@@ -1,0 +1,26 @@
+<h4>Instructors</h4>
+<!-- {{instructorsList}} -->
+<div class="row search-input"><input type="text"  class=" search-tab" ng-model="searchText" placeholder="Search Instructors List" /></div><br>
+<table class="row tc-table" datatable="ng">
+	<thead>
+		<tr>
+			<th class="grid-md-1">S.No</th>
+			<th class="grid-md-2">Name</th>
+			<th class="grid-md-2">Email</th>
+			<th class="grid-md-2">Mobile No</th>
+			<th class="grid-md-2">Date</th>
+			<th class="grid-md-3">Comments</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr data-ng-repeat="instructor in instructorsList| filter:searchText">
+			<td class="grid-md-1">{{$index+1}}</td>
+			<td class="grid-md-2">{{instructor.name}}</td>
+			<td class="grid-md-2">{{instructor.emailId}}</td>
+			<td class="grid-md-2">{{instructor.mobileNo}}</td>
+			<td class="grid-md-2">{{instructor.createdOn|date:'dd-MM-yyyy'}}</td>
+			<td class="grid-md-3">{{instructor.comments}}</td>
+			
+		</tr>
+	</tbody>	
+</table>

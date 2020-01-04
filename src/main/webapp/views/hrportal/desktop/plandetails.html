@@ -1,0 +1,26 @@
+<div class="user-info-cards">
+	<div class="header-title-bdr bordered-blue">
+		<h3 class="pro-title">Plan Details</h3>
+	</div>
+	<div class="cont-data-pad">
+		<div class="row" ng-if="!purchasedPlan"></div>
+		<div class="row" ng-if="purchasedPlan">
+			<table class="jobslist-table bordered" >
+				<tr>
+					<th>S.No</th>
+					<th>Plan Chosen</th>
+					<th>validity</th>
+					<th>Price</th>
+					<th>profiles</th>
+				</tr>
+				<tr>
+					<td>{{$index+1}}</td>
+					<td>{{purchasedPlan.plan.planType}}</td>
+					<td>{{purchasedPlan.plan.planValidity}} months</td>
+					<td><i class="fa fa-rupee"></i> {{purchasedPlan.plan.planPrice}}</td>
+					<td>{{purchasedPlan.plan.availableProfiles}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,92 @@
+
+<div class="user-info-cards">
+	 <div class="header-title-bdr bordered-blue">
+			<h3 class="pro-title">Test</h3>
+	 </div>
+	 <div class="row" ng-show="showQues">
+	 	<div ng-repeat="qtn in questions">
+			<div class="pad-10 pointer-cursor ques" ng-click="showEditor(qtn,$index)">{{$index+1}}. {{qtn.question.questionDesc}}</div>
+		</div>
+	 </div>
+	 <div class="row" ng-show="showEdiQuestion">
+		<div class="row">
+			<div class="grid-md-10"></div>
+			<div class="grid-md-2">
+				 <button id="backBtn" class="button-fullwidth cws-button bt-color-3 border-radius alt" type="button" ng-click="showQuesList()"> &lt; &lt; Questions</button><br>
+			</div>
+		</div>
+		<div class="grid-md-12 card-height bordered">
+			<p><b>Question</b><br> {{questionInfo.question.questionDesc}}</p>
+			<div ng-repeat="t in questionInfo.testCases| limitTo:2">
+				<div class="row">
+					<div class="grid-md-6">
+						<span><b>Sample Input {{$index+1}}</b></span>
+						<div class="pad-10 bg-lightgrey "><span>{{t.input}}</span></div>
+					</div>
+					<div class="grid-md-6">
+						<span><b>Sample Output {{$index+1}}</b><br> </span>
+						<div class="pad-10 bg-lightgrey "><span>{{t.output}}</span></div>
+					</div>
+				</div>
+		   </div>
+		</div>
+		<div class="grid-md-12"><b>Code Editor</b></div>
+		<div class="grid-md-12 no-padding card-height">
+			<!-- <textarea id="java" value="" ng-model="questionInfo.code" class="textarea-editor card-height bg-black" style="width:100%;color:white!important" placeholder="Write Your Code Here" autocapitalize="off"></textarea> -->
+			<!-- <pre style="background-color: black;" class="card-height">
+				<code contenteditable="true" class="java" style="color: white;" id="questionCode">{{questionInfo.question.sampleCode}}</code>
+			</pre> --> 
+			<div class="row" id="findCode">
+				<html-template content="questionInfo.question.sampleCode"></html-template>
+			</div>
+		</div>
+		<div class="grid-md-12 no-padding">
+			<textarea id="inputs" value="" ng-model="questionInfo.inputs" class="textarea-editor bg-black" style="width:100% ;color:white!important" placeholder="Pass your inputs here" autocapitalize="off"></textarea>
+		</div>
+	     <div class="row clear-fix no-padding-right">
+	     	<div class="grid-md-7"></div>
+	     	<div class="grid-md-2"><button type="button" id="run1415" class="btn cws-button border-radius bt-color-3" ng-click="runCode(questionInfo.code,1)">Run</button></div>
+	    	<div class="grid-md-2"><button type="button" id="run1415" class="btn cws-button border-radius bt-color-3" ng-click="submitCode(questionInfo.code,1)">Sumit</button></div>
+	    	<div class="grid-md-1"><button class="btn cws-button border-radius"  ng-click="clearAll()" title="Click to clear all">clear</button></div>
+	    </div>
+		<div class="row card-height bordered" ng-if="!results.output && results.testCases.length">
+			<div class="row">
+				<div class="grid-md-2">S.No</div>
+				<div class="grid-md-2">Input</div>
+				<div class="grid-md-2">Output</div>
+				<div class="grid-md-2">Outcome</div>
+			</div>
+			<div ng-repeat="obj in results.testCases">
+				<div class="row">
+					<div class="grid-md-2">{{$index+1}}</div>
+					<div class="grid-md-2">{{obj.input}}</div>
+					<div class="grid-md-2">{{obj.output}}</div>
+					<div class="grid-md-2"><span ng-if="obj.result=='Failed'" class="color-red"><b>{{obj.result}}</b></span><span ng-if="obj.result!='Failed'" class="color-green"><b>{{obj.result}}</b></span></div>
+				</div>
+			</div>
+		</div>
+		<div class="row card-height bordered" ng-if="results.output">
+			<div class="row" ng-bind-html="results.output"></div>
+		</div>
+	 
+	 </div>
+
+	<!-- <div class="header-title-bdr bordered-blue">
+				<h3 class="pro-title">Test</h3>
+			</div>
+	
+		<pc-accordion>
+		<accordion-item>
+			<accordion-title>1. For two Strings A and B, we define the similarity of the strings to be length of the lognest prefix common to both strings. For example, the similarity of strings "abc" and "abd" is 2, while the similarity of strings "aaa" and "aaab" is 3. Find String similarity for a given strings String s1="madam" and String s2="madamisgood"?</accordion-title>
+			<accordion-content>
+	<div data-pym-src="https://www.jdoodle.com/embed/v0/java/jdk-1.8/2Iw"></div>
+			</accordion-content>
+			</accordion-item>
+				<accordion-item>
+			<accordion-title>2. Write a program to find nth maximum element in a given array.</accordion-title>
+			<accordion-content>
+	<div data-pym-src="https://www.jdoodle.com/embed/v0/java/jdk-1.8/2I3"></div>
+			</accordion-content>
+			</accordion-item>
+		</pc-accordion> -->
+</div>

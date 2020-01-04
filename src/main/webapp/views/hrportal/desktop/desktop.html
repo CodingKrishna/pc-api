@@ -1,0 +1,142 @@
+<div class="row user-info-cards">
+	<div class="slider-container p-0">
+			<div class="slider-child-container p-0" ng-class="showCandidates">
+				<div class="slider-child">
+					<div class="row no-padding">
+							<div class="row border-btm-purple">
+								<div class="grid-md-6"> 
+									<h3 class="no-margin">Posted Jobs</h3>
+								</div>
+								<div class="">
+									<button type="button" class="cws-button bt-color-3 border-radius alt icon-right pull-right" ng-click="toggleBoolean('showPopup')">Post A Job</button>
+								</div>
+							</div>
+							<div class="row no-padding">
+							<div class="grid-md-12 font-20 text-center border-0 pad-20" ng-if="!jobsList.length">Jobs List is not Available Please Add Job First</div>
+							<div class="grid-md-12" ng-if="jobsList.length">
+								<table class="jobslist-table bordered">
+									<tr>
+										<th>S.No</th>
+										<th>Company Name</th>
+										<th>Job Title</th>
+										<!-- <th>Job Description</th> -->
+										<th>Posted Date</th>
+										<th>Closed Date</th>
+										<th>Location</th>
+										<th>Actions</th>
+										
+									</tr>
+									<tr ng-repeat="job in jobsList">
+										<td>{{$index+1}}</td>
+										<td>{{job.company.companyName}}</td>
+										<td>{{job.jobTitle}}</td>
+										<!-- <td>{{job.jobDescription}}</td> -->
+										<td>{{job.postedDate | date:'dd-MM-yyyy'}}</td>
+										<td>{{job.closedDate | date:'dd-MM-yyyy'}}</td>
+										<td>{{job.location}}</td>
+										<td ng-click="viewShortListedCandidates(job)" title="view short listed candidates"class="color-blue pointer-cursor"><i class="fa fa-eye"></i> Shortlisted Profiles</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="slider-child">
+					<div class="row no-padding">
+						<span ng-click="slideToJobs()" class="pointer-cursor color-blue">
+							<i class="fa fa-arrow-circle-left"> </i> Back
+						</span>
+					</div>
+					<div ng-if="shortListedCandidates.length>0">
+						<div class="">
+								<div class="">
+							<h6 class="text-bold color-theme p-l-8">List of students you have short listed for {{shortListedCandidates[0].job.jobTitle}}({{shortListedCandidates[0].job.company.companyName}})</h6> 
+							</div>
+							<div class="">
+								<table class="jobslist-table bordered" >
+									<tr>
+										<th>S.No</th>
+										<th>Name</th>
+										<th>Email</th>
+										<th>Moblie No</th>
+									</tr>
+									<tr ng-repeat="student in studentsListByJobId">
+										<td>{{$index+1}}</td>
+										<td>{{student.userName}}</td>
+										<td>{{student.emailId}}</td>
+										<td>{{student.mobileNo}}</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div ng-if="!shortListedCandidates.length>0">
+						<h6 class="text-bold color-red p-l-8">You have not short listed any profiles.</h6>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+	<div class="overlay" ng-class="{'show':showPopup}" ng-click="toggleBoolean('showPopup')"></div>	
+		<div class="popup post-a-job-popup grid-md-6 grid-lg-2 grid-xs-12 pad-10" ng-class="{'show':showPopup}" style="z-index:99999;right:25%;">
+					<div class="post-a-job-heading no-padding">
+						<h4 class="pad-l-5">Post A Job <span class="pointer-cursor pull-right p-r-10 color-red" ng-click="toggleBoolean('showPopup')"><i class="fa fa-times"></i></h4>					
+					</div>
+					<form data-role="form.postAJobForm" class="padding-12" ng-if="companiesList.length">
+						<div class="col-lg-8">
+							<div class="row form-group">
+								<label for="InputName" class="grid-md-3">Job Title</label>
+								<div class="grid-md-9 no-padding">
+									<input type="text" class="form-control" name="InputName"
+										data-ng-model="job.jobTitle" placeholder="Enter Title" required>
+								</div>
+							</div>
+							<div class="row form-group">
+								<label class="grid-md-3" for="InputName">Description</label>
+								<div class="grid-md-9 no-padding">
+									<textarea type="text" class="form-control" name="InputName"
+										data-ng-model="job.jobDescription" placeholder="Enter Description" required></textarea>
+								</div>
+							</div>
+							<div class="row form-group">
+								<label for="InputName" class="grid-md-3">Location</label>
+								<div class="grid-md-9 no-padding">
+									<input type="text" class="form-control" name="InputName"
+										data-ng-model="job.location" placeholder="Enter Location" required>
+								</div>
+							</div>
+							<div class="row form-group">
+								<label for="InputName" class="grid-md-3 date-label">Posted Date</label>
+								<div class="grid-md-3 no-padding">
+									<input type="date" class="form-control date-input" name="InputName"
+										data-ng-model="job.postedDate" placeholder="Posted Date" required>
+								</div>
+								<label for="InputName" class="grid-md-3 text-center date-label">Closed Date</label>
+								<div class="grid-md-3 no-padding">
+									<input type="date" class="form-control date-input" name="InputName"
+										data-ng-model="job.closedDate"  placeholder="Closed Date"required>
+								</div>
+							</div>
+							<div class="row form-group">
+								<label for="InputName" class="grid-md-3">Required Skills</label>
+								<div class="grid-md-9 no-padding">
+									<input type="text" class="form-control" name="InputName"
+										data-ng-model="job.requiredSkills" placeholder="Required Skills" required>
+								</div>
+							</div>
+							<div class="row form-group">
+								<label for="InputName" class="grid-md-3">Company Name</label>
+								<div class="grid-md-9 no-padding">
+								<select ng-model="job.company.id" ng-options="company.id as company.companyName for company in companiesList"></select>
+								</div>
+							</div>
+							<div class="row form-group">
+								<label class="grid-md-3">&nbsp;</label>
+								<div class="grid-md-6 text-bold" ng-if="jobSucMsg"><span class="log-success-msg">{{jobSucMsg}}</span></div>
+								<button type="button" ng-click="postAJob()" class="cws-button bt-color-3 border-radius alt icon-right pull-right" ng-class="{'btn-disable':disableButton}" ng-disabled="disableButton">Submit</button>
+								
+							</div>
+						</div>
+				</form>
+				<div ng-if="!companiesList.length" class='card-height text-center color-red text-bold pad-10'>Please Add Company Before Posting a Job</div>
+		</div>

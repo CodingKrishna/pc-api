@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+	<head>
+		<title>:: PC HR PORTAL ::</title>
+			<link rel="stylesheet" href="resources/css/main.css"/>
+		<link rel="stylesheet" href="resources/css/app.css"/>
+		<link rel="stylesheet" type="text/css"  href="resources/css/font-awesome.min.css"/> 
+		<meta content='width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1.0, user-scalable=0' name='viewport'/>
+	</head>
+	<body ng-app="pchrApp" ng-controller="pcHrCtrl">
+		<!-- page header -->
+	<header class="only-color">
+		<div class="grid-md-12 fixed bg-darkblue">
+		<!--Mini Heaader -->
+		<div class="page-header-top">
+			<div class="grid-row clear-fix">
+				<div class="page-header-top">
+					<div class="row clear-fix no-padding">
+						<address>
+							<a href="" class="whatsapp"><i class="fa fa-whatsapp"></i>+91-8296488477</a>
+							<a href="mailto:info@pioneercoders.com" class="email"><i class="fa fa-envelope-o"></i>info@pioneercoders.com</a>
+						</address>
+						<div class="header-top-panel">
+							<ul>
+								<li ng-click="openLogin()" class="login-btn"  ng-if="!loggedInHr">Login<a><img class="header-log-svg" src="resources/img/login-icon.svg" ></a></li>
+								<li ng-click="logout()" class="login-btn" ng-if="loggedInHr">Logout<a><img class="header-log-svg" src="resources/img/logout-icon.svg" ></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/Mini Heaader -->
+		<!-- Header  -->
+		<div class="sticky-wrapper-hr">
+			<div class="sticky-menu">
+				<div class="grid-row clear-fix">
+					<!-- logo -->
+					<a data-ui-sref="home" class="logo">
+						<img src="resources/img/pc-logo.png">
+						<h1>Pioneer Coders</h1>
+					</a>
+					<!-- / logo -->
+					<nav class="main-nav">
+						<ul class="clear-fix">
+							<li data-ui-sref="home"><a>Home</a></li>
+							<li data-ui-sref="hr.company" ng-if="loggedInHr"><a>My Profile</a></li>
+							<li data-ui-sref="landing" ng-if="loggedInHr"><a>Profiles List</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+			<!--/Header-->
+		</div>
+	</header>
+	<!-- / page header -->
+		<div ui-view></div>
+		
+<footer class="pc_footer">
+		<div class="footer-bottom">
+			<div class="grid-row clear-fix">
+				<div class="copyright">pioneercoders.com<span></span> 2017 . All Rights Reserved</div>
+			</div>
+		</div>
+	<div class="overlay" ng-class="{'show':showpopup}" ng-click="toggleBoolean('showpopup')"></div>
+	<div class="popup log-popup grid-md-3 grid-lg-2 grid-xs-12" ng-class="{'show':showpopup}" style="z-index:99999">
+		<div class="slider-container no-padding login-bg">
+				<div class="slider-child-container no-padding" ng-class="showLogin">
+					<div class="row no-padding">
+						<div class="grid-md-6 grid-sm-6 grid-xs-6 field-container font-18 open-sans-bold no-margin text-center field-container-heading n-p-b">
+							<div class="relative row p-b-5">
+								<span>LOGIN</span>
+								<span class="pointer-cursor pull-right p-r-10" ng-click="toggleBoolean('showpopup')"><img src="resources/img/home/x.png"></span>
+							</div>
+						</div>
+						<div class="grid-md-6 grid-sm-6 grid-xs-6 field-container font-18 open-sans-bold no-margin text-center field-container-heading n-p-b">
+							<div class="row relative n-p-t n-p-b">
+								<div class="grid-md-12 p-b-5">REGISTRATION<span class="pointer-cursor pull-right p-r-10" ng-click="toggleBoolean('showpopup')"><img src="resources/img/home/x.png"></span></div>
+							</div>
+						</div>
+					</div>
+					<div class="slider-child">
+						<div class="login-logo">
+							<img src="resources/img/pc-logo.png" alt="Pioneer Coders Logo"/>
+						</div>
+						<div class="login-title text-center no-margin">
+							<!-- <h3>LOGIN</h3> -->
+							<h4>Please login here to proceed</h4>
+							<div class="log-error-msg" ng-if="logFormMessage=='Invalid Credentials'" ng-class="{'err':logFormMessage=='Invalid Credentials','suc':logFormMessage=='SUCCESS'}"><span>{{logFormMessage}}</span></div>
+							<div class="log-error-msg" ng-if="logFormMessage=='SUCCESS'" ng-class="{'err':logFormMessage=='Invalid Credentials','suc':logFormMessage=='SUCCESS'}"><span>{{logFormMessage}}</span></div>
+						</div>
+						<form name="loginForm" novalidate>
+							<div class="field-container">
+								<!-- <label>Email <span>*</span></label> -->
+								<input type="text" placeholder="Enter Email" ng-model="login.emailId" name="userName" required><span class="input-field-icon-area"><i class="fa fa-user input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="loginForm.userName.$error.required && loginForm.userName.$dirty">Email is required</div>
+							</div>
+							<div class="field-container">
+								<!-- <label>Password <span>*</span></label> -->
+								<input type="password" placeholder="Enter Password" ng-model="login.password" name="password" required="required"><span class="input-field-icon-area"><i class="fa fa-lock input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="loginForm.password.$error.required && loginForm.password.$dirty">Password is required</div>
+							</div>
+							<div class="field-container">
+								<labe></labe>
+								<button id="login-btn" class="button-fullwidth cws-button bt-color-3 border-radius alt full-width" type="button" ng-disabled="loginForm.$invalid" ng-click="doLogin()">Login</button>
+							</div>
+						</form>
+						<div class="field-container text-right m-t-5">
+							<span id="register" ng-click="slideToRegistration()" class="pointer-cursor color-blue pull-right">Register
+								 <i class="fa fa-arrow-circle-right"></i>
+							</span>
+						</div>
+					</div>
+					<div class="slider-child">
+						<div ng-if="regFormMessage=='SUCCESS'" class="success-txt-p">
+							Thanks for Joining with us.<br/>A Verification mail was sent to {{userEmailId}} , open this email and click the link to activate your account.
+						</div>
+						<div class="log-error-msg" ng-class="{'err':regFormMessage=='FAILED','err':regFormMessage=='Passwords not Matched'}" ng-if=" regFormMessage=='Passwords not Matched'">{{regFormMessage}}</div>
+						<div class="log-error-msg" ng-class="{'err':regFormMessage=='EmailId is already exist'}" ng-if="regFormMessage=='EmailId is already exist'">{{regFormMessage}}</div>
+						<div class="log-success-msg" ng-if="regFormMessage=='SUCCESS'"><span ng-class="{'suc':regFormMessage=='SUCCESS'}" ng-if=" regFormMessage=='SUCCESS'">{{regFormMessage}}</span></div>
+						
+						
+						<form name="form.regForm" novalidate ng-if="regFormMessage!='SUCCESS'">
+							<div class="field-container">
+								<!-- <label>Name <span>*</span></label> -->
+								<input type="text" placeholder="Name" ng-model="hrRegInfo.hrName" name="name" required>
+								<span class="input-field-icon-area"><i class="fa fa-user input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="form.regForm.name.$error.required && form.regForm.name.$dirty">Name Is Required</div>
+							</div>
+							<div class="field-container">
+								<!-- <label>Mobile No <span>*</span></label> -->
+								<input type="text" placeholder="mobile No" ng-model="hrRegInfo.mobileNumber" ng-pattern="/^[0-9]{10,10}$/"  ng-maxlength="10" maxlength="10" name="mobileNo" required>
+								<span class="input-field-icon-area"><i class="fa fa-phone input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="form.regForm.mobileNo.$error.required && form.regForm.mobileNo.$dirty">MobileNo Is Required</div>
+								<div class="error-msg absolute" ng-if="form.regForm.mobileNo.$error.pattern">Enter 10 digit mobile Number</div>
+							</div>
+							<div class="field-container">
+								<!-- <label>Email ID <span>*</span></label> -->
+								<input type="text" placeholder="Email" ng-model="hrRegInfo.emailId" ng-pattern="/^[a-zA-Z]+[a-zA-Z0-9._-]+@[a-z]+\.[a-z]{2,5}$/" name="email" required>
+								<span class="input-field-icon-area"><i class="fa fa-envelope input-field-icon" style="margin-left:7px;"></i></span>
+								<div class="error-msg absolute" ng-if="form.regForm.email.$error.required && form.regForm.email.$dirty">Email Is Required</div>
+								<div class="error-msg absolute" ng-if="form.regForm.email.$error.pattern">Invalid Email</div>
+								
+							</div>
+							<div class="field-container">
+								<!-- <label>Email ID <span>*</span></label> -->
+								<input type="text" placeholder="Company Name" ng-model="hrRegInfo.companyName"  name="companyName" required>
+								<span class="input-field-icon-area"><i class="fa fa-building input-field-icon" style="margin-left:7px;"></i></span>
+								<div class="error-msg absolute" ng-if="form.regForm.companyName.$error.required && form.regForm.companyName.$dirty">Company Name Required</div>
+								
+							</div>
+							<div class="field-container">
+								<!-- <label>Password<span>*</span></label> -->
+								<input type="password" placeholder="Password" ng-minlength="6" minlength="6" ng-model="hrRegInfo.password" name="password" required="required">
+								<span class="input-field-icon-area" ><i class="fa fa-lock input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="form.regForm.password.$error.required && form.regForm.password.$dirty">Password Is Required</div>
+								<div class="error-msg absolute" ng-if="form.regForm.password.$dirty && form.regForm.password.$error.minlength">Password should be minimum 6 characters</div>
+							</div>
+							<div class="field-container">
+								<!-- <label>Confirm Password<span>*</span></label> -->
+								<input type="password" placeholder="Confirm Password" ng-minlength="6" minlength="6" ng-model="hrRegInfo.confirmPassword" ng-match="student.password" name="confirmPassword" required="required">
+								<span class="input-field-icon-area">
+								<i class="fa fa-lock input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="form.regForm.confirmPassword.$error.required && form.regForm.confirmPassword.$dirty">Confirm paswword Is Required</div>
+								<div class="error-msg absolute" ng-if="form.regForm.confirmPassword.$dirty && form.regForm.confirmPassword.$error.minlength">Password should be minimum 6 characters</div>
+								<div class="error-msg absolute" ng-if="form.regForm.confirmPassword.$error.match">passwords are not matched</div>
+							</div>
+							<div class="field-container">
+								<label></label>
+								<button class="button-fullwidth cws-button bt-color-3 border-radius alt full-width" type="button" ng-disabled="form.regForm.$invalid" ng-click="registerHr(hrRegInfo)">Register</button>
+							</div>
+						</form>
+						<div class="field-container" ng-if="regFormMessage!='SUCCESS'">
+							<div class="row no-padding">
+								<span ng-click="slideToLogin()" class="grid-md-3 pointer-cursor color-blue ">
+									<i class="fa fa-arrow-circle-left"> </i> Login
+								</span>
+								
+							</div>
+						</div>
+						<div class="overlay absolute regform-height" ng-class="{'show':formLoader}"></div>
+						<div class="content-loader " ng-class="{'show':formLoader}"><i class="fa fa-spin fa-spinner"></i></div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</footer>
+		<!--Lib Start  -->
+	<script src="resources/js/lib/angular.min.js"></script>
+	<script src="resources/js/lib/angular-ui-router.min.js"></script>
+	<script src="resources/js/lib/ui-bootstrap-tpls-2.2.0.min.js"></script>
+	<script src="resources/js/lib/angular-md5.js"></script>
+	<script src="resources/js/lib/jquery.min.js"></script>
+	<!-- Lib End  -->
+	
+	<script src="resources/js/app.js"></script>
+	<script src="resources/js/route.js"></script>
+	<script src="resources/js/components.js"></script>
+	
+	<!--Controllers  Start-->
+	<script src="resources/js/controller/landingCtrl.js"></script>
+	<script src="resources/js/controller/confirmPurchaseCtrl.js"></script>
+	<script src="resources/js/controller/studentDetailsCtrl.js"></script>
+	<script src="resources/js/controller/homeCtrl.js"></script>
+<!-- 	<script src="resources/js/controller/desktop/desktopCtrl.js"></script>
+	<script src="resources/js/controller/desktop/hrProfileCtrl.js"></script>
+	<script src="resources/js/controller/desktop/hrCtrl.js"></script>
+	<script src="resources/js/controller/desktop/companyCtrl.js"></script>
+	<script src="resources/js/controller/desktop/assignmentCtrl.js"></script>
+	<script src="resources/js/controller/desktop/planDetailsCtrl.js"></script> -->
+	
+	<!--Controllers End  -->
+	
+	<!-- Services start -->
+	<script src="resources/js/services/commonService.js"></script>
+	<script src="resources/js/services/studentDetailsService.js"></script>
+	<script src="resources/js/services/hrService.js"></script>
+	<script src="resources/js/services/desktopService.js"></script>
+	
+	<!-- Services End -->
+	</body>
+
+	
+</html>

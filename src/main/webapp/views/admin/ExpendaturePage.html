@@ -1,0 +1,95 @@
+<style>
+	.course-img{
+		    width: 100%;
+	}
+	.course-name {
+	    padding: 29px 5px !important;
+	}
+	.textarea{
+		 border: 1px solid gainsboro;
+   		 padding: 5px;
+	}
+</style>
+<div class="row no-padding min-height-55 ">
+	<div class="grid-md-4">&nbsp;</div>
+	<div class="grid-md-4 log-success-msg" ng-if="successMsg">{{successMsg}}</div>
+</div>
+<div class="row">
+	<div class="grid-md-11">
+		<h4>Expendaturs List</h4>
+	</div>
+	<div class="grid-md-1">
+		<button type="button" ng-click="showExpForm()" class="btn tc-btn btn-md tc-btn-info  pull-right">Add</button>
+	</div>
+</div>
+<table class="row tc-table" datatable="ng"><!-- ng-if="expendaturesList.length" -->
+	<thead>
+		<tr>
+			<th class="grid-md-1">S.No</th>
+			<th class="grid-md-1">Product Name</th>
+			<th class="grid-md-1">Description</th>
+			<th class="grid-md-1">Purchased Date</th>
+			<th class="grid-md-1">Price</th>
+		</tr>
+	</thead>	
+	<tbody>
+		<tr ng-repeat="obj in expendaturesList">
+			<td class="grid-md-1">{{$index+1}}</td>
+			<td class="grid-md-1">{{obj.productName}}</td>
+			<td class="grid-md-1">{{obj.description}}</td>
+			<td class="grid-md-1">{{obj.createOn |date:'dd-MM-yyyy'}}</td>
+			<td class="grid-md-1">{{obj.price}}</td>
+		</tr>
+	</tbody>	
+</table>
+<!-- <div class="color-red" ng-if="!expendaturesList.length">
+	<span>{{msg}}</span>
+</div> -->
+<div class="overlay" ng-class="{'show':expForm}" ng-click="toggleBoolean('expForm')"></div>
+<div class="popup log-popup grid-md-5 grid-lg-2 grid-xs-12" ng-class="{'show':expForm}" style="z-index:99999">
+	<div class="row"><h4>Expendature<span ng-click="toggleBoolean('expForm')" class="pull-right color-red pointer-cursor "><i class="fa fa-times"></i></span></h4></div>
+	<div class="row">
+		<form name="form.expForm" novalidate>
+			<div class="row">
+				<label class="grid-md-3">Product Name</label>
+				<div class="grid-md-9">
+					<input type="text" ng-model="exp.productName" class="grid-md-12" placeholder="Product Name" name="productName" required>
+				</div> 
+				<span ng-if="form.expForm.productName.$error.required && form.expForm.productName.$dirty" class="color-red">Product Name is Required</span>
+			</div>
+			<div class="row">
+				<label class="grid-md-3">Description</label>
+				<div class="grid-md-9">
+					<textarea rows="4" cols="50" ng-model="exp.description" class="grid-md-12 border-lightgray  pad-10" placeholder="Enter Description" name="description" required></textarea>
+				</div> 
+				<span ng-if="form.expForm.description.$error.required && form.expForm.description.$dirty" class="color-red">Description is Required</span>
+			</div>
+			<div class="row">
+				<label class="grid-md-3">Price</label>
+				<div class="grid-md-9">
+					<input type="text" ng-model="exp.price" class="grid-md-12" placeholder="Enter Price" name="price" required>
+				</div> 
+				<span ng-if="form.expForm.price.$error.required && form.expForm.price.$dirty" class="color-red">Price is Required</span>
+			</div>
+			<div class="row no-pading form-group">
+				<label class="grid-md-3">Upload Bill</label>
+				<div class="grid-md-5">
+					<div class="">
+						<tc-file-input label="Click Here To Choose a Bill" ng-model="exp.billPath" placeholder="No Bill Choosen" required="required" ></tc-file-input><!-- multiple="true" -->
+					</div>
+					<div>
+						<label class="grid-md-3"></label>
+						<span>{{infoMsg}}</span>
+						<button type="button" class="cws-button  bt-color-4 border-radius small alt" ng-click="selectUploadBill(exp.billPath, 'htmlForms', $event)">Upload Bill</button>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<label class="grid-md-3">&nbsp;</label>
+				<div class="grid-md-9"><!-- ng-disabled="form.expForm.$invalid" -->
+					<button type="submit" class="cws-button bt-color-3 border-radius alt icon-right" data-ng-click="addExpendature()">Pay</button>
+				</div>
+			</div> 
+		</form>
+	</div>
+</div>

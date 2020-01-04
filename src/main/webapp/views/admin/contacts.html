@@ -1,0 +1,26 @@
+<h4>ContactUs</h4>
+<!-- {{contactUsList}} -->
+<div class="row search-input"><input type="text"  class=" search-tab" ng-model="searchText" placeholder="Search Contacts List" /></div><br>
+<table class="row tc-table" datatable="ng">
+	<thead>
+		<tr>
+			<th class="grid-md-1">S.No</th>
+			<th class="grid-md-2">Name</th>
+			<th class="grid-md-2">Email</th>
+			<th class="grid-md-2">Mobile No</th>
+			<th class="grid-md-2">Date</th>
+			<th class="grid-md-3">Comments</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr data-ng-repeat="contacts in contactUsList| filter:searchText">
+			<td class="grid-md-1">{{$index+1}}</td>
+			<td class="grid-md-2">{{contacts.name}}</td>
+			<td class="grid-md-2">{{contacts.emailId}}</td>
+			<td class="grid-md-2">{{contacts.mobileNo}}</td>
+			<td class="grid-md-2">{{contacts.createdOn|date:'dd-MM-yyyy'}}</td>
+			<td class="grid-md-3">{{contacts.comments}}</td>
+			
+		</tr>
+	</tbody>	
+</table>

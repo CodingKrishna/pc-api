@@ -1,0 +1,74 @@
+
+<style>
+	.chengePwdPopup{
+		position : absolute;
+		left:110px;
+	}
+	.popupMsg{
+		    z-index: 99999;
+		    position: absolute;
+		    left: 80px;
+		    top: 177px;
+	}
+	.popup.show{
+		top:177px;
+	}
+	.mailText{
+		    padding: 10px;
+    		font-size: 15px;
+	}
+	.change-pwd-panel{
+	    margin-top: 30px;
+	    margin-bottom: 30px;
+	    min-height: 330px;
+	    border-top-left-radius: 11px;
+	    border: 1px solid #18bb7c;
+	    border-bottom-right-radius: 0px !important;
+	    
+	}
+	
+</style>
+<div class="container no-padding">
+	<div class="row no-padding">
+	<div class="grid-md-4">&nbsp;</div>
+	<div class="grid-md-4 bordered no-padding change-pwd-panel">
+		<div class="row text-center corner-radius bg-color-3">
+			<h3 class="text-center color-white m-0">Change Password</h3>
+		</div>
+		<div class="login-logo m-t-30">
+			<img src="resources/img/pc-logo.png" alt="Pioneer Coders Logo"/>
+		</div>
+		<div class="login-title text-center no-margin">
+			<div class="no-padding no-margin min-height-30">
+				<div class="log-error-msg" ng-if="logFormMessage=='Invalid Credentials'" ng-class="{'err':logFormMessage=='Invalid Credentials','suc':logFormMessage=='SUCCESS'}" style="margin: 6% auto 0px auto !important;"><span>{{msg}}</span></div>
+				<div class="log-error-msg" ng-if="logFormMessage=='SUCCESS'" ng-class="{'err':logFormMessage=='Invalid Credentials','suc':logFormMessage=='SUCCESS'}"><span>{{msg}}</span></div>
+			</div>
+		</div>
+		<form name="form.changePwd">
+			<div class="field-container">
+				<input type="text" class="form-input" placeholder="Enter your Email ID" ng-model="emailId" name="emailId" ng-pattern="/^[a-zA-Z]+[a-zA-Z0-9._-]+@[a-z]+\.[a-z]{2,5}$/" required>
+				<span class="input-field-icon-area"><i class="fa fa-envelope input-field-icon"></i></span>
+				<div class="error-msg absolute color-red font-11" ng-if="form.changePwd.emailId.$error.required && form.changePwd.emailId.$dirty">Email Id is required</div>
+				<div class="error-msg absolute color-red font-11" ng-if="form.changePwd.emailId.$error.pattern">Invalid Email</div>
+			</div>
+			<div class="field-container pull-right">
+				<button type="button" class="cws-button bt-color-3 border-radius pull-right" ng-disabled="form.changePwd.$invalid" ng-click="sendMail()">Send Mail</button>
+			</div>
+	    </form>
+	</div>
+		
+	</div>
+</div>
+<div class="overlay absolute regform-height" ng-class="{'show':formLoader}"></div>
+<div class="overlay" ng-class="{'show':showpopup}" ng-click="toggleBoolean('showpopup')"></div>
+<div class="content-loader" ng-class="{'show':formLoader}"><i class="fa fa-spin fa-spinner"></i></div>
+<div class="popup log-popup grid-md-3 grid-lg-2 grid-xs-12 card-min-height popupMsg" ng-class="{'show':showpopup}" style="z-index:99999;min-height: 190px;overflow: hidden;">
+	<div class="popup-close-btn" ng-class="{'bgcolor-brightgreen':quizSuccessMsg}"><img src="resources/img/home/x.png" class="pointer-cursor pull-right m-r-5" ng-click="toggleBoolean('showpopup')"></div>
+	<div class="mar-38px text-center">
+		<div class="font-18 quiz-info-msg " ng-if="msg">{{msg}}</div>
+		<div>
+			<button ng-if="msg" type="button" class="cws-button border-radius bt-color-3 alt" ng-click="closePopup()">OK</button>
+		</div>
+	</div>
+</div>
+</html>

@@ -1,0 +1,46 @@
+<div class="container no-padding">
+	<div class="row profile-card ">
+		<div class="user-info-cards">
+			<div class=" header-title-bdr bordered-blue"><h3 class="pro-title">Booked Events</h3></div>
+			<div class="cont-data-pad">
+				<div class=" woocommerce">
+					<div class="container clear-fix">
+									<!-- Shop -->
+						<div id="content" role="main">
+							<form action="#" method="post">
+								<table class="shop_table cart">
+									<thead>
+										<tr>
+											<th class="product-thumbnail">Events</th>
+											<th class="product-name">&nbsp;</th>
+											<th>Event Date</th>
+											<th class="grid-col-2">seats</th>
+										</tr>
+									</thead>
+									<tbody>								
+										<tr class="cart_item" ng-repeat="event in bookedEventsList">
+											<td class="product-thumbnail">
+												<a href="shop-single-item.html">
+													<img ng-src="{{event.event.imgPath}}"  class="attachment-shop_thumbnail wp-post-image" alt="">
+												</a>					
+											</td>
+											<td class="product-name grid-col-6">
+												<a href="shop-single-item.html">{{event.event.eventName}}</a>			
+											</td>
+											<td class="product-name grid-col-2">
+												<a href="shop-single-item.html">{{event.event.eventDate | date:'yyyy-MM-dd'}}</a>			
+											</td>
+											<td class="product-price grid-col-2">
+												<span class="amount">1</span>			
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>

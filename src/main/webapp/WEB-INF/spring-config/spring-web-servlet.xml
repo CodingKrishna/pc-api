@@ -1,0 +1,114 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<context:component-scan base-package="org.pioneercoders"/>
+	<mvc:annotation-driven />
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/views/</value>
+		</property>
+		<property name="suffix">
+			<value>.html</value>
+		</property>
+	</bean>
+	
+    <bean name="mailContentUtil" class="org.pioneercoders.utils.MailContentUtil"/>
+
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- <context:property-placeholder location="classpath:/database.properties" /> -->
+	
+	<bean id="allProperties"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:database.properties</value>
+				<value>classpath:app.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${database.driverClassName}" />
+		<property name="url" value="${database.connectionUrl}" />
+		<property name="username" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+	</bean> -->
+	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	    destroy-method="close">
+	    <property name="driverClass" value="${jdbc.driverClassName}" />
+	    <property name="jdbcUrl" value="${jdbc.url}" />
+	    <property name="user" value="${jdbc.username}" />
+	    <property name="password" value="${jdbc.password}" />
+	    <property name="minPoolSize" value="${jdbc.minPoolSize}" />
+	    <property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
+	   	<property name="acquireIncrement" value="${jdbc.acquireIncrement}" />
+	    <property name="maxStatements" value="${jdbc.maxStatements}" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="packagesToScan">
+			<list>
+				<value>org.pioneercoders.entity</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${database.hibernateDialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<!-- <prop key="hibernate.c3p0.min_size">3</prop>
+				<prop key="hibernate.c3p0.max_size">20</prop>
+				<prop key="hibernate.c3p0.timeout">180000</prop>
+				<prop key="hibernate.c3p0.max_statements">100</prop> -->
+<!-- 
+				<prop key="connection.pool_size">10</prop>
+				<prop key="hibernate.dbcp.initialSize">50</prop>
+				<prop key="hibernate.dbcp.maxActive">50</prop>
+				<prop key="hibernate.dbcp.maxIdle">20</prop>
+				<prop key="hibernate.dbcp.minIdle">0</prop> -->
+				<prop key="hibernate.jdbc.batch_size">10</prop>
+				
+				<!-- enable 2nd level cache -->
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				
+				<!-- setup 2nd level cache -->
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+				
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven />
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="message" />
+	</bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="26246425" />
+		<property name="maxInMemorySize" value="1048576" />
+	</bean>
+	
+	
+</beans>

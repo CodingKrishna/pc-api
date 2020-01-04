@@ -1,0 +1,183 @@
+<style>
+img {
+	height:85%;
+	width:50%;  
+}
+.border-pop-up{
+	border:2px solid #1B84CA;
+}
+.popup-height{
+	left: 0px;
+    top: 341px;
+    height: 160px;
+    width: 300px;
+}
+.popup-msg{
+	border: 2px solid dodgerblue;
+    background-color: #F1F1F1;
+    box-shadow: 1px 0 10px 1px #c1c1c1;
+}
+.popup-text{
+    margin-top: 40px;
+    color:#002147
+}
+</style>
+<div class="container no-padding">
+	<div class="row profile-card ">
+		<div class="user-info-cards">
+			<div class=" header-title-bdr bordered-blue"><h3 class="pro-title">My Tasks</h3></div>
+			<div class="cont-data-pad">
+				<section>
+					<div class="tabs" ng-if="internTask.length">
+						<div class="block-tabs-btn clear">
+							<!-- <div class="tabs-btn active" data-tabs-id="tabs1" ng-click="getInternTaskTemplate('UI')">UI TASKS</div>
+							<div class="tabs-btn" data-tabs-id="tabs2" ng-click="getInternTaskTemplate('JAVA')">JAVA</div>
+							<div class="tabs-btn" data-tabs-id="tabs3">J2EE</div> -->
+							<div ng-repeat="(key, value) in internTask" class="tabs-btn" data-tabs-id="tabs{{key}}">{{key}}</div>
+						</div>
+					 	<!-- tab layout start -->
+						<div class="tabs-keeper refer-btn">
+							<div class="container-tabs active" data-tabs-id="cont-tabsUI"> 
+								<div ng-repeat="task in internTask.UI">
+									<pc-accordion class="accordions">
+										<accordion-item>
+											<accordion-title>{{$index+1}}. {{task.question}}</accordion-title>
+											<accordion-content>
+												<div class="row">
+													<span class="grid-md-3"><b>Objective:</b></span>
+													<span class="grid-md-9">{{task.objective}}</span>
+												</div>
+												<div class="row">
+													<span class="grid-md-3"><b>Description:</b></span>
+													<span class="grid-md-9">{{task.queDescription}}:</span>
+												</div>
+												<div class="row" ng-repeat="obj in task.images track by $index">
+													<span class="grid-md-3"><b>Sample image {{$index+1}}:</b></span>
+													<span class="grid-md-9 casestudy-image" >
+														<img class='tutorial-img' src='interntask/getimage/{{obj}}'/>
+													</span>
+													<!-- <span>{{nameObj='html'+obj.split('/')[0]}}</span> -->
+												<div class="row">
+													<span class="grid-md-3 "><b><tc-file-input label="Click Here To Choose a File" ng-model="nameObj" placeholder="No File Choosen" required="required">
+													</tc-file-input></b></span>
+													<span class="grid-md-9">
+														<button type="button" class="cws-button  bt-color-4 border-radius small alt" ng-click="uploadMyTaskFile(nameObj, 'html'+task.shortName+($index+1), $event)">Upload File</button>
+													</span>
+												</div>
+												
+												</div>
+												<div class="row">
+													<span class="grid-md-3"><b>ReferenceLink:</b></span>
+													<span class="grid-md-9">
+														<button type="button" class="cws-button bt-color-3 border-radius small alt"><a href="#tutorials/{{task.refferenceLink}}">Click Here</a></button>
+													</span>
+												</div>
+												<!-- <div >
+													 @INTERN_START@/HTML1@INTERN_END@		
+												</div>  -->
+											</accordion-content>
+										</accordion-item>
+									</pc-accordion>
+								</div>
+							</div>
+							<div class="container-tabs" data-tabs-id="cont-tabsJAVA">
+								<div ng-repeat="task in internTask.JAVA">
+									<pc-accordion class="accordions">
+										<accordion-item>
+											<accordion-title>{{$index+1}}. {{task.question}}</accordion-title>
+											<accordion-content>
+												<div class="row">
+													<span class="grid-md-3"><b>Objective:</b></span>
+													<span class="grid-md-9">{{task.objective}}</span>
+												</div>
+												<div class="row">
+													<span class="grid-md-3"><b>Description:</b></span>
+													<span class="grid-md-9">{{task.queDescription}}:</span>
+												</div>
+												<div class="row" ng-repeat="obj in task.images track by $index">
+													<span class="grid-md-3"><b>Sample image {{$index+1}}:</b></span>
+													<span class="grid-md-9 casestudy-image" >
+														<img class='tutorial-img' src='interntask/getimage/{{obj}}'/>
+													</span>
+												</div>
+												<div class="row">
+													<span class="grid-md-3 "><b><tc-file-input label="Click Here To Choose a File" ng-model="htmlTask1" placeholder="No File Choosen" required="required">
+													</tc-file-input></b></span>
+													<span class="grid-md-9">
+														<button type="button" class="cws-button  bt-color-4 border-radius small alt" ng-click="uploadMyTaskFile(htmlTask1, 'htmlForms', $event)">Upload File</button>
+													</span>
+												</div>
+												<div class="row">
+													<span class="grid-md-3"><b>ReferenceLink:</b></span>
+													<span class="grid-md-9">
+														<button type="button" class="cws-button bt-color-3 border-radius small alt"><a href="#tutorials/{{task.refferenceLink}}">Click Here</a></button>
+													</span>
+												</div>
+												<!-- <div >
+													 @INTERN_START@/HTML1@INTERN_END@		
+												</div>  -->
+											</accordion-content>
+										</accordion-item>
+									</pc-accordion>
+								</div>
+							</div>
+							<div class="container-tabs" data-tabs-id="cont-tabsJ2EE">
+								<div ng-repeat="task in myTasksTemplates.J2EE">
+									<pc-accordion class="accordions">
+										<accordion-item>
+											<accordion-title>{{$index+1}}. {{task.question}}</accordion-title>
+											<accordion-content>
+												<div class="row">
+													<span class="grid-md-3"><b>Objective:</b></span>
+													<span class="grid-md-9">{{task.objective}}</span>
+												</div>
+												<div class="row">
+													<span class="grid-md-3"><b>Description:</b></span>
+													<span class="grid-md-9">{{task.queDescription}}:</span>
+												</div>
+												<div class="row" ng-repeat="obj in task.images track by $index">
+													<span class="grid-md-3"><b>Sample image {{$index+1}}:</b></span>
+													<span class="grid-md-9 casestudy-image" >
+														<img class='tutorial-img' src='interntask/getimage/{{obj}}'/>
+													</span>
+												</div>
+												<div class="row">
+													<span class="grid-md-3 "><b><tc-file-input label="Click Here To Choose a File" ng-model="htmlTask1" placeholder="No File Choosen" required="required">
+													</tc-file-input></b></span>
+													<span class="grid-md-9">
+														<button type="button" class="cws-button  bt-color-4 border-radius small alt" ng-click="uploadMyTaskFile(htmlTask1, 'htmlForms', $event)">Upload File</button>
+													</span>
+												</div>
+												<div class="row">
+													<span class="grid-md-3"><b>ReferenceLink:</b></span>
+													<span class="grid-md-9">
+														<button type="button" class="cws-button bt-color-3 border-radius small alt"><a href="#tutorials/{{task.refferenceLink}}">Click Here</a></button>
+													</span>
+												</div>
+												<!-- <div >
+													 @INTERN_START@/HTML1@INTERN_END@		
+												</div>  -->
+											</accordion-content>
+										</accordion-item>
+									</pc-accordion>
+								</div>
+							</div>
+						</div>
+						
+				 		<!--/tab layout ends -->
+					</div>
+					<div class="row" ng-if="!internTask.length">
+						<span class="align-center green">No tasks are assingend till now..</span>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>	
+</div>
+<div class="overlay" ng-class="{'show':openedPopup}" ng-click="togglePopup()"></div>
+<div class="popup popup-height popup-msg text-center" ng-class="{'show':openedPopup === '$infoMsg'}">
+	<div class="popup-text">{{infoMsg}}</div>
+	<div>
+		<button  type="button" class="btn btn-sm btn-theme m-t-15" ng-click="togglePopup()">OK</button>
+	</div>
+</div>

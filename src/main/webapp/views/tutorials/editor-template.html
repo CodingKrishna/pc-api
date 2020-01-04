@@ -1,0 +1,21 @@
+<section class="play-ground" ng-if="!java">
+    <h1  class="text-center">Play Ground<span class="color-red pointer-cursor pull-right font-22" ng-click="toggleBoolean('showEditor')"><i class="fa fa-times"></i></span></h1>
+    <textarea id="html" value="" ng-model="html" class="textarea-editor" placeholder="HTML" autocapitalize="off" autofocus></textarea>
+    <textarea id="css" value="" ng-model="css" class="textarea-editor" placeholder="CSS" autocapitalize="off"></textarea>
+    <textarea id="js" value=""  ng-model="javascript" class="textarea-editor" placeholder="JavaScript" autocapitalize="off"></textarea>
+    <div class="row clear-fix no-padding-right">
+    	<div class="grid-md-1 pull-right no-padding-right"><button class="btn cws-button border-radius pull-right"  onclick="clearAll()" title="Click to clear all">clear</button></div>
+    	<div class="grid-md-1 pull-right"><button type="button" id="run1415" class="btn cws-button border-radius bt-color-3" onclick="outputFun()">Run</button></div>
+    </div>
+    <iframe id="preview"></iframe>
+  </section>
+  <section class="play-ground" ng-if="java">
+    <h1  class="text-center">Play Ground<span class="color-red pointer-cursor pull-right font-22" ng-click="toggleBoolean('showEditor')"><i class="fa fa-times"></i></span></h1>
+    <textarea id="java" value="" ng-model="java" class="textarea-editor card-height" style="width:100%;" placeholder="Java" autocapitalize="off"></textarea>
+    <textarea id="inputs" value="" ng-model="inputs" class="textarea-editor" style="width:100%;" placeholder="Pass Required Inputs here" autocapitalize="off"></textarea>
+    <div class="row clear-fix no-padding-right">
+    	<div class="grid-md-1 pull-right no-padding-right"><button class="btn cws-button border-radius pull-right"  onclick="clearAll()" title="Click to clear all">clear</button></div>
+    	<div class="grid-md-1 pull-right"><button type="button" id="run1415" class="btn cws-button border-radius bt-color-3" onclick="runCode(1,'null')">Run</button></div>
+    </div>
+    <iframe id="preview"></iframe>
+  </section>

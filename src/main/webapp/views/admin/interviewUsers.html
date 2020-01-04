@@ -1,0 +1,1326 @@
+<style>
+	.popupscroll{
+		overflow-y:scroll;
+		height:600px;
+	}
+	.panelborder{
+		border: 1px solid lightgray;
+    	padding: 10px;
+	}
+	.cross-mark{
+		top: 7px;
+	    position: absolute;
+	    padding: 4px;
+	}
+	.f-23{
+		font-size:23px;
+	}
+	.onlineTextMsg{
+	    top: 351%;
+	    left: 201px;
+	    position: absolute;
+	    font-size: 23px;
+	}
+	.popupClose{
+	    top: 15px;
+	    position: absolute;
+	    right: 10px;
+	    background:none;
+	    color:red;
+	}
+	.pad-l-10 {
+		padding-left:10px;
+	}
+	.pad-l-25{
+		padding-left:25px;
+	}
+	.width-380{
+		width: 380px;
+	}
+	.techClosePopup{
+		 position: absolute;
+   		 right: 20px;
+   		 color: red;
+   		 background : none;
+	}
+	.min-height-3000px{
+		 min-height: 3011px;
+	}
+	.remove{
+	    top: 15px;
+    	color: green;
+	}
+	.pad-r-5{
+		padding-right: 5px !important;
+	}
+	.pad-l-20{
+	    padding-left: 20px;
+	}
+	.profile{
+		background-color: #313540;
+	}
+	nav ul li a {
+		padding:0px;
+	}
+	.page-content{
+		background-color: white;
+	}
+</style>
+<div class="slider-container p-0 login-bg min-height-3000px">
+	<div class="slider-child-container p-0 "  ng-class="shwowQuestions"> 
+		<div class="row p-0">
+		<div class="slider-child">
+			<div class="tabs">	
+	<div class="block-tabs-btn clear">
+		<!-- <div ng-repeat="(key, value) in usersList" class="tabs-btn active" data-tabs-id="tabs_{{key}}" ng-if="key!='HR'">
+			{{key}}
+		</div> -->
+		
+		<div class="tabs-btn active" data-tabs-id="tabs_Interview" ng-if="key!='HR'">
+			Interview
+		</div>
+		<div class="tabs-btn active" data-tabs-id="tabs_InterviewReshedule" ng-if="key!='HR'">
+			Interview Reshedule
+		</div>
+	</div>
+	<div class="tabs-bordered container-tabs active" data-tabs-id="cont-tabs_Interview">
+		<div class="row p-0">
+			<div title="Interview Panel">
+				<div class="panel-title"><h5>Interview Users</h5>
+					<div class="pull-right" ng-if="getSelectedUsers('Interview').length">
+						<button type="button"  class="btn tc-btn btn-sm tc-btn-success" data-ng-click="sendMessagesToAllUsers(getSelectedUsers('Interview'))" title="Update Roles"><i class="fa fa-thumbs-up" aria-hidden="true"></i> ({{getSelectedUsers('Interview').length}})</button>
+					</div>
+					<div class="clear-fix"></div>
+				</div>
+				<div class="row search-input"><input type="text"  class=" search-tab" ng-model="searchText" placeholder="Search Training List" /></div><br>
+				<table class="row tc-table"  datatable="ng">
+					<thead>
+						<tr>
+							<td>
+							<input ng-model="selectAll.Interview" type="checkbox" data-ng-change="updateSelected('Interview', true)" />
+							</td>
+							<td class="grid-md-1">S.No</td>
+							<td class="grid-md-2">Name</td>
+							<td class="grid-md-3">Email</td>
+							<td class="grid-md-2">Contact</td>
+							<td class="grid-md-2">Role</td>
+							<td class="grid-md-3">Actions</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="user in usersList.Interview| filter:searchText">
+							<td><input ng-model="user.selected" type="checkbox" data-ng-change="updateSelected('Interview')" /></td>
+							<td class="grid-md-1">{{$index+1}}</td>
+							<td class="grid-md-2">{{user.userName}}</td>
+							<td class="grid-md-2">{{user.emailId}}</td>
+							<td class="grid-md-2">{{user.mobileNo}}</td>
+							<td class="grid-md-2">{{user.role.roleName}}</td>
+							<td class="pointer-cursor grid-md-3">
+								<button type="button" class="btn tc-btn btn-sm tc-btn-info"><i class="fa fa-commenting-o" title="SMS" data-ng-click="toggleSmsPopup(user)" aria-hidden="true"></i></button>
+								<button type="button" class="btn tc-btn btn-sm tc-btn-success" data-ng-click="toggleMailPopup(user)" ><i class="fa fa-envelope" title="Mail"aria-hidden="true"></i></button>
+								<button type="button" class="btn tc-btn btn-sm tc-btn-info" data-ng-click="assignTechnologyToUser(user,'assignTechnologiesSlider')"><i class="fa fa-text-width" title="Assign Technology To User" aria-hidden="true"></i></button>
+								<button type="button" class="btn tc-btn btn-sm tc-btn-success" data-ng-click="assignCodingTest(user,'quesitonsSlider')"><i class="fa fa-code" title="Assign Coding Questions" aria-hidden="true"></i></button>
+								<button type="button" class="btn tc-btn btn-sm tc-btn-info" data-ng-click="updateInterviewStatus(user,'interviewSlider')"><i class="fa fa-pencil-square-o" title="Update Interview Status" aria-hidden="true"></i></button>
+								<button type="button" class="btn tc-btn btn-sm tc-btn-success" data-ng-click="assigningTasksToUser(user,'tasksSlider')"><i class="fa fa-text-width" title="assingTasks" aria-hidden="true"></i></button>
+								<button type="button" class="btn tc-btn btn-sm tc-btn-info" data-ng-click="showUserProfile(user,'profileSlider')"><i class="fa fa-text-width" title="Assign Technology To User" aria-hidden="true"></i></button>
+								<button type="button" class="btn tc-btn btn-sm tc-btn-info" data-ng-click="downLoadCompletedTasks(user,'downloadFilesSlider')"><i class="fa fa-download" title="Files to Download" aria-hidden="true"></i></button>
+								<!-- <button type="button" class="btn tc-btn btn-sm tc-btn-success"><i class="fa fa-thumbs-up" title="ChangeRole" data-ng-click="openApprovePopup(getSelectUser(user))" aria-hidden="true"></i></button> -->
+								<button type="button" class="btn tc-btn btn-sm tc-btn-info" data-ng-click="updateInterviewStatus(user,'quizQuestionsSlider')"><i class="fa fa-pencil-square-o" title="Assign Quiz to User" aria-hidden="true"></i></button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="tabs-bordered container-tabs" data-tabs-id="cont-tabs_InterviewReshedule" >
+		<div class="row p-0">
+			<div title="All Panel">
+				<div class="panel-title"><h5>All Users</h5>
+					<div class="pull-right" ng-if="getSelectedUsers('InterviewReshedule').length">
+						<button type="button"  class="btn tc-btn btn-sm tc-btn-success" data-ng-click="sendMessagesToAllUsers(getSelectedUsers('InterviewReshedule'))" title="Update Roles"><i class="fa fa-thumbs-up" aria-hidden="true"></i> ({{getSelectedUsers('InterviewReshedule').length}})</button>
+					</div>
+					<div class="clear-fix"></div>
+				</div>
+				<div class="row search-input"><input type="text"  class=" search-tab" ng-model="searchText" placeholder="Search Training List" /></div><br>
+				<table class="row tc-table" datatable="ng">
+					<thead>
+						<tr>
+							<th>
+							<input ng-model="selectAll.InterviewReshedule" type="checkbox" data-ng-change="updateSelected('InterviewReshedule', true)" />
+							</th>
+							<th class="grid-md-1">S.No</th>
+							<th class="grid-md-2">Name</th>
+							<th class="grid-md-3">Email</th>
+							<th class="grid-md-2">Contact</th>
+							<th class="grid-md-2">Role</th>
+							<th class="grid-md-2">Actions</th>
+						</tr>
+					</thead>
+					<tbody>	
+						<tr data-ng-repeat="user in usersList.InterviewReshedule | filter:searchText">
+							<td><input ng-model="user.selected" type="checkbox" data-ng-change="updateSelected('InterviewReshedule')" /></td>
+							<td class="grid-md-1">{{$index+1}}</td>
+							<td class="grid-md-2">{{user.userName}}</td>
+							<td class="grid-md-2">{{user.emailId}}</td>
+							<td class="grid-md-2">{{user.mobileNo}}</td>
+							<td class="grid-md-2">{{user.role.roleName}}</td>
+							<td class="pointer-cursor grid-md-2">
+								<button type="button" class="btn tc-btn btn-sm tc-btn-info"><i class="fa fa-commenting-o" title="SMS" data-ng-click="toggleSmsPopup(user)" aria-hidden="true"></i></button>
+								<button type="button" class="btn tc-btn btn-sm tc-btn-info" data-ng-click="toggleMailPopup(user)" ><i class="fa fa-envelope" title="Mail"aria-hidden="true"></i></button>
+								<button type="button" class="btn tc-btn btn-sm tc-btn-success" data-ng-click="assignTechnologyToUser(user)"><i class="fa fa-text-width" title="Assign Technology To User" aria-hidden="true"></i></button>
+								<button type="button" class="btn tc-btn btn-sm tc-btn-success" data-ng-click="assignCodingTest(user)"><i class="fa fa-code" title="Assign Coding Questions" aria-hidden="true"></i></button>
+								<button type="button" class="btn tc-btn btn-sm tc-btn-success" data-ng-click="updateInterviewStatus(user)"><i class="fa fa-pencil-square-o" title="Edit" aria-hidden="true"></i></button>
+							</td>
+						</tr>
+					</tbody>						
+				</table>
+			</div>
+		</div>
+	</div>
+<!--right container start  -->
+
+<!-- overlay start -->
+<div class="overlay" data-ng-class="{'show': showPopup}" data-ng-click="togglePopup()"></div>
+<!--overlay end  -->
+
+<div class="popup popup-width" data-ng-class="{'show': showPopup === '$approveUser'}">
+	<div class="popup-content">
+		<div class="row clear">
+			<div class="popup-close-btn pull-right color-red" data-ng-click="togglePopup()"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
+		</div>
+		<div class="row mar-40px text-center">
+			<div class='pad-15'>
+				1 step away to activate user(s). <b>Assign a ROLE to Activate User(s)</b>
+			</div>
+			<div class=' pad-15' ng-init="selectedRole = {}">
+				<label ng-repeat="role in rolesList" style="display: inline-flex;">
+					<input type="radio" name="radio" ng-model="selectedRole.id" value="{{role.id}}" />
+					<span class="m-r-5">{{role.roleName}}</span>
+				</label>
+			</div>
+			<!-- <div class="row" ng-if="selectedRole.id==6">
+				<div class="grid-md-2"></div>
+				<label class="grid-md-2">Schedule Interview</label>
+				<input type="date" class="grid-md-4"  ng-model="dateObj.inDate">
+			</div>
+			<div class="row" ng-if="selectedRole.id==6">
+				<div class="grid-md-2"></div>
+				<label class="grid-md-2 left-text p-l-10">Timing</label>
+				<div class="grid-md-4 no-padding">
+					<input type="text" ng-model="dateObj.interviewTiming">
+				</div>
+			</div> -->
+		</div>
+		<div class="row pad-15 text-center">
+			<button type="button" class="cws-button border-radius  bt-color-3 alt" data-ng-click="activateUsers(selectedRole.id)">Yes</button>
+		</div>
+	</div>
+</div>
+
+<div class="popup popup-width" data-ng-class="{'show': showPopup === '$smsUser'}">
+	<div class="popup-content">
+		<div class="row clear">
+			<h4 class="pad-l-20">SMS <span class="popup-close-btn pull-right" data-ng-click="togglePopup()"><i class="fa fa-times"></i></span></h4>
+		</div>
+		<div class="grid-md-12">
+			<div class='pad-15 row' >
+				<div class="row">
+					<div class="grid-md-2"><b>Enter SMS Text</b></div>
+					<textarea  ng-model="sms.data" class="grid-md-8 border" placeholder="Enter data"></textarea>
+				</div>
+				<div class="row">
+					<div class="grid-md-8"></div>
+					<div class="grid-md-2">
+						<button type="button" class="grid-md-12 cws-button border-radius  bt-color-3 alt" data-ng-click="sendSmsUserToUser()">Send SMS</button>
+					
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="popup popup-width top-15" data-ng-class="{'show': showPopup === '$updateInterviewStatus'}">
+	<div class="popup-content card-height-300">
+
+
+
+
+
+
+		
+	</div>
+</div>
+
+<div class="popup popup-width" data-ng-class="{'show': showPopup === '$bulkMessages'}">
+	<div class="popup-content">
+		<div class="row clear">
+			<div class="popup-close-btn pull-right color-red" data-ng-click="togglePopup()"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
+		</div>
+		<div class="row mar-40px text-center">
+			<div class="grid-md-12">
+					<div class="row">
+						<div class="grid-md-2"></div>
+						<div class="grid-md-8">
+							<label class="grid-md-12 text-left">SMS to All</label>
+							<textarea  ng-model="smsToUsers.message" class="grid-md-12 border" placeholder="Enter SMS Text"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="grid-md-2"></div>
+						<div class="grid-md-8">
+							<button type="button" class="grid-md-2 cws-button border-radius  bt-color-3 alt pull-right" data-ng-click="sendSMSToAll('sms')">Send SMS</button>
+						</div>
+					</div>
+			</div>
+		</div>
+		<div class="row"><div class="text-center font-18">(or)</div></div>
+		<div class="row mar-40px text-center">
+			<div class="grid-md-12">
+				<div class='pad-15 row' >
+					<div class="row">
+						<div class="grid-md-2"></div>
+						<div class="grid-md-4">
+							<label class="grid-md-12 text-left">Mail to All</label>
+							<select class="grid-md-12 form-field" id="filePath" ng-model="smsToUsers.filePath" ng-options="file.filePath as file.purpose for file in filesList"></select>
+						</div><br>
+						<div class="grid-md-1"></div>
+						<div class="grid-md-5">
+							<div class="grid-md-2"></div>
+							<button type="button" class="grid-md-4 cws-button border-radius  bt-color-3 alt" data-ng-click="sendSMSToAll('mail')">Send Mail</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+ <div class="popup popup-width " data-ng-class="{'show': showPopup === '$mailUser'}">
+	<div class="popup-content">
+		<div class="row mar-40px text-center">
+			<div class="grid-md-12">
+				<div class='pad-15 row' >
+					<div class="row">
+						<div class="grid-md-2"></div>
+						<div class="grid-md-4">
+							<label class="grid-md-12 text-left">Mail to User</label>
+							<select class="grid-md-12 form-field" id="filePath" ng-model="smsToUser.filePath" ng-options="file.filePath as file.purpose for file in filesList"></select>
+						</div><br>
+						<div class="grid-md-1"></div>
+						<div class="grid-md-2">
+							<button type="button" class="grid-md-12 cws-button border-radius  bt-color-3 alt" data-ng-click="sendMailToUser()">Send</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+ <div class="popup" style="width:41%;" data-ng-class="{'show': showPopup === '$interviewReshedule'}">
+	<div class="popup-content">
+		<div class="row"><h4 class="pad-l-5">Interview Reshedule<span ng-click="toggleBoolean('interviewReshedule')" class="pull-right color-red pointer-cursor absolute right-20px"><i class="fa fa-times"></i></span></h4></div>
+		<div class="row">
+			<form name="form.paymentForm" novalidate>
+				<div class="row">
+					<label class="grid-md-3">Interview Date</label>
+					<div class="grid-md-9">
+						<input type="date" ng-model="obj.interviewDate" class="grid-md-12" name="interviewDate" required>
+					</div> 
+					<span ng-if="form.paymentForm.interviewDate.$error.required && form.paymentForm.interviewDate.$dirty">Date is Required</span>
+				</div>
+				<div class="row">
+					<label class="grid-md-3">Interview Timings</label>
+					<div class="grid-md-9">
+						<input type="text" ng-model="obj.interviewTiming" class="grid-md-12" placeholder="Enter Interview Timing" name="interviewTiming" required>
+					</div> 
+					<span ng-if="form.paymentForm.interviewTiming.$error.required && form.paymentForm.interviewTiming.$dirty">Amount is Required</span>
+				</div>
+				<div class="row">
+					<label class="grid-md-3">Reshedule</label>
+					<div class="grid-md-3">
+						<div class="row">
+							<div class="grid-md-6">
+								<input type="radio" ng-model="obj.reShedule" class="grid-md-12" value="true" ng-checked="obj.reShedule">
+							</div>
+							<div class="grid-md-6">
+								<span>Yes</span>
+							</div>
+						</div>
+					</div> 
+					<div class="grid-md-3">
+						<div class="row">
+							<div class="grid-md-6">
+								<input type="radio" ng-model="obj.reShedule" class="grid-md-12" value="false" ng-checked="!obj.reShedule">
+							</div>
+							<div class="grid-md-6">
+								<span>No</span>
+							</div>
+						</div>
+					</div> 
+				</div>
+				<div class="row">
+					<label class="grid-md-3">Status</label>
+					<div class="grid-md-9">
+						<input type="text" ng-model="obj.interviewStatus" class="grid-md-12" placeholder="Enter Interview Status" name="interviewStatus" required>
+					</div> 
+					<span ng-if="form.paymentForm.interviewTiming.$error.required && form.paymentForm.interviewTiming.$dirty">Status is Required</span>
+				</div>
+				<div class="row">
+					<label class="grid-md-10 color-green"><span ng-if="successMsg"><b>{{successMsg}}</b></span></label>
+					<div class="grid-md-2">
+						<button type="submit" class="cws-button bt-color-3 border-radius alt icon-right" ng-disabled="form.paymentForm.$invalid" data-ng-click="updateInterviewStatusDetails()">Save</button>
+					</div>
+				</div> 
+			</form>
+		</div>
+	</div>
+</div>
+
+		</div>
+	</div>
+	<div  class="slider-child">
+		<div class="row"  ng-if="currentPanel == 'tasksSlider'">
+			<div class="container no-padding">
+			<div class="row profile-card ">
+				<div class="user-info-cards">
+					<div class="row">
+						<div  class="grid-md-6">
+							<h3 class="pro-title">Assign task to user</h3>
+						</div>
+						<div class="grid-md-4">
+							  <button id="backBtn" class="button-fullwidth cws-button bt-color-3 border-radius alt pull-right" type="button" ng-click="addQuestionPopup()"> Add </button><br>
+						</div>
+						<div class="grid-md-2 pad-r-30">
+							 <button id="backBtn" class="button-fullwidth cws-button bt-color-3 border-radius alt pull-right" type="button" ng-click="slideToCoding()"> &lt; &lt; Back </button><br>
+						</div>
+					</div>
+					<div class="cont-data-pad">
+						<div class="tabs">
+							<div class="block-tabs-btn clear-fix">
+								<div ng-repeat="(key, value) in internTask" class="tabs-btn" data-tabs-id="tabs{{key}}">{{key}}</div>
+							</div>
+							<!-- tabs keeper -->
+							<div class="tabs-keeper">
+								<!-- tabs container -->
+								<div class="container-tabs active" data-tabs-id="cont-tabsJAVA" >
+									<div class="grid-md-12 grid-sm-10">
+								        <div class="row card card-full-height-88">
+											<div class="user-info-cards">
+												<table class="row tc-table" datatable="ng">
+													<thead>
+														<tr>
+															<th class="grid-md-pn5"></th>
+															<th class="grid-md-pn5">S.No</th>
+															<th class="grid-md-4">Question</th>
+														</tr>
+													</thead>
+														<tbody>
+														<tr data-ng-repeat="intern in internTask.JAVA">
+															<td class="width-2px"><input ng-model="intern.selected" type="checkbox" class="pull-left"></td>
+															<td class="width-2px">{{$index+1}}</td>
+															<td class="grid-md-4">{{intern.question}}</td>
+														</tr>
+													</tbody>
+												</table>
+												<div class="row">
+													<div class="grid-md-9"><span ng-if="successMsg" class="color-green"><b>{{successMsg}}</b></span><span ng-if="errorMsg" class="color-red"><b>{{errorMsg}}</b></span></div>
+													<div class="grid-md-3 pad-r-5">
+														<button type="button" class="grid-md-5 cws-button border-radius  bt-color-3 alt pull-right" data-ng-click="assigningTasks('JAVA')">Assign</button>
+													</div>
+												</div>
+											</div>
+										</div> 
+									</div>
+								</div>
+								<!--/tabs container -->
+								<!-- tabs container -->
+								<div class="container-tabs" data-tabs-id="cont-tabsUI">
+									<div class="grid-md-12 grid-sm-10" >
+								        <div class="row card card-full-height-88">
+								        	<div class="user-info-cards">
+								        		<table class="row tc-table" datatable="ng">
+													<thead>
+														<tr>
+															<th class="width-2px"></th>
+															<th class="width-2px">S.No</th>
+															<th class="grid-md-4">Question</th>
+														</tr>
+													</thead>
+														<tbody>
+														<tr ng-repeat="intern in internTask.UI">
+															<td class="width-2px"><input ng-model="intern.selected" type="checkbox" class="pull-left"></td>
+															<td class="width-2px">{{$index+1}}</td>
+															<td class="grid-md-4">{{intern.question}}</td>
+														</tr>
+													</tbody>
+												</table>
+								        	
+								        	
+												<!-- <div ng-repeat="intern in internTask.UI">
+													<div class="row">
+														<div class="grid-md-pn5">
+															<input ng-model="intern.selected" type="checkbox" class="pull-left">
+															<span class="pad-l-10">{{$index+1}}</span>
+														</div>
+														<div class="grid-md-10 no-padding">
+															<p>{{intern.question}}</p>
+														</div>
+													</div>
+												</div> -->
+												<div class="row">
+													<div class="grid-md-9"><span ng-if="successMsg" class="color-green"><b>{{successMsg}}</b></span><span ng-if="errorMsg" class="color-red"><b>{{errorMsg}}</b></span></div>
+													<div class="grid-md-3">
+														<button type="button" class="grid-md-5 cws-button border-radius  bt-color-3 alt pull-right" data-ng-click="assigningTasks('UI')">Assign</button>
+													</div>
+												</div>
+											</div>
+										</div> 
+									</div>
+								</div>
+								<!--/tabs container -->
+								<!-- tabs container -->
+								<div class="container-tabs" data-tabs-id="cont-tabsJ2EE">
+									No data is available in DB.
+								</div>
+								<!--/tabs container -->
+							</div>
+						</div>
+						<div ng-if="!assigTechList.length" class="color-green text-center"><b>{{message}}</b></div>
+					</div>
+					<div class="overlay" data-ng-class="{'show': openQuestionsPopup}" data-ng-click="toggleBoolean('openQuestionsPopup')"></div>	
+					 <div class="popup popup-width top-25" data-ng-class="{'show': openQuestionsPopup}">
+						<div class="popup-content">
+							<div class="container no-padding">
+								<div class="row no-padding min-height-55 " ng-if="successMsg">
+									<div class="grid-md-4">&nbsp;</div>
+									<div class="grid-md-4 log-success-msg" ng-if="successMsg">{{successMsg}}</div>
+								</div>
+								<div class="row">
+									<h4 class="text-center no-margin padding-5px">Add Mini Project Task<span class="popup-close-btn techClosePopup" data-ng-click="toggleBoolean('openQuestionsPopup')"><i class="fa fa-times"></i></span></h4>
+								</div>
+								<div class="row">
+									<div class="grid-md-2"></div>
+									<div class="grid-md-8">
+										<form name="form.addTaskForm" novalidate>
+											<div class="row no-padding">
+												<label class="grid-md-3">Question</label>
+												<div class="grid-md-9">
+													<input type="text" ng-model="task.question" class="grid-md-12" placeholder="Enter Question" name="question" required>
+												</div> 
+												<span ng-if="form.addTaskForm.question.$error.required && form.addTaskForm.question.$dirty" class="color-red">Question is Required</span>
+											</div>
+											<div class="row no-padding">
+												<label class="grid-md-3">Objective</label>
+												<div class="grid-md-9">
+													<input type="text" ng-model="task.objective" class="grid-md-12" placeholder="Enter Objective" name="objective" required>
+												</div> 
+												<span ng-if="form.addTaskForm.objective.$error.required && form.addTaskForm.objective.$dirty" class="color-red">Objective is Required</span>
+											</div>
+											<div class="row no-padding">
+												<label class="grid-md-3">Short Name</label>
+												<div class="grid-md-9">
+													<input type="text" ng-model="task.shortName" class="grid-md-12" placeholder="Enter Concept" name="shortName" required>
+												</div> 
+												<span ng-if="form.addTaskForm.shortName.$error.required && form.addTaskForm.shortName.$dirty" class="color-red">Short Name is Required</span>
+											</div>
+											<div class="row no-padding">
+												<label class="grid-md-3">Description</label>
+												<div class="grid-md-9">
+													<textarea rows="4" cols="50" ng-model="task.queDescription" class="grid-md-12 border-lightgray  pad-10" placeholder="Enter Description" name="qescription" required></textarea>
+												</div> 
+												<span ng-if="form.addTaskForm.qescription.$error.required && form.addTaskForm.qescription.$dirty" class="color-red">Description is Required</span>
+											</div>
+											<div class="row no-padding">
+												<label class="grid-md-3">Technology</label>
+												<div class="grid-md-9">
+													<select ng-model="task.technology" ng-init=0 ng-options="b as b for b in taskTechologyList"></select>
+												</div> 
+												<!-- <span ng-if="form.addTaskForm.productName.$error.required && form.addTaskForm.productName.$dirty" class="color-red">Product Name is Required</span> -->
+											</div>
+											
+											<div class="row no-padding">
+												<label class="grid-md-3">Tutorial Reference</label>
+												<div class="grid-md-9">
+													<input type="text" ng-model="task.refferenceLink" class="grid-md-12" placeholder="Enter Reference Link" name="reference" required>
+												</div> 
+												<span ng-if="form.addTaskForm.reference.$error.required && form.addTaskForm.reference.$dirty" class="color-red">Reference Link is Required</span>
+											</div>
+											
+											<div class="row no-pading form-group">
+												<label class="grid-md-3">Upload Image</label>
+												<div class="grid-md-5">
+													<div class="">
+														<tc-file-input label="Click Here To Choose a Image" ng-model="task.imagePath" placeholder="No Image Choosen" required="required" ></tc-file-input><!-- multiple="true" -->
+													</div>
+													<div>
+														<label class="grid-md-3"></label>
+														<span>{{infoMsg}}</span>
+														<button type="button" class="cws-button  bt-color-4 border-radius small alt" ng-click="selectUploadImage(task.imagePath, 'htmlForms', $event)">Upload Image</button>
+													</div>
+												</div>
+											</div>
+											<div class="row no-padding">
+												<label class="grid-md-10">&nbsp;</label>
+												<div class="grid-md-2"><!-- ng-disabled="form.addTaskForm.$invalid" -->
+													<button type="button" class="cws-button bt-color-3 border-radius alt pull-right" data-ng-click="addTask()">Save</button>
+												</div>
+											</div> 
+										</form>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+		</div>
+		<div class="row" ng-if="currentPanel == 'quesitonsSlider'">
+			<div class="row">
+					<div  class="grid-md-6">
+						<h3 class="pro-title">Assign Programming Questions To User</h3>
+					</div>
+					<div class="grid-md-4">
+						  <button id="backBtn" class="button-fullwidth cws-button bt-color-3 border-radius alt pull-right" type="button" ng-click="addProgramingQuestion()"> Add </button><br>
+					</div>
+					<div class="grid-md-2 pad-r-30">
+						 <button id="backBtn" class="button-fullwidth cws-button bt-color-3 border-radius alt pull-right" type="button" ng-click="slideToCoding()"> &lt; &lt; Back </button><br>
+					</div>
+				</div>
+			<div class="row pad-l-15">
+				<div ng-repeat="codingQstn in codingQuestionsList">
+					<div class="row">
+						<div class="grid-md-pn5">
+							<input ng-model="codingQstn.selected" type="checkbox" class="pull-left">
+							<span class="pad-l-10">{{$index+1}}</span>
+						</div>
+						<div class="grid-md-10 no-padding">
+							<p>{{codingQstn.questionDesc}}</p>
+						</div>
+					</div>
+				</div>
+			</div>	
+			<div class="row">
+				<div class="grid-md-9"><span ng-if="successMsg" class="color-green"><b>{{successMsg}}</b></span><span ng-if="errorMsg" class="color-red"><b>{{errorMsg}}</b></span></div>
+				<div class="grid-md-3 pad-r-5">
+					<button type="button" class="grid-md-5 cws-button border-radius  bt-color-3 alt pull-right" data-ng-click="assignCoddingQstns()">Assign</button>
+				</div>
+			</div>
+			
+			<div class="overlay" data-ng-class="{'show': openProgramngQuestionsPopup}" data-ng-click="toggleBoolean('openProgramngQuestionsPopup')"></div>	
+					 <div class="popup popup-width top-25" data-ng-class="{'show': openProgramngQuestionsPopup}">
+						<div class="popup-content">
+							<div class="container no-padding">
+								<div class="row no-padding min-height-55 " ng-if="successMsg">
+									<div class="grid-md-4">&nbsp;</div>
+									<div class="grid-md-4 log-success-msg" ng-if="successMsg">{{successMsg}}</div>
+								</div>
+								<div class="row">
+									<h4 class="text-center">Add Programming Question<span class="popup-close-btn techClosePopup" data-ng-click="toggleBoolean('openProgramngQuestionsPopup')"><i class="fa fa-times"></i></span></h4>
+								</div>
+								<div class="row">
+									<div class="grid-md-2"></div>
+									<div class="grid-md-8">
+									<form name="form.codingQtnForm" novalidate>
+										<div class="row no-padding">
+											<label class="grid-md-3">Language</label>
+											<div class="grid-md-9">
+												<select ng-model="codingTestQtn.language" ng-options="language for language in languagesList"></select>
+											</div> 
+										</div>
+										<div class="row">
+											<label class="grid-md-3">Question Description</label>
+											<div class="grid-md-9  relative textarea">
+												<textarea rows="4" cols="50" ng-model="codingTestQtn.questionDesc" class="grid-md-12 border-lightgray  pad-10" placeholder="Enter Description" name="description" required></textarea>
+												<span  class="color-red absolute" ng-if="form.codingQtnForm.description.$error.required && form.codingQtnForm.description.$dirty">Description is Required</span>
+											</div> 
+										</div>
+										<div class="row" ng-repeat="testCase in codingTestQtn.testCases track by $index">
+											<div class="row">
+												<label class="grid-md-3">Sample I/P's {{$index+1}}</label>
+												<div class="grid-md-9 relative">
+													<input type="text" ng-model="testCase.input" class="grid-md-12" placeholder="Sample Inputs" name="input" required>
+													<span ng-if="form.codingQtnForm.input.$error.required && form.codingQtnForm.input.$dirty" class="color-red">input is Required</span>
+												</div>
+											</div>
+											<div class="row">
+												<label class="grid-md-3">Sample O/P's {{$index+1}}</label>
+												<div class="grid-md-9 relative">
+													<input type="text" ng-model="testCase.output" class="grid-md-12" placeholder="Sample Output" name="output" required>
+													<span ng-if="form.codingQtnForm.output.$error.required && form.codingQtnForm.output.$dirty" class="color-red">Output is Required</span>
+												</div> 
+												<div class="form-col-rem mar-t-37">
+													<span class="pointer-cursor absolute remove" ng-if="$index>=1"ng-click="removeOption($index,'input')" title="remove"><i class="fa fa-times"></i></span>
+												</div>
+											</div>
+											<div class="row">
+												<label class="grid-md-3">Questions Points</label>
+												<div class="grid-md-9 relative">
+													<input type="text" ng-model="testCase.points" class="grid-md-12" placeholder="Sample Output" name="points" required>
+													<span ng-if="form.codingQtnForm.points.$error.required && form.codingQtnForm.output.$dirty" class="color-red">Output is Required</span>
+												</div> 
+												<div class="form-col-rem mar-t-37">
+													<span class="pointer-cursor absolute remove" ng-if="$index>=1"ng-click="removeOption($index,'input')" title="remove"><i class="fa fa-times"></i></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<label class="grid-md-3">&nbsp;</label>
+											<div class="grid-md-2">
+												<button type="button" class="cws-button bt-color-3 border-radius alt icon-right" ng-click="addInput('input')">Add Sample</button>
+											</div>
+											<label class="grid-md-5">&nbsp;</label>
+											<div class="grid-md-2"><!-- ng-disabled="form.questionForm.$invalid" -->
+												<button type="submit" class="cws-button bt-color-3 border-radius alt icon-right pull-right" data-ng-click="submitCodingTestQtn()">Submit</button>
+											</div>
+										</div> 
+									</form>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+		</div>
+		<div class="row" ng-if="currentPanel == 'interviewSlider'">
+			<div class="tabs">
+				<div class="row">
+					<div class="grid-md-10">
+						<div class="block-tabs-btn clear">
+							<div class="tabs-btn  active" data-tabs-id="tabs_onlinetest">
+								Onlinetest
+							</div>
+							<div class="tabs-btn" data-tabs-id="tabs_telephonic">
+								Telephonic
+							</div>
+							<div class="tabs-btn" data-tabs-id="tabs_tasktest">
+								tasktest
+							</div>
+							<div class="tabs-btn" data-tabs-id="tabs_systemtest">
+								Systemtest
+							</div>
+							<div class="tabs-btn" data-tabs-id="tabs_facetoface">
+								Facetoface
+							</div>
+						</div>	
+					</div>
+					<div class="grid-md-2">
+						 <button id="backBtn" class="button-fullwidth cws-button bt-color-3 border-radius alt pull-right" type="button" ng-click="slideToCoding()"> &lt; &lt; Back </button><br>
+					</div>
+				</div>
+				
+				<div class="tabs-bordered container-tabs active" data-tabs-id="cont-tabs_onlinetest">
+					<div class="row">
+						<div class="grid-md-6 pad-20">
+							<div class="row p-0">
+								<div class="row">
+									<div class="row">
+										<h4 class="pad-l-15">Online Interview Status</h4>
+									</div>
+									<div class="row">
+										<div class="grid-md-4"  ng-repeat="result in onlineExaResultList">
+											<div class="test-results" ng-class="colors[($index%4)]">{{result.totalMarks}}</div>
+											<div class="text-center">{{result.technology}}</div>
+										</div>
+									</div>
+								<!-- 	<div class="row color-red onlineTextMsg" ng-if="!onlineExaResultList.length">
+										Online test is not completed..
+									</div> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tabs-bordered container-tabs" data-tabs-id="cont-tabs_telephonic">
+					<div class="row">
+						<div class="grid-md-6 pad-20">
+							<div class="row p-0">
+								<div class="row no-padding p-b-5">
+									<h4 class="pad-l-15">Telephonic Interview Status <span class="color-green pull-right" ng-if="successMsg">{{successMsg}}</span><span class="color-red pull-right" ng-if="errorMsg">{{errorMsg}}</span></h4>
+								</div>
+								<div class='row'>
+									<div class="row">
+										<div class="grid-md-4"><b>Communication</b></div>
+										<div class="grid-md-8 no-padding">
+											<select ng-model="stuIntStatus.teleCommunication" ng-init=0 ng-options="commu.id as commu.feedbackDesc for commu in communicationSkillsList"></select>
+										</div>
+									</div>
+									<div class="row">
+										<div class="grid-md-4"><b>Basic Programming</b></div>
+										<div class="grid-md-8 no-padding">
+											<select ng-model="stuIntStatus.teleProgramming" ng-init=0 ng-options="programming.id as programming.feedbackDesc for programming in programmingSkillsList"></select>
+										</div>
+									</div>
+									<div class="row">
+										<label class="grid-md-4"><b>Extra Comments</b></label>
+										<div class="grid-md-8  textarea">
+											<textarea rows="4" cols="50" ng-model="stuIntStatus.teleExtraComments" class="grid-md-12 border-lightgray  pad-10" placeholder="Enter Comments" name="comments" required></textarea>
+										</div> 
+										<span ng-if="form.questionForm.description.$error.required && form.questionForm.description.$dirty" class="color-red">Comments is Required</span>
+									</div>
+									<div class="row">
+										<div class="grid-md-9"></div>
+										<div class="grid-md-3">
+											<button type="button" class="grid-md-12 cws-button border-radius  bt-color-3 alt" data-ng-click="saveOrUpdateStuFeedBack()">Update</button>
+										</div>					
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tabs-bordered container-tabs" data-tabs-id="cont-tabs_tasktest">
+					<div class="row">
+						<div class="grid-md-6 pad-20">
+							<div class="row p-0">
+							<div class="row no-padding p-b-5">
+								<h4 class="pad-l-15">Task Test Status <span class="color-green pull-right" ng-if="successMsg">{{successMsg}}</span><span class="color-red pull-right" ng-if="errorMsg">{{errorMsg}}</span></h4>
+							</div>
+							<div class='row'>
+								<div class="row">
+									<div class="grid-md-4"><b>Total Tasks</b></div>
+									<div class="grid-md-8 no-padding">
+										<input type="text" ng-model="stuIntStatus.tasksGiven" class="grid-md-12" placeholder="Enter Total Tasks Count" name="totalTasks" required>
+									</div>
+								</div>
+								<div class="row">
+									<div class="grid-md-4"><b>Completed Tasks</b></div>
+									<div class="grid-md-8 no-padding">
+										<input type="text" ng-model="stuIntStatus.tasksCompleted" class="grid-md-12" placeholder="Enter Completed Tasks Count" name="completedTasks" required>
+									</div>
+								</div>
+								<div class="row">
+									<div class="grid-md-4"><b>Rating</b></div>
+									<div class="grid-md-8 no-padding">
+										<select ng-model="stuIntStatus.taskRating" ng-init=0 ng-options="programming.id as programming.feedbackDesc for programming in programmingSkillsList"></select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="grid-md-9"></div>
+									<div class="grid-md-3">
+										<button type="button" class="grid-md-12 cws-button border-radius  bt-color-3 alt" data-ng-click="saveOrUpdateStuFeedBack()">Update</button>
+									</div>					
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+				<div class="tabs-bordered container-tabs" data-tabs-id="cont-tabs_systemtest">
+					<div class="row">
+						<div class="grid-md-6 pad-20">
+							<div class="row p-0">
+							<div class="row no-padding p-b-5">
+								<h4 class="pad-l-15">System Test Status<span class="color-green pull-right" ng-if="successMsg">{{successMsg}}</span><span class="color-red pull-right" ng-if="errorMsg">{{errorMsg}}</span></h4>
+							</div>
+							<div class='row'>
+								<div class="row">
+									<div class="grid-md-4"><b>Total Programms</b></div>
+									<div class="grid-md-8 no-padding">
+										<input type="text" ng-model="stuIntStatus.sysProgramsGiven" class="grid-md-12" placeholder="Enter Total Programms Count" name="totalProgramms" required>
+									</div>
+								</div>
+								<div class="row">
+									<div class="grid-md-4"><b>Completed Programs</b></div>
+									<div class="grid-md-8 no-padding">
+										<input type="text" ng-model="stuIntStatus.sysProgramsExecuted" class="grid-md-12" placeholder="Enter Executed Programms Count" name="executedProgramms" required>
+									</div>
+								</div>
+								<div class="row">
+									<div class="grid-md-4"><b>Rating</b></div>
+									<div class="grid-md-8 no-padding">
+										<select ng-model="stuIntStatus.sysRating" ng-init=0 ng-options="programming.id as programming.feedbackDesc for programming in programmingSkillsList"></select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="grid-md-9"></div>
+									<div class="grid-md-3">
+										<button type="button" class="grid-md-12 cws-button border-radius  bt-color-3 alt" data-ng-click="saveOrUpdateStuFeedBack()">Update</button>
+									</div>					
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+				<div class="tabs-bordered container-tabs" data-tabs-id="cont-tabs_facetoface">
+					<div class="row">
+						<div class="grid-md-6 pad-20">
+							<div class="row p-0">
+							<div class="row no-padding p-b-5">
+								<h4 class="pad-l-15">F2F Interview Status <span class="color-green pull-right" ng-if="successMsg">{{successMsg}}</span><span class="color-red pull-right" ng-if="errorMsg">{{errorMsg}}</span></h4>
+							</div>
+							<div class='row'>
+								<div class="row">
+									<div class="grid-md-4"><b>Attitude</b></div>
+									<div class="grid-md-8 no-padding">
+										<select ng-model="stuIntStatus.attitude" ng-init=0 ng-options="attitude.id as attitude.feedbackDesc for attitude in  attitudeCommentsList"></select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="grid-md-4"><b>Logical Skills</b></div>
+									<div class="grid-md-8 no-padding">
+										<select ng-model="stuIntStatus.logical" ng-init=0 ng-options="logical.id as logical.feedbackDesc for logical in logicalSkillsList"></select>
+									</div>
+								</div>
+								<div class="row">
+									<label class="grid-md-4"><b>Extra Comments</b></label>
+									<div class="grid-md-8  textarea">
+										<textarea rows="4" cols="50" ng-model="stuIntStatus.ftfExtraComments" class="grid-md-12 border-lightgray  pad-10" placeholder="Enter Comments" name="comments" required></textarea>
+									</div> 
+									<span ng-if="form.questionForm.description.$error.required && form.questionForm.description.$dirty" class="color-red">Comments is Required</span>
+								</div>
+								<div class="row">
+									<div class="grid-md-9"></div>	
+									<div class="grid-md-3">
+										<button type="button" class="grid-md-12 cws-button border-radius  bt-color-3 alt" data-ng-click="saveOrUpdateStuFeedBack()"><span ng-if='stuIntStatus.id!=undefined'>Update</span><span ng-if='stuIntStatus.id==undefined'>Insert</span></button>
+									</div>				
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" ng-if="currentPanel == 'assignTechnologiesSlider'">
+			<div class="row clear">
+				<div class="grid-md-6 no-padding">
+					<h4>Assign Technology</h4>
+				</div>
+				<div class="grid-md-6">
+					 <button id="backBtn" class="button-fullwidth cws-button bt-color-3 border-radius alt pull-right" type="button" ng-click="slideToCoding()"> &lt; &lt; Back </button><br>
+				</div>
+			</div>
+			<div class="row">
+				<div class="grid-md-4 border">
+					<div class="row pad-l-15">
+						<div ng-repeat="technology in technologiesList">
+							<div>
+								<input ng-model="technology.selected" type="checkbox" class="pull-left">
+								<span class="pad-l-10">{{technology.technologyName}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="grid-md-8"><span ng-if="successMsg" class="color-green"><b>{{successMsg}}</b></span><span ng-if="errorMsg" class="color-red"><b>{{errorMsg}}</b></span></div>
+						<div class="grid-md-4">
+							<button type="button" class="grid-md-5 cws-button border-radius  bt-color-3 alt pull-right pad-10" data-ng-click="assigningTechonologies()">Assign</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="row" ng-if="currentPanel == 'profileSlider'">
+			<div class="row clear">
+				<div class="grid-md-6 no-padding">
+					<h4>Complete User Profile</h4>
+				</div>
+				<div class="grid-md-6">
+					 <button id="backBtn" class="button-fullwidth cws-button bt-color-3 border-radius alt pull-right" type="button" ng-click="slideToCoding()"> &lt; &lt; Back </button><br>
+				</div>
+			</div>
+			<div class="row">
+				<div class="jumbotron color-white">
+					<div class="grid-row">
+						<div class="row profile n-p-b n-p-l">
+							<div class="grid-md-8 std-info n-p-l">
+								<div class="row no-padding">
+									<div class="student-img grid-md-1">
+										<img src="resources/img/user.png">
+									</div>
+									<div class="grid-md-11 profile-left-area">
+										<div class="row n-p-t">
+											<div class="grid-md-12 student-name no-padding"><h3 class="n-m-t">{{candidateProfile.user.userName}}</h3></div>
+											<span ng-if="currentEmployer">{{currentEmployer.designation}} at {{currentEmployer.employer}}</span>
+											<nav class="grid-md-12 student-social-nav no-padding">
+												<ul>
+													<li><a href="https://www.facebook.com/{{candidateProfile.social.socialInfo.facebookId}}" target="_blank"><span><i class="fa fa-facebook color-fb"></i></span></a></li>
+													<li><a href="https://twitter.com/{{candidateProfile.social.socialInfo.twitterId}}" target="_blank"><span><i class="fa fa-twitter color-twitter"></i></span></a></li>
+													<li><a href="https://www.linkedin.com/in/{{candidateProfile.social.socialInfo.linkedIn}}" target="_blank"><span><i class="fa fa-linkedin color-linkedin"></i></span></a></li>
+													<li><a href="https://web.skype.com/{{candidateProfile.social.socialInfo.skypeId}}" target="_blank"><span><i class="fa fa-skype color-skype"></i></span></a></li>
+													
+													<li class="download-cv"><span><l class="fa fa-download"></l> Download CV</span>
+												</ul>
+											</nav>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="grid-md-4 no-padding add-field">
+									<div class="p-t-66"><span><i class="fa fa-clock-o"></i> </span> Member Since, {{candidateProfile.user.createdOn | date:'dd'}} {{candidateProfile.user.createdOn | date:'MMMM'}}, {{candidateProfile.user.createdOn | date:'yyyy'}}</div>
+									<div class="m-t-10px "><span><i class="fa fa-map-marker"></i> </span> {{candidateProfile.user.address.present.address}}</div>
+							</div>
+							<!-- <div class="grid-md-8 no-padding">
+								<nav class="row profile-nav no-padding">
+									<ul>
+										<li><a href="#about">About</a><li>
+										<li><a href="#education">Education</a><li>
+										<li><a href="#workexp">Work Experience</a><li>
+										<li><a href="#professionalskills">Professional Skills</a><li>
+										<li><a href="#awards">Awards</a></li>
+									</ul>
+								</nav>
+							</div> -->
+							<!-- <div class="grid-md-4 no-padding">
+								<div class="std-contact-heading">
+									Contact {{candidateProfile.user.userName}}
+								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+			<div class="bg-white">
+				<div class="grid-row">
+					<div class="row n-p-t">
+						<div class="page-content grid-md-8 clear-fix">
+								<div class="row no-padding">
+								<div class="grid-md-12 no-padding">
+									<div class="row about-panel no-padding">
+										<div class="grid-md-4 experience">
+											<div class="listing-inner">
+												<div class="row ex-text">
+													<i class="grid-md-2 about-panel-icon fa fa-clock-o"></i>
+													 <span class="grid-md-10  no-padding">Experience</span> 		
+													 <strong class="grid-md-10 no-padding">
+														{{candidateProfile.userBasicInfo.exp}}
+													 </strong>
+												</div>
+											</div>
+										</div>
+										<div class="grid-md-4 experience">
+											<div class="listing-inner">
+												<div class="row ex-text">
+													<i class="grid-md-2 about-panel-icon fa fa-area-chart"></i>
+													 <span class="grid-md-10  no-padding">Age</span> 		
+													 <strong class="grid-md-10 no-padding">
+														{{userAge}} Years.
+													 </strong>
+												</div>
+											</div>
+										</div>
+										<div class="grid-md-4 experience">
+											<div class="listing-inner">
+												<div class="row ex-text">
+													<i class="grid-md-2 about-panel-icon fa fa-inr"></i>
+													 <span class="grid-md-10  no-padding">Current Salary</span> 		
+													 <strong class="grid-md-10 no-padding">
+														{{candidateProfile.work.curentSalry}}
+													 </strong>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row about-panel no-padding">
+										<div class="grid-md-4 experience">
+											<div class="listing-inner">
+												<div class="row ex-text">
+													<i class="grid-md-2 about-panel-icon fa fa-rocket"></i>
+													 <span class="grid-md-10  no-padding">Expected Salary</span> 		
+													 <strong class="grid-md-10 no-padding">
+														{{candidateProfile.work.expectedSalary}}
+													 </strong>
+												</div>
+											</div>
+										</div>
+										<div class="grid-md-4 experience">
+											<div class="listing-inner">
+												<div class="row ex-text">
+													<i class="grid-md-2 about-panel-icon fa fa-globe"></i>
+													 <span class="grid-md-10  no-padding">Languages</span> 		
+													 <strong class="grid-md-10 no-padding">
+														<span ng-repeat="lan in candidateProfile.userBasicInfo.languages" ng-if="candidateProfile.userBasicInfo.languages">{{lan.text}}, </span>
+													 </strong>
+												</div>
+											</div>
+										</div>
+										<div class="grid-md-4 experience">
+											<div class="listing-inner">
+												<div class="row ex-text">
+													<i class="grid-md-2 about-panel-icon fa fa-graduation-cap"></i>
+													 <span class="grid-md-10  no-padding">Education Levels</span> 		
+													 <strong class="grid-md-10 no-padding">
+														Certificate
+													 </strong>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row about-desc">
+								<p class="grid-md-12 justify">
+									
+								</p>
+							</div>
+							<div class="row" id="professionalskills">
+								<div class="heading">
+									<span class="details-icon"><i class="fa fa-briefcase"></i></span> 
+								PROFESSIONAL SKILLS
+								</div>
+								<div class="edu-desc relative">
+									<div class="row tech-skills">
+										<span class="tech-skill" ng-repeat="skill in candidateProfile.skillset.skills" ng-class="coursesBgColors[($index%4)]">
+											{{skill.text}}
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="row" id="education">
+								<div class="heading">
+									<span class="details-icon"><i class="fa fa-graduation-cap"></i></span> 
+									EDUCATION
+								</div>
+								<div class="edu-desc relative">
+									<ul>
+										<li ng-repeat="edu in candidateProfile.education.educationInfo">
+											<div class="row edu-title no-padding text-bold">
+											  <h6 class="inline-block no-margin text-bold">{{edu.educationType}}: {{edu.branch}} </h6><span class="text-bold"> {{edu.yearOfPassing}}</span>
+											  <span class="edu-institute block">{{edu.instituteName}}</span>
+											</div>
+										<!-- 	<p class="justify">
+												Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement irresistibly fussy penguin insect
+												additionally wow absolutely crud meretriciously hastily dalmatian a glowered. outside ignobly allegedly more when oh arrogantly vehement.
+											</p> -->
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="row" id="project">
+								<div class="heading">
+									<span class="details-icon"><i class="fa fa-briefcase"></i></span> 
+									Projects
+								</div>
+								<div class="edu-desc relative">
+									<ul>
+										<li ng-repeat="project in candidateProfile.project.projectInfo">
+											<div class="row edu-title no-padding">
+											  <h6 class="inline-block no-margin text-bold">{{project.projectTitle}} </h6><span>( {{project.startDate}} - {{project.endDate}} )</span>
+											  <span class="edu-institute block">{{project.instituteName}}</span>
+											</div>
+											<p class="justify">
+												{{project.desc}}
+											</p>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="row" id="workexp" ng-if ="candidateProfile.work.workExp">
+								<div class="heading">
+									<span class="details-icon"><i class="fa fa-briefcase"></i></span> 
+									Work Experience
+								</div>
+								<div class="edu-desc relative">
+									<ul>
+										<li ng-repeat="work in candidateProfile.work.workExp">
+											<div class="row edu-title no-padding">
+											  <h6 class="inline-block no-margin text-bold">{{work.designation}} </h6><span>( {{work.monthStart}} {{work.yearStart}} - {{work.monthEnd}} {{work.yearEnd}} )</span>
+											  <span class="edu-institute block text-bold">{{work.employer}}</span>
+											</div>
+											<p class="justify">
+												{{work.jobProfile}}
+											</p>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!-- <div class="row" id="awards">
+								<div class="heading">
+									<span class="details-icon"><i class="fa fa-trophy"></i></span> 
+									Achievements
+								</div>
+								<div class="edu-desc relative">
+									<ul>
+										<li>
+											<div class="row edu-title no-padding">
+											  <h6 class="inline-block no-margin">Masters in Fine Arts</h6><span> 2002 - 2004</span>
+											  <span class="edu-institute block">Walters University</span>
+											</div>
+											<p class="justify">
+												Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement irresistibly fussy penguin insect
+												additionally wow absolutely crud meretriciously hastily dalmatian a glowered. outside ignobly allegedly more when oh arrogantly vehement.
+											</p>
+										</li>
+										<li>
+											<div class="row edu-title no-padding">
+											  <h6 class="inline-block no-margin">TOMMERS COLLEGE</h6><span> 2012 - 2015</span>
+											  <span class="edu-institute block">Bachlors in Fine Arts</span>
+											</div>
+											<p class="justify">
+												Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement irresistibly fussy penguin i
+												nsect additionally wow absolutely.
+											</p>
+										</li>
+										<li>
+											<div class="row edu-title no-padding">
+											  <h6 class="inline-block no-margin">DIPLOMA IN FINE ARTS</h6><span> 2014 - 2015</span>
+											  <span class="edu-institute block">Imperieal Institute of Art Direction</span>
+											</div>
+											<p class="justify">
+												Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement irresistibly fussy penguin insect additionally wow absolutely crud meretriciously hastily dalmatian a glowered. 
+												outside ignobly allegedly more when oh arrogantly vehement.
+											</p>
+										</li>
+									</ul>
+								</div>
+							</div> -->
+						</div>
+						<div class="grid-md-4 bordered no-padding">
+							<div class="row">
+							<div class="tabs">	
+								<div class="block-tabs-btn clear">
+									<div class="tabs-btn active" data-tabs-id="tabs1">
+										Send Mail
+									</div>
+									<div class="tabs-btn" data-tabs-id="tabs2">
+										Send SMS
+									</div>
+								</div>
+								<div class="tabs-bordered container-tabs  active" data-tabs-id="cont-tabs1">
+									<div class="row no-padding">
+										<form name="form.emailForm">
+											<div class="input-group relative row">
+												<label class="grid-md-3">Name :</label>
+												<div class="grid-md-9">{{studentInfo.name}}</div>
+												<!-- <input type="text" name="hrName" ng-model="studentInfo.name" class="grid-md-12" placeholder="Enter your name">
+												<span class="absolute details-input-icon"><i class="fa fa-user"></i></span> -->
+											</div>
+											<div class="input-group relative row">
+												<label class="grid-md-3">Email ID :</label>
+												<div class="grid-md-9">{{studentInfo.emailId}}</div>
+												<!-- <input type="text" name="hrName" ng-model="studentInfo.emailId" class="grid-md-12" placeholder="Email Address">
+												<span class="absolute details-input-icon"><i class="fa fa-envelope"></i></span> -->
+											</div>
+											<div class="input-group relative">
+												<textarea type="text" name="hrName" ng-model="studentInfo.message" class="grid-md-12" rows="5" placeholder="Message Should have more then 50 characters"></textarea>
+											</div>
+											<div class="input-group relative">
+												<button type="button" class="grid-md-12 cws-button bt-color-3 border-radius alt icon-right" ng-click="sendEmail()">Send Request</button>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="tabs-bordered container-tabs" data-tabs-id="cont-tabs2">
+									<div class="row no-padding">
+										<form name="form.smsForm">
+											<div class="input-group relative row">
+												<label class="grid-md-3">Name :</label>
+												<div class="grid-md-9">{{student.name}}</div>
+												<!-- <input type="text" name="hrName" ng-model="student.name" class="grid-md-12" placeholder="Enter your name">
+												<span class="absolute details-input-icon"><i class="fa fa-user"></i></span> -->
+											</div>
+											<div class="input-group relative row">
+												<label class="grid-md-3">Mobile No :</label>
+												<div class="grid-md-9">{{student.mobileNo}}</div>
+												<!-- <input type="text" name="hrName" ng-model="student.mobileNo" class="grid-md-12" placeholder="Phone Number">
+												<span class="absolute details-input-icon"><i class="fa fa-phone"></i></span> -->
+											</div>
+											<div class="input-group relative">
+												<textarea type="text" name="hrName" ng-model="student.message" class="grid-md-12" rows="5" placeholder="Message Should have more then 50 characters"></textarea>
+											</div>
+											<div class="input-group relative">
+												<button type="button" class="grid-md-12 cws-button bt-color-3 border-radius alt icon-right" ng-click="sendSms()">Send Request</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+									
+						</div>
+						<div class="input-group relative">
+							<button type="button" class="grid-md-12 cws-button bt-color-3 border-radius alt icon-right" ng-click="shortList()">Short List</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="overlay" ng-class="{'show':showPopup}" ng-click="toggleBoolean('showPopup')"></div>	
+					<div class="popup short-list grid-md-4 grid-lg-2 grid-xs-12 no-padding" ng-class="{'show':showPopup}" style="z-index:99999">
+						<div class="row no-padding panel">
+								<div class="panel-heading grid-md-12 p-b-5 p-l-8 ">Short List {{candidateProfile.user.userName}}<span class="pointer-cursor pull-right p-r-10" ng-click="toggleBoolean('showPopup')"><img src="resources/img/home/x.png"></span></div>
+								<div class="grid-md-12 panel-body" ng-if="jobsList.length">
+									<table class="jobslist-table">
+										<tr>
+											<th>S.No</th>
+											<th>Job</th>
+											
+										</tr>
+										<tr ng-repeat="job in jobsList" ng-click="shortListCandidate(job)" class="pointer-cursor">
+											<td>{{$index+1}}</td>
+											<td>{{job.jobTitle}}</td>
+										</tr>
+									</table>
+								</div>
+								<div class="grid-md-12 panel-body card-height card-height text-bold color-red text-center pad-10" ng-if="!jobsList.length">
+									<span class="">You have not created any Jobs</span>
+								</div>
+							</div>
+					</div>
+			</div>
+			</div>
+
+		</div>
+		
+	<div  class="row" ng-if="currentPanel == 'downloadFilesSlider'">
+		<div class="row clear">
+			<div class="grid-md-6 no-padding">
+				<h4>Download Completed Tasks</h4>
+			</div>
+			<div class="grid-md-6">
+				 <button id="backBtn" class="button-fullwidth cws-button bt-color-3 border-radius alt pull-right" type="button" ng-click="slideToCoding()"> &lt; &lt; Back </button><br>
+			</div>
+		</div>
+		<table class="row tc-table">
+			<thead>
+				<tr>
+					<th class="grid-md-1">S.No</th>
+					<th class="grid-md-2">FileName</th>
+					<th class="grid-md-2">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="file in filesList">
+					<td class="grid-md-1">{{$index+1}}</td>
+					<td class="grid-md-2">{{file.fileName}}</td>
+					<td class="grid-md-2"><a href="./interntask/downloaduploadfile/{{file.user.id}}-{{file.user.userName}}/{{file.filePath}}/{{file.extension}}"><i class="fa fa-download" aria-hidden="true">  Download CV </i></a></td>
+				</tr>
+			</tbody>	
+		</table>
+	</div>
+	<div  class="row" ng-if="currentPanel == 'quizQuestionsSlider'">
+		<div class="row clear">
+			<div class="grid-md-6 no-padding">
+				<h4>Download Completed Tasks</h4>
+			</div>
+			<div class="grid-md-6">
+				 <button id="backBtn" class="button-fullwidth cws-button bt-color-3 border-radius alt pull-right" type="button" ng-click="slideToCoding()"> &lt; &lt; Back </button><br>
+			</div>
+		</div>
+		<table class="row tc-table">
+			<thead>
+				<tr>
+					<th class="grid-md-1">S.No</th>
+					<th class="grid-md-2">FileName</th>
+					<th class="grid-md-2">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="file in filesList">
+					<td class="grid-md-1">{{$index+1}}</td>
+					<td class="grid-md-2">{{file.fileName}}</td>
+					<td class="grid-md-2"><a href="./interntask/downloaduploadfile/{{file.user.id}}-{{file.user.userName}}/{{file.filePath}}/{{file.extension}}"><i class="fa fa-download" aria-hidden="true">  Download CV </i></a></td>
+				</tr>
+			</tbody>	
+		</table>
+	</div>
+	
+	
+		</div>
+</div>
+</div>
+

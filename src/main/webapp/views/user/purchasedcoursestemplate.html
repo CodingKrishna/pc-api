@@ -1,0 +1,89 @@
+<style>
+	img{
+		    width: 100%;
+	}
+	.course-name {
+	    padding: 29px 5px !important;
+	}
+</style>
+<div class=" right-content relative user-info-cards">
+		<div class="header-title-bdr bordered-purple">	
+			<div class="header-title-bdr ">
+					<h3 class="pro-title">Purchased Courses</h3></div>
+			<div class="grid-md-10"></div>
+		</div>
+		 <div class="row cont-data-pad">
+		<div class="row no-padding border-bottom">
+			<div class="grid-md-2"><strong>Course Name</strong></div>
+			<div class="grid-md-4">&nbsp;</div>
+			<div class="grid-md-2"><strong>Validity</strong></div>
+			<div class="grid-md-2"><strong>Purchased Date</strong></div>
+			<div class="grid-md-2"><strong>Amount</strong></div>
+		</div>
+		<div ng-repeat="course in purchasedCoursesList track by $index">
+			<div class="row no-padding course">
+				<div class="grid-md-2 no-padding-left">
+					<a href="shop-single-item.html">
+						<img ng-src="{{course.courseId.imgPath}}"  class="attachment-shop_thumbnail wp-post-image" alt="">
+					</a>
+				</div>
+				<div class="grid-md-4 course-name">
+					<a href="shop-single-item.html">{{course.courseId.courseName}}</a>		
+				</div>
+				<div class="grid-md-2 course-name">
+					<span class="amount">{{course.validity | date:'yyyy-MM-dd'}}</span>		
+				</div>
+				<div class="grid-md-2 course-name">
+					<span class="amount">{{course.purchasedOn | date:'yyyy-MM-dd'}}</span>		
+				</div>
+				<div class="product-price grid-md-2 course-name">
+					<span class="amount"><i class="fa fa-rupee"> </i> {{course.courseId.price}}</span>			
+				</div>
+			</div>
+		</div>
+	</div>
+		<!-- <div class=" woocommerce">
+		<div class="container clear-fix">
+						Shop
+			<div id="content" role="main">
+				<form action="#" method="post">
+					<table class="shop_table cart">
+						<thead>
+							<tr>
+								<th class="product-thumbnail grid-col-2">&nbsp;</th>
+								<th class="product-name grid-col-2">Course Name</th>
+								<th class="product-name grid-col-2">Purchase Date</th>
+								<th class="grid-col-2">Amount</th>
+							</tr>
+						</thead>
+						<tbody>								
+							<tr class="cart_item"  ng-repeat="courseJson in purchasedCoursesList track by $index">
+								<td colspan="8" class="row">
+									<table>
+										<tr ng-repeat="course in courseJson.purchasedCourseDetails track by $index">
+											<td class="product-thumbnail grid-col-2">
+												<a href="shop-single-item.html">
+													<img ng-src="{{course.imgPath}}"  class="attachment-shop_thumbnail wp-post-image" alt="">
+												</a>					
+											</td>
+											<td class="product-price grid-col-2">
+												<span class="amount">{{course.courseName}}</span>	
+											</td>
+											<td class="product-price grid-col-2">
+												<span class="amount">{{courseJson.purchasedOn | date:'yyyy-MM-dd'}}</span>	
+											</td>
+											<td class="product-price grid-col-2">
+												<span class="amount"><i class="fa fa-rupee"> </i> {{course.price}}</span>	
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>	
+	</div> -->
+	
+</div>

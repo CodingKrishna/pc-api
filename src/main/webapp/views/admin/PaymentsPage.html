@@ -1,0 +1,159 @@
+<style>
+	.course-img{
+		    width: 100%;
+	}
+	.course-name {
+	    padding: 29px 5px !important;
+	}
+</style>
+<div class="row no-padding min-height-55 ">
+	<div class="grid-md-4">&nbsp;</div>
+	<div class="grid-md-4 log-success-msg" ng-if="successMsg">{{successMsg}}</div>
+</div>
+<h4>Payments List</h4>
+<table class="row tc-table" datatable="ng">
+	<thead>
+		<tr>
+			<th class="grid-md-1">S.No</th>
+			<th class="grid-md-1">Email Id</th>
+			<th class="grid-md-1">Mobile NO</th>
+			<th class="grid-md-1">Purchased On</th>
+			<th class="grid-md-1">Total Amount</th>
+			<th class="grid-md-2">Actions</th>
+		</tr>
+	</thead>
+	<tbody>	
+	<tr ng-repeat-start="user in usersList">
+		<td class="grid-md-1">{{$index+1}}</td>
+		<td class="grid-md-1">{{user.user.emailId}}</td>
+		<td class="grid-md-1">{{user.user.mobileNo}}</td>
+		<td class="grid-md-1">{{user.user.createdOn | date:'dd-MM-yyyy'}}</td>
+		<td class="grid-md-1">{{user.totalAmount}}</td>
+		<td class="grid-md-2">
+			<button type="button" ng-click="viewPurchasedCourses(user)" class="btn tc-btn btn-sm tc-btn-info" title="View Purchased Courses"><i class="fa fa-eye"></i></button>
+			<button type="button" ng-click="selectCourses(user)" class="btn tc-btn btn-sm tc-btn-purple" title="Purchase Course"><i class="fa fa-shopping-cart"></i></button>
+			<button type="button" ng-click="makePayment(user)" class="btn tc-btn btn-sm tc-btn-info" title="Make Payments"><i class="fa fa-rupee"></i></button>
+			<button type="button" ng-click="viewPaymentsByUserId(user,$index)" class="btn tc-btn btn-sm tc-btn-success" title="Vie Previous Payments"><i class="fa fa-credit-card"></i></button>
+		</td>
+	</tr>
+	<tr ng-repeat-end ng-if="$expanded === $index">
+		<td colspan="6">
+			<div class="row" ng-if="paymentsList.length">
+				<table>
+					<tr>
+						<th>S.No</th>
+						<th>Date</th>
+						<th>Paid Amount</th>
+						<th>Received By</th>
+					</tr>
+					<tr ng-repeat="payment in paymentsList">
+						<td>{{$index+1}}</td>
+						<td>{{payment.createOn | date : 'dd-MM-yyyy'}}</td>
+						<td>{{payment.paidAmount}}</td>
+						<td>{{payment.receivedBy}}</td>
+					</tr>
+				</table>
+			</div>
+		</td>
+	</tr>
+	</tbody>
+</table>
+<div class="overlay" ng-class="{'show':showCoursePurchaseForm}" ng-click="toggleBoolean('showCoursePurchaseForm')"></div>
+<div class="popup log-popup grid-md-5 grid-lg-2 grid-xs-12" ng-class="{'show':showCoursePurchaseForm}" style="z-index:99999">
+	<div class="row"><h4>Purchase Courses <span ng-click="toggleBoolean('showCoursePurchaseForm')" class="pull-right color-red pointer-cursor "><i class="fa fa-times"></i></span></h4></div>
+	<div class="row">
+		<form name="form.courseForm">
+			<div class="row">
+				<label class="grid-md-3">Name</label>
+				<div class="grid-md-9">
+					{{purchasedCourses.user.userName}}
+				</div>
+			</div>
+			<div class="row">
+				<label class="grid-md-3">Courses List</label>
+				<div class="grid-md-9">
+					<select ng-model="purchasedCourses.purchasedCourseDetails" class="card-min-height" ng-options="course as course.courseName for course in coursesList" multiple></select>
+				</div> 
+			</div>
+			<div class="row">
+				<label class="grid-md-3">&nbsp;</label>
+				<div class="grid-md-9">
+					<button type="submit" class="cws-button bt-color-3 border-radius alt icon-right"  ng-disabled="!purchasedCourses.purchasedCourseDetails" data-ng-click="purchaseCourses()">Purchase</button>
+				</div>
+			</div> 
+		</form>
+	</div>
+</div>
+<div class="overlay" ng-class="{'show':viewCourses}" ng-click="toggleBoolean('viewCourses')"></div>
+	<div class="popup log-popup grid-md-5 grid-lg-2 grid-xs-12" ng-class="{'show':viewCourses}" style="z-index:99999">
+		<div class="header-title-bdr bordered-purple">	
+			<div class="header-title-bdr ">
+					<h3 class="pro-title pad-15 no-margin">Purchased Courses<span class="color-red pull-right" ng-click="toggleBoolean('viewCourses')"><i class="fa fa-times"></i></span></h3></div>
+			<div class="grid-md-10"></div>
+		</div>
+		 <div class="row cont-data-pad pad-l-r-15">
+		<div class="row no-padding border-bottom">
+			<div class="grid-md-2"><strong>Course Name</strong></div>
+			<div class="grid-md-4">&nbsp;</div>
+			<div class="grid-md-2"><strong>Validity</strong></div>
+			<div class="grid-md-2"><strong>Purchased Date</strong></div>
+			<div class="grid-md-2"><strong>Amount</strong></div>
+		</div>
+		<div ng-repeat="courseJson in coursesDetails track by $index">
+			<div class="row no-padding course" ng-repeat="course in courseJson.purchasedCourseDetails track by $index">
+				<div class="grid-md-2 no-padding-left">
+					<a href="shop-single-item.html">
+						<img ng-src="{{course.imgPath}}"  class="course-img attachment-shop_thumbnail wp-post-image" alt="">
+					</a>
+				</div>
+				<div class="grid-md-4 course-name">
+					<a href="shop-single-item.html">{{course.courseName}}</a>		
+				</div>
+				<div class="grid-md-2 course-name">
+					<span class="amount">{{courseJson.validity | date:'yyyy-MM-dd'}}</span>		
+				</div>
+				<div class="grid-md-2 course-name">
+					<span class="amount">{{courseJson.purchasedOn | date:'yyyy-MM-dd'}}</span>		
+				</div>
+				<div class="product-price grid-md-2 course-name">
+					<span class="amount"><i class="fa fa-rupee"> </i> {{course.price}}</span>			
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="overlay" ng-class="{'show':showPaymentForm}" ng-click="toggleBoolean('showPaymentForm')"></div>
+<div class="popup log-popup grid-md-5 grid-lg-2 grid-xs-12" ng-class="{'show':showPaymentForm}" style="z-index:99999">
+	<div class="row"><h4>Payment Form <span ng-click="toggleBoolean('showPaymentForm')" class="pull-right color-red pointer-cursor "><i class="fa fa-times"></i></span></h4></div>
+	<div class="row">
+		<form name="form.paymentForm" novalidate>
+			<div class="row">
+				<label class="grid-md-3">Name</label>
+				<div class="grid-md-9">
+					{{newPay.user.userName}}
+				</div>
+			</div>
+			<div class="row">
+				<label class="grid-md-3">Paid Amount</label>
+				<div class="grid-md-9">
+					<input type="text" ng-model="newPay.paidAmount" class="grid-md-12" placeholder="Paid Amount" name="paidAmount" required>
+				</div> 
+				<span ng-if="form.paymentForm.paidAmount.$error.required && form.paymentForm.paidAmount.$dirty">Amount is Required</span>
+			</div>
+			<div class="row">
+				<label class="grid-md-3">Recieved By</label>
+				<div class="grid-md-9">
+					<input type="text" ng-model="newPay.receivedBy" class="grid-md-12" placeholder="Received By" name="receivedBy" required>
+				</div> 
+				<span ng-if="form.paymentForm.receivedBy.$error.required && form.paymentForm.receivedBy.$dirty">Received By is Required</span>
+			</div>
+			<div class="row">
+				<label class="grid-md-3">&nbsp;</label>
+				<div class="grid-md-9">
+					<button type="submit" class="cws-button bt-color-3 border-radius alt icon-right" ng-disabled="form.paymentForm.$invalid" data-ng-click="submitPayment()">Pay</button>
+				</div>
+			</div> 
+		</form>
+	</div>
+	
+</div>

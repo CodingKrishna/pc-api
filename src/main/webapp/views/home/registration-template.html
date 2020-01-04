@@ -1,0 +1,73 @@
+			<div ng-if="regFormMessage=='SUCCESS'" class="success-txt-p">
+							Thanks for Joining with us.<br/>A Verification mail was sent to {{userEmailId}} , open this email and click the link to activate your account.
+						</div>
+						<div class="no-padding no-margin">
+							<div class="log-error-msg" ng-class="{'err':regFormMessage=='FAILED','err':regFormMessage=='Passwords not Matched'}" ng-if=" regFormMessage=='Passwords not Matched'">{{regFormMessage}}</div>
+							<div class="log-error-msg" ng-class="{'err':regFormMessage=='EmailId is already exist'}" ng-if="regFormMessage=='EmailId is already exist'">{{regFormMessage}}</div>
+							<div class="log-success-msg" ng-if="regFormMessage=='SUCCESS'"><span ng-class="{'suc':regFormMessage=='SUCCESS'}" ng-if=" regFormMessage=='SUCCESS'">{{regFormMessage}}</span></div>
+						</div>
+						
+						
+						<form name="form.regForm" novalidate ng-if="regFormMessage!='SUCCESS'">
+							<div class="field-container">
+								<!-- <label>Name <span>*</span></label> -->
+								<input type="text" placeholder="Name" ng-model="student.userName" name="name" required>
+								<span class="input-field-icon-area"><i class="fa fa-user input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="form.regForm.name.$error.required && form.regForm.name.$dirty">Name Is Required</div>
+							</div>
+							<div class="field-container">
+								<!-- <label>Mobile No <span>*</span></label> -->
+								<input type="text" placeholder="mobile No" ng-model="student.mobileNo" ng-pattern="/^[0-9]{10,10}$/"  ng-maxlength="10" maxlength="10" name="mobileNo" required>
+								<span class="input-field-icon-area"><i class="fa fa-phone input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="form.regForm.mobileNo.$error.required && form.regForm.mobileNo.$dirty">MobileNo Is Required</div>
+								<div class="error-msg absolute" ng-if="form.regForm.mobileNo.$error.pattern">Enter 10 digit mobile Number</div>
+							</div>
+							<div class="field-container">
+								<!-- <label>Email ID <span>*</span></label> -->
+								<input type="text" placeholder="Email" ng-model="student.emailId" ng-pattern="/^[a-zA-Z]+[a-zA-Z0-9._-]+@[a-z]+\.[a-z]{2,5}$/" name="email" required>
+								<span class="input-field-icon-area"><i class="fa fa-envelope input-field-icon" style="margin-left:7px;"></i></span>
+								<div class="error-msg absolute" ng-if="form.regForm.email.$error.required && form.regForm.email.$dirty">Email Is Required</div>
+								<div class="error-msg absolute" ng-if="form.regForm.email.$error.pattern">Invalid Email</div>
+							</div>
+							<div class="field-container">
+								<!-- <label>Password<span>*</span></label> -->
+								<input type="password" placeholder="Password" ng-minlength="6" minlength="6" ng-model="student.password" name="password" required="required">
+								<span class="input-field-icon-area" ><i class="fa fa-lock input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="form.regForm.password.$error.required && form.regForm.password.$dirty">Password Is Required</div>
+								<div class="error-msg absolute" ng-if="form.regForm.password.$dirty && form.regForm.password.$error.minlength">Password should be minimum 6 characters</div>
+							</div>
+							<div class="field-container">
+								<!-- <label>Confirm Password<span>*</span></label> -->
+								<input type="password" placeholder="Confirm Password" ng-minlength="6" minlength="6" ng-model="student.confirmPassword" ng-match="student.password" name="confirmPassword" required="required">
+								<span class="input-field-icon-area">
+								<i class="fa fa-lock input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="form.regForm.confirmPassword.$error.required && form.regForm.confirmPassword.$dirty">Confirm paswword Is Required</div>
+								<div class="error-msg absolute" ng-if="form.regForm.confirmPassword.$dirty && form.regForm.confirmPassword.$error.minlength">Password should be minimum 6 characters</div>
+								<div class="error-msg absolute" ng-if="form.regForm.confirmPassword.$error.match">passwords are not matched</div>
+							</div>
+							<div  class="field-container">
+								<div class="row no-padding">
+								<div class="grid-md-2 no-padding">&nbsp;</div>
+								<div class="row">
+								<div class="grid-md-4 no-padding radio">
+									<input type="radio" class="grid-md-1 mar-top-12" id="student" ng-value="1" ng-model="student.role.id">
+									<label class="grid-md-1" for="student" class="visible-label"> User</label>
+								</div>
+								<div class="grid-md-4 no-padding radio m-t-0">
+									<input type="radio" class="grid-md-1 mar-top-12" id="hr" ng-value="7" ng-model="student.role.id">
+									<label class="grid-md-1" for="hr" class="visible-label"> HR</label>
+								</div>
+								<div class="grid-md-4 no-padding radio m-t-0">
+									<input type="radio" class="grid-md-1 mar-top-12" id="po" ng-value="8" ng-model="student.role.id">
+									<label class="grid-md-1" for="po" class="visible-label"> PO</label>
+								</div>
+								</div>
+							</div>
+							</div>
+							<div class="field-container">
+								<label></label>
+								<button class="button-fullwidth cws-button bt-color-3 border-radius alt full-width" type="button"  ng-click="registerUser()">Register</button>
+							</div>
+						</form>
+						<div class="overlay absolute regform-height" ng-class="{'show':formLoader}"></div>
+						<div class="content-loader" ng-class="{'show':formLoader}"><i class="fa fa-spin fa-spinner"></i></div>

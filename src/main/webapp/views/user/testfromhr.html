@@ -1,0 +1,91 @@
+<head>
+<style>
+.start-exam{
+    text-align: center;
+ 	margin-top: 19px;
+}
+.popup-exam{
+	right: 490px;
+    top: 220px;
+    width: 25%;
+    height: 130px;
+}
+.center-text {
+	text-align: center;
+}
+.time-style{
+	font-size: 30px;
+    font-weight: 600;
+}
+.timer {
+	display: inline-block;
+    float: right;
+}
+.timer span {
+	border: 0 !important;
+    background-color: #38476f !important;
+}
+.font-family{
+	font-family: Raleway;
+}
+.popupQtz{
+	top: 160px !important;
+}
+</style>
+</head>
+<div class="container no-padding">
+	<div class="row profile-card ">
+		<div class="user-info-cards">
+			<div class=" header-title-bdr bordered-blue"><h3 class="pro-title">Test From HR </h3></div>
+			<div class="cont-data-pad">
+				<div class="grid-md-12 grid-sm-10"  ng-show="testQuestions.length">
+			        <div class="row card card-full-height-88">
+						<div class="user-info-cards">
+							<div class="header-title-bdr bordered-blue">
+								<h3 class="pro-title pull-right"><div id="countdowntimer" class="m-r-10 pull-right">Time Left: <span id="ms_timer_one"></span></div></h3>
+							</div>
+							<div class="cont-data-pad">
+								<div class=" row grid-sm-12 mar-top card-height-300">
+									    <question questionNo="{{current.singleObjectQuestion.index+1}}" question-obj="current.singleObjectQuestion"></question>
+								</div>
+								<div class="row pad-top-60">
+									<div class="grid-md-2"></div>
+									<div class="grid-md-4">
+										<button type="button" class="cws-button icon-left bt-color-3 border-radius alt pull-left" ng-show="current.index!=0" ng-click="previous()"><i class="fa fa-angle-left"></i>prev</button>
+									</div>
+									<div class="grid-md-4">
+										<button type="button" class="cws-button icon-right bt-color-3 border-radius alt pull-right" ng-show="(current.index+1!=testQuestions.length)" ng-click="next()">next<i class="fa fa-angle-right"></i></button>
+										<button ng-click="examSubmit()" ng-show="current.index+1==testQuestions.length" type="button" class="cws-button bt-color-3 border-radius alt pull-right" ng-disabled="isProfileAlreadySaved" >Submit</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> 
+				</div>
+				<div ng-if="!testQuestions.length && !IsCompleted" class="start-exam">
+					<ng-include src="'views/user/instructions.html'"></ng-include>
+					<button type="button" class="cws-button bt-color-3 border-radius alt " ng-click="getQuestionsForUsers()">Start Exam</button>
+				</div>
+				<div ng-if="IsCompleted" class="start-exam">
+					<div class="color-green font-20">Your exam is completed</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+<div class="overlay" ng-class="{'show':showResults}"></div>
+<div class="popup popup-quiz popupQtz" ng-class="{'show':showResults,'bordercolor-brightgreen':testSuccessMsg,'bordercolor-red':quizErrorMsg}">
+	<div class="popup-content">
+		<div class="popup-close-btn" ng-class="{'bgcolor-brightgreen':testSuccessMsg,'bgcolor-red':testErrorMsg}"><img src="resources/img/home/x.png" class="pointer-cursor close-image" ng-click="closePopup()"></div>
+		<div class="mar-38px text-center">
+			<div class="row no-padding">
+				<div class="color-red font-18 quiz-info-msg " ng-if="testErrorMsg">{{quizErrorMsg}}</div>
+				<div class="color-brightgreen font-18 quiz-info-msg">You Scored {{testSuccessMsg}} out of 10</div>
+				<div>
+					<button ng-if="testErrorMsg" type="button" class="cws-button border-radius alt" ng-click="closePopup()">OK</button>
+					<button  type="button" class="cws-button border-radius  bt-color-3 alt" ng-click="closePopup()">OK</button>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

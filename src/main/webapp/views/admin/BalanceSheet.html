@@ -1,0 +1,98 @@
+<style>
+	.padding-7px{
+		   padding: 7px;
+	}
+	.bg-green{
+		background-color:green;
+	}
+	.f-24{
+		font-size : 24px;
+	}
+</style>
+<div class="text-center"><h3>Balance Sheet</h3></div>
+<hr>
+<div class="container no-padding">
+	<div class="row card car-full-height-88 ">
+		<div class="grid-md-12">
+			<div class="row">
+				<div class="grid-md-4 relative no-padding">
+					<div class="grid-md-12">From</div>
+					<input id="user" type="text" placeholder="yyyy-mm-dd" class="input form-input" uib-datepicker-popup ng-model="startDate" is-open="fromDateCalendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+					<span class="form-field-icon top-23">
+					  <button type="button" class="padding-5px btn-sky-blue bg-green bg-color-1 color-white" ng-click="openCalendar('fromDateCalendar')"><i class="fa fa-calendar"></i></button>
+					</span>
+				</div>
+				
+				<div class="grid-md-4 relative no-padding mar-left10px">
+					<div class="grid-md-12">To</div>
+					<input id="user" type="text" placeholder="yyyy-mm-dd" class="input form-input" uib-datepicker-popup ng-model="endDate" is-open="toDateCalendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+					<span class="form-field-icon top-23">
+					  <button type="button" class="padding-5px btn-sky-blue bg-green bg-color-1 color-white" ng-click="openCalendar('toDateCalendar')"><i class="fa fa-calendar"></i></button>
+					</span>
+				</div>
+				<div class="grid-md-3 no-padding mar-left10px">
+					<div class="grid-md-12">&nbsp;</div>
+					<button type="button" class="cws-button bt-color-3 btn-s  padding-7px" ng-click="getTotalPurchases()">Search</button>
+				</div>
+			</div>
+			<div class="row">&nbsp;</div>
+			<div class="row">
+				<div class="grid-md-12" ng-if="totalPurchases.length">
+					<table class="row tc-table">
+						<tr>
+							<th class="grid-md-1">S.No</th>
+							<th class="grid-md-1">Created On</th>
+							<th class="grid-md-1">Product Name</th>
+							<th class="grid-md-1">Incomings</th>
+							<th class="grid-md-1">Outgoings</th>
+							<th class="grid-md-1">Actions</th>
+						</tr>
+						<tr ng-repeat-start="obj in totalPurchases | orderBy: 'createOn'">
+							<td class="grid-md-1">{{$index+1}}</td>
+							<!-- <td class="grid-md-1"><span ng-if='obj.user.userName'>{{obj.user.userName}}</span><span ng-if='!obj.user.userName' class="text-center">- - - - - -</span></td> -->
+							<td class="grid-md-1"><span ng-if='obj.createOn'>{{obj.createOn | date:'dd-MM-yyyy'}}</span></td>
+							<td class="grid-md-1"><span ng-if='obj.productName'>{{obj.productName}}</span><span ng-if='!obj.productName' class="text-center">- - - - - -</span></td>
+							<td class="grid-md-1"><span ng-if='obj.paidAmount'>{{obj.paidAmount}}</span><span ng-if='!obj.paidAmount' class="text-center">- - - - - -</span></td>
+							<td class="grid-md-1"><span ng-if='obj.price'>{{obj.price}}</span><span ng-if='!obj.price' class="text-center">- - - - - -</span></td>
+							<td class="grid-md-1"><button type="button" ng-click="courseInfo(obj.user,$index)" class="btn tc-btn btn-sm tc-btn-info" title="View Purchased Courses" ng-if="!obj.productName"><i class="fa fa-eye"></i></button></td>
+						</tr>
+						<tr ng-repeat-end ng-if="$expanded === $index">
+							<td colspan="6">
+								<div class="row" ng-if="coursesList.length">
+									<table>
+										<tr>
+											<th>S.No</th>
+											<th>Date</th>
+											<th>Course Name</th>
+										</tr>
+										<tr ng-repeat="course in coursesList">
+											<td>{{$index+1}}</td>
+											<td>{{course.purchasedOn | date:'yyyy-MM-dd'}}</td>
+											<td ng-repeat="courseItem in course.purchasedCourseDetails">{{courseItem.courseName}}</td>
+										</tr>
+									</table>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div> 
+				<hr ng-if='TotalIncomings || TotalOutGoings'>
+				<div class="row clear-fix" ng-if='TotalIncomings || TotalOutGoings'>
+					<div class="grid-md-3">
+						<span class="f-24">Total</span>
+					</div>
+					<div class="grid-md-3">&nbsp;</div>
+					<div class="grid-md-2">
+						<span class="f-24">{{TotalIncomings}}</span>
+					</div>
+					<div class="grid-md-2">
+						<span class="f-24">{{TotalOutGoings}}</span>
+					</div>
+				</div>
+				<div class="grid-md-12" ng-if="!totalPurchases.length">
+					{{successMsg}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

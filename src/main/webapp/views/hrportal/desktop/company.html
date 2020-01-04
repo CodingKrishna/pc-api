@@ -1,0 +1,108 @@
+<style>
+table tr td{
+	 vertical-align: middle;
+}
+.logo-img{
+	 width: 66px;
+    height: 50px;
+}
+
+</style>
+<div class="card user-info-cards">
+	<div class="row no-padding">
+		<div class="row no-padding bg-white">
+					<div class="row border-btm-1">
+						<div class="grid-md-6"> 
+							<h3 class="no-margin">Companies</h3>
+						</div>
+						<div class="">
+							<button type="button" class="cws-button bt-color-3 border-radius alt icon-right pull-right" ng-click="toggleBoolean('showPopup')">Add Company</button>
+						</div>
+					</div>
+					<div class="row no-padding">
+					<div class="grid-md-12">
+						<div class="grid-md-12 font-20 text-center border-0" ng-if="!companiesList.length">Companies are not available Please Add First..</div>
+						<table class="jobslist-table bordered" ng-if="companiesList.length">
+							<tr>
+								<th>S.No</th>
+								<th>Company Logo</th>
+								<th>Company Name</th>
+								<th>Phone Number</th>
+								<th>Company Url</th>
+							</tr>
+							<tr ng-repeat="company in companiesList">
+								<td>{{$index+1}}</td>
+								<td><img ng-src="job/getcompanylogo?fileName={{(company.logo).split('.')[0]}}&format={{(company.logo).split('.')[1]}}" class="logo-img" alt="{{(company.logo).split('.')[0]}}"></td>
+								<td>{{company.companyName}}</td>
+								<td>{{company.phoneNo}}</td>
+								<td><a href="{{company.companyUrl}}" target="_blank">{{company.companyUrl}}</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="overlay" ng-class="{'show':showPopup}" ng-click="toggleBoolean('showPopup')"></div>	
+		<div class="popup post-a-job-popup grid-md-5 grid-lg-2 grid-xs-12 no-padding" ng-class="{'show':showPopup}" style="z-index:99999;margin-right:25%;">
+				<div class="grid-md-12 pad-10">
+					<div class="post-a-job-heading no-padding">
+						<h4>Add Company <span class="pointer-cursor pull-right p-r-10 color-red" ng-click="toggleBoolean('showPopup')"><i class="fa fa-times"></i></h4>					
+					</div>
+					<form data-role="form" class="padding-12">
+						<div class="col-lg-8">
+							<div class="row form-group">
+								<label for="InputName" class="grid-md-3">Company Name</label>
+								<div class="grid-md-9 no-padding">
+									<input type="text" class="form-control" name="InputName"
+										data-ng-model="company.companyName" placeholder="Enter Company Name" required>
+									<span class="input-group-addon"><span
+										class="glyphicon glyphicon-asterisk"></span></span>
+								</div>
+							</div>
+							<div class="row form-group">
+								<label class="grid-md-3" for="InputName">Email</label>
+								<div class="grid-md-9 no-padding">
+									<input type="text" class="form-control" name="inputEmail"
+										data-ng-model="company.emailId" placeholder="Email ID" required>
+								</div>
+							</div>
+							<div class="row form-group">
+								<label class="grid-md-3" for="InputName">Phone Number</label>
+								<div class="grid-md-9 no-padding">
+									<input type="text" class="form-control" name="InputName"
+										data-ng-model="company.phoneNo" placeholder="Company Phone Number" maxlength="10" required>
+									<span class="input-group-addon"><span
+										class="glyphicon glyphicon-asterisk"></span></span>
+								</div>
+							</div>
+							<div class="row form-group">
+								<label for="InputName" class="grid-md-3">Upload  Logo</label>
+								<div class="grid-md-9 no-padding">
+									<tc-file-input label="Click Here To Choose a File" ng-model="companyLogo" placeholder="No File Choosen" required="required"></tc-file-input>
+									<span class="input-group-addon">
+									    <span>{{infoMsg}}</span>
+										<button type="button" class="cws-button  bt-color-4 border-radius small alt" ng-click="selectUpload(companyLogo, 'logo', $event)">Upload File</button>
+									</span>
+								</div>
+							</div>
+							<div class="row form-group">
+								<label for="InputName" class="grid-md-3">Url (start with http://)</label>
+								<div class="grid-md-9 no-padding">
+									<input type="text" class="form-control" name="InputName"
+										data-ng-model="company.companyUrl" placeholder="For Example http://www.pioneercoders.com" required>
+									<span class="input-group-addon">
+										<span class="glyphicon glyphicon-asterisk"></span>
+									</span>
+								</div>
+							</div>
+							<div class="row form-group">
+								<label class="grid-md-3">&nbsp;</label>
+									<div class="grid-md-6 text-bold" ng-if="companySucMsg"><span class="log-success-msg">{{companySucMsg}}</span></div>
+								<button type="button" ng-click="saveCompanyInfo()" class="cws-button bt-color-3 border-radius alt icon-right" ng-class="{'btn-disable':disableButton}" ng-disabled="disableButton" style="float:right;">Submit</button>
+							
+							</div>
+						</div>
+				</form>
+			</div>
+			</div>
+		</div>
+		</div>

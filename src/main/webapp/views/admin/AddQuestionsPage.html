@@ -1,0 +1,238 @@
+<style>
+	 .mar-t-37{
+	  	    margin-top: 14px;
+	  }
+	 .course-img{
+		    width: 100%;
+	}
+	.course-name {
+	    padding: 29px 5px !important;
+	}
+</style>
+<div class="container no-padding">
+<div class="tabs">
+		<div class="block-tabs-btn clear-fix">
+			<div class="tabs-btn active" data-tabs-id="tabs1">Add Quiz Question</div>
+			<div class="tabs-btn" data-tabs-id="tabs2">Add Programming Question</div>
+			<div class="tabs-btn" data-tabs-id="tabs3">Add Mini Projects</div>
+		</div>
+		<!-- tabs keeper -->
+		<div class="tabs-keeper">
+			<!-- tabs container -->
+			<div class="container-tabs active" data-tabs-id="cont-tabs1" > 
+				<div class="row">
+					<h4 class="text-center">Add Quiz Question....</h4>
+				</div>
+				<div class="row">
+					<div class="grid-md-2"></div>
+					<div class="grid-md-8">
+					<form name="form.questionForm" novalidate>
+						<div class="row">
+							<label class="grid-md-3">Technology</label>
+							<div class="grid-md-9">
+								<select ng-model="question.quesGroup" ng-init=0 ng-options="b as b for b in techologyList"></select>
+							</div> 
+							<span ng-if="form.questionForm.productName.$error.required && form.questionForm.productName.$dirty" class="color-red">Technology is Required</span>
+						</div>
+						<div class="row">
+							<label class="grid-md-3">Question Type</label>
+							<div class="grid-md-9">
+								<select ng-model="question.quesType" ng-init=0 ng-options="b as b for b in quesTypeList"></select>
+							</div> 
+							<span ng-if="form.questionForm.productName.$error.required && form.questionForm.productName.$dirty" class="color-red">Please select the question</span>
+						</div>
+						<div class="row">
+							<label class="grid-md-3">Description</label>
+							<div class="grid-md-9  relative textarea">
+								<textarea rows="4" cols="50" ng-model="question.questionDesc" class="grid-md-12 border-lightgray  pad-10" placeholder="Enter Description" name="description" required></textarea>
+								<span class="color-red absolute" ng-if="form.questionForm.description.$error.required && form.questionForm.description.$dirty" >Description is Required</span>
+							</div> 
+						</div>
+						<div class="row">
+							<label class="grid-md-3">Code</label>
+							<div class="grid-md-9 textarea ">
+								<textarea rows="4" cols="50" ng-model="question.code" class="grid-md-12 border-lightgray pad-10" placeholder="Enter Code" name="code" required></textarea>
+								<span ng-if="form.questionForm.description.$error.required && form.questionForm.description.$dirty" class="color-red">Description is Required</span>
+							</div> 
+						</div>
+						<div class="row" ng-repeat="option in optionData track by $index">
+								<label class="grid-md-3">Options</label>
+								<div class="grid-md-9">
+									<input type="text" ng-model="option.option" class="grid-md-12" placeholder="Enter Option" name="option" required>
+									<span ng-if="form.questionForm.option.$error.required && form.questionForm.option.$dirty" class="color-red">Description is Required</span>
+								</div> 
+								<div class="form-col-rem mar-t-37">
+									<span class="pointer-cursor absolute" ng-if="$index>=1"ng-click="removeOption($index,'option')" title="remove"><i class="fa fa-times"></i></span>
+								</div>
+						</div>
+						<div class="row">
+							<label class="grid-md-3">Answer</label>
+							<div class="grid-md-9">
+									<input type="text" ng-model="question.ans" class="grid-md-12" placeholder="Enter Answer" name="answer" required>
+								</div> 
+							<span ng-if="form.questionForm.description.$error.required && form.questionForm.description.$dirty" class="color-red">Description is Required</span>
+						</div>
+						<div class="row">
+							<label class="grid-md-3">&nbsp;</label>
+							<div class="grid-md-2">
+								<button type="button" class="cws-button bt-color-3 border-radius alt icon-right" ng-click="addInput('option')">Add Options</button>
+							</div>
+							<label class="grid-md-5">&nbsp;</label>
+							<div class="grid-md-2"><!-- ng-disabled="form.questionForm.$invalid" -->
+								<button type="submit" class="cws-button bt-color-3 border-radius alt icon-right pull-right" data-ng-click="addQuestions()">Submit</button>
+							</div>
+						</div> 
+					</form>
+					</div>
+				</div>
+			</div>
+			<!--/tabs container -->
+			
+			<!-- tabs container -->
+			<div class="container-tabs" data-tabs-id="cont-tabs2">
+				<div class="row">
+					<h4 class="text-center">Add Programming Question</h4>
+				</div>
+				<div class="row">
+					<div class="grid-md-2"></div>
+					<div class="grid-md-8">
+					<form name="form.codingQtnForm" novalidate>
+						<div class="row">
+							<label class="grid-md-3">Question Description</label>
+							<div class="grid-md-9  relative textarea">
+								<textarea rows="4" cols="50" ng-model="codingTestQtn.questionDesc" class="grid-md-12 border-lightgray  pad-10" placeholder="Enter Description" name="description" required></textarea>
+								<span  class="color-red absolute" ng-if="form.codingQtnForm.description.$error.required && form.codingQtnForm.description.$dirty">Description is Required</span>
+							</div> 
+						</div>
+						<div class="row" ng-repeat="testCase in codingTestQtn.testCases track by $index">
+							<label class="grid-md-3">Sample Inputs {{$index+1}}</label>
+							<div class="grid-md-9 relative">
+								<input type="text" ng-model="testCase.input" class="grid-md-12" placeholder="Sample Inputs" name="input" required>
+								<span ng-if="form.codingQtnForm.input.$error.required && form.codingQtnForm.input.$dirty" class="color-red">input is Required</span>
+							</div>
+							<label class="grid-md-3">Sample Outputs {{$index+1}}</label>
+							<div class="grid-md-9 relative">
+								<input type="text" ng-model="testCase.output" class="grid-md-12" placeholder="Sample Output" name="output" required>
+								<span ng-if="form.codingQtnForm.output.$error.required && form.codingQtnForm.output.$dirty" class="color-red">Output is Required</span>
+							</div> 
+							<div class="form-col-rem mar-t-37">
+								<span class="pointer-cursor absolute" ng-if="$index>=1"ng-click="removeOption($index,'input')" title="remove"><i class="fa fa-times"></i></span>
+							</div>
+						</div>
+						<div class="row">
+							<label class="grid-md-3">&nbsp;</label>
+							<div class="grid-md-2">
+								<button type="button" class="cws-button bt-color-3 border-radius alt icon-right" ng-click="addInput('input')">Add Sample</button>
+							</div>
+							<label class="grid-md-5">&nbsp;</label>
+							<div class="grid-md-2"><!-- ng-disabled="form.questionForm.$invalid" -->
+								<button type="submit" class="cws-button bt-color-3 border-radius alt icon-right pull-right" data-ng-click="submitCodingTestQtn()">Submit</button>
+							</div>
+						</div> 
+					</form>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="container-tabs" data-tabs-id="cont-tabs3">
+				<div class="row no-padding min-height-55 " ng-if="successMsg">
+					<div class="grid-md-4">&nbsp;</div>
+					<div class="grid-md-4 log-success-msg" ng-if="successMsg">{{successMsg}}</div>
+				</div>
+				<div class="row">
+					<h4 class="text-center">Add Mini Project Task<span>{{successMsg}}</span></h4>
+				</div>
+				<div class="row">
+					<div class="grid-md-2"></div>
+					<div class="grid-md-8">
+						<form name="form.addTaskForm" novalidate>
+							<div class="row">
+								<label class="grid-md-3">Question</label>
+								<div class="grid-md-9">
+									<input type="text" ng-model="task.question" class="grid-md-12" placeholder="Enter Question" name="question" required>
+								</div> 
+								<span ng-if="form.addTaskForm.question.$error.required && form.addTaskForm.question.$dirty" class="color-red">Question is Required</span>
+							</div>
+							<div class="row">
+								<label class="grid-md-3">Objective</label>
+								<div class="grid-md-9">
+									<input type="text" ng-model="task.objective" class="grid-md-12" placeholder="Enter Objective" name="objective" required>
+								</div> 
+								<span ng-if="form.addTaskForm.objective.$error.required && form.addTaskForm.objective.$dirty" class="color-red">Objective is Required</span>
+							</div>
+							<div class="row">
+								<label class="grid-md-3">Short Name</label>
+								<div class="grid-md-9">
+									<input type="text" ng-model="task.shortName" class="grid-md-12" placeholder="Enter Concept" name="shortName" required>
+								</div> 
+								<span ng-if="form.addTaskForm.shortName.$error.required && form.addTaskForm.shortName.$dirty" class="color-red">Short Name is Required</span>
+							</div>
+							<div class="row">
+								<label class="grid-md-3">Description</label>
+								<div class="grid-md-9">
+									<textarea rows="4" cols="50" ng-model="task.queDescription" class="grid-md-12 border-lightgray  pad-10" placeholder="Enter Description" name="qescription" required></textarea>
+								</div> 
+								<span ng-if="form.addTaskForm.qescription.$error.required && form.addTaskForm.qescription.$dirty" class="color-red">Description is Required</span>
+							</div>
+							<div class="row">
+								<label class="grid-md-3">Technology</label>
+								<div class="grid-md-9">
+									<select ng-model="task.technology" ng-init=0 ng-options="b as b for b in taskTechologyList"></select>
+								</div> 
+								<!-- <span ng-if="form.addTaskForm.productName.$error.required && form.addTaskForm.productName.$dirty" class="color-red">Product Name is Required</span> -->
+							</div>
+							
+							<div class="row">
+								<label class="grid-md-3">Tutorial Reference</label>
+								<div class="grid-md-9">
+									<input type="text" ng-model="task.refferenceLink" class="grid-md-12" placeholder="Enter Reference Link" name="reference" required>
+								</div> 
+								<span ng-if="form.addTaskForm.reference.$error.required && form.addTaskForm.reference.$dirty" class="color-red">Reference Link is Required</span>
+							</div>
+							
+							<div class="row no-pading form-group">
+								<label class="grid-md-3">Upload Image</label>
+								<div class="grid-md-5">
+									<div class="">
+										<tc-file-input label="Click Here To Choose a Image" ng-model="task.imagePath" placeholder="No Image Choosen" required="required" ></tc-file-input><!-- multiple="true" -->
+									</div>
+									<div>
+										<label class="grid-md-3"></label>
+										<span>{{infoMsg}}</span>
+										<button type="button" class="cws-button  bt-color-4 border-radius small alt" ng-click="selectUploadImage(task.imagePath, 'htmlForms', $event)">Upload Image</button>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<label class="grid-md-10">&nbsp;</label>
+								<div class="grid-md-2"><!-- ng-disabled="form.addTaskForm.$invalid" -->
+									<button type="button" class="cws-button bt-color-3 border-radius alt pull-right" data-ng-click="addTask()">Save</button>
+								</div>
+							</div> 
+						</form>
+					</div>	
+				</div>
+			</div>
+			
+			
+			
+			<!--/tabs container -->
+		</div>
+		<!--/tabs keeper -->
+	</div>
+	<!-- /tabs -->
+
+</div>
+<div class="overlay" ng-class="{'show':showPopup}" ng-click="toggleBoolean('showPopup')"></div>
+<div class="popup popup-quiz" ng-class="{'show':showPopup,'bordercolor-brightgreen':quizSuccessMsg,'bordercolor-red':quizErrorMsg}">
+	<div class="popup-content">
+		<div class="popup-close-btn" ng-class="{'bgcolor-brightgreen':quizSuccessMsg,'bgcolor-red':quizErrorMsg}"><img src="resources/img/home/x.png" class="pointer-cursor close-image" ng-click="toggleBoolean('showPopup')"></div>
+		<div class="mar-38px text-center">
+			<div class="color-brightgreen font-18 quiz-info-msg " ng-if="successMsg">{{successMsg }}</div>
+			<div>
+				<button ng-if="successMsg" type="button" class="cws-button border-radius  bt-color-3 alt" ng-click="toggleBoolean('showPopup')">OK</button>	
+			</div>
+		</div>
+	</div>
+</div>

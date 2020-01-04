@@ -1,0 +1,39 @@
+<style>
+	.bg-color-1 {
+		background-color:#3598DC;
+	}
+	.bg-color-2 {
+		background-color:#E74F5B;
+	}
+	.bg-color-3 {       
+		background-color:#32C6D2;
+	}
+	.bg-color-4 {
+		background-color:#8D44AD;
+	}
+	.quiz-card {
+	    min-height: 129px;
+	    text-align: center;
+	    padding-top: 34px;
+	    color: white;
+	    font-family: roboto-bold;
+	    font-size: 18px;
+	} 
+</style>
+<div class="container no-padding">
+	<div class="row profile-card ">
+		<div class="user-info-cards">
+			<div class=" header-title-bdr bordered-blue"><h3 class="pro-title">Dashboard</h3></div>
+			<div class="cont-data-pad">
+				<div class="row" style="padding: 0px 10px;">
+					<div class="grid-md-3" ng-repeat="(technology, result) in quizresult">
+						<div class="quiz-card" ng-class="bgColors[($index%4)]">
+							<div>{{technology}}</div>
+							<div>{{result.scored}}/{{result.total}}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>

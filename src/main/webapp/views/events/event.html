@@ -1,0 +1,59 @@
+<head>
+	<title>Events</title>
+	<style>
+		h3 {
+			margin-top:12px !important;
+		}
+	</style>
+</head>
+<div>	
+	<main>
+		<div class="container">
+			<div class="row page-title">
+				<div class="">
+					<h1>Events</h1>
+				</div>
+			</div>
+			<div class="blog-post" ng-repeat="event in eventsList">
+			<article>
+				<div class="post-info">
+					<div class="date-post"><div class="day">{{event.eventDate | date :'dd'}}</div><div class="month">{{event.eventDate | date :'MMM'}}</div></div>
+					<div class="post-info-main">
+						<div class="author-post">{{event.eventOrganisedBy}}</div>
+					</div>
+					<div class="comments-post"><i class="fa fa-comment"></i> 3</div>
+				</div>
+				<div class="blog-media picture">
+					<div class="hover-effect"></div>
+					<!-- <div class="link-cont">
+						<a href="#" class="cws-left fancy fa fa-link"></a>
+						<a href="http://placehold.it/1170x580" class="fancy fa fa-search"></a>
+						<a href="#" class="cws-right fa fa-heart"></a>
+					</div> -->
+					<img ng-src="{{event.imgPath}}" data-at2x="http://placehold.it/1170x580" class="columns-col-12" alt>
+				</div>
+				<div class="row no-padding">
+					<h3 class="grid-md-8 no-padding">{{event.eventName}}</h3>
+					<p class="grid-md-4 no-padding mar-top-12 "><a class="cws-button border-radius bt-color-3 pull-right" ng-click="bookEvents(event)"> Book Now</a></p>
+				</div>
+				<p>{{event.eventDesc}}</p>
+				<h3>Venue</h3>
+				<p>Pioneer Coders IT Academy, 10th cross 20th main, Near Gangothri Circle, BTM Layout, Bangalore </p>
+			</article>
+				<hr class="divider-color margin-none" />
+			</div>
+		</div>
+	</main>
+</div>
+<div class="overlay" ng-class="{'show':showPopup}" ng-click="toggleBoolean('showPopup')"></div>
+<div class="popup popup-quiz" ng-class="{'show':showPopup}">
+	<div class="popup-content">
+		<div class="popup-close-btn"><img src="resources/img/home/x.png" class="pointer-cursor close-image" ng-click="toggleBoolean('showPopup')"></div>
+		<div class="mar-38px text-center">
+			<div class="color-brightgreen font-18 quiz-info-msg " ng-if="eventAlertMsg">You have already booked this Event</div>
+			<div>
+				<button ng-if="eventAlertMsg" type="button" class="cws-button border-radius bt-color-3 alt" ng-click="toggleBoolean('showPopup')">OK</button>
+			</div>
+		</div>
+	</div>
+</div>

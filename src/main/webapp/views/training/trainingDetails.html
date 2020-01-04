@@ -1,0 +1,53 @@
+ <div class="page-content no-padding gradient-grey">
+	<div class="container bg-white clear-fix">
+		<div class="grid-col-row">
+			<div class="grid-col grid-col-8">
+				<!-- main content -->
+				<section>
+					<h2>{{course.courseName}} <span class="pull-right list-courses "><a ng-click="changeState('courseshome')"><i class="fa fa-arrow-circle-left"></i> View Courses</a></span></h2>
+					<html-template content="course.descTemplate"></html-template>
+					<hr class="divider-color" />
+					<div class="comments">
+						<div class="comment-title">Course reviews</div>
+						<ol class="commentlist">
+							<li class="comment">
+								<div class="comment_container clear" ng-repeat="review in reviews">
+									<img src="http://placehold.it/70x70" class="avatar">
+									<div class="comment-text">
+										<div class="star-rating" title="Rated {{review.rating}} out of 5">
+											<span style="width:{{review.rating*100 / 5 }}%"><strong class="rating">{{review.rating | number: 2}}</strong> out of 5</span>
+										</div>
+										<p class="meta">
+											<strong>{{review.author}}</strong>
+											<time datetime="{{review.reviewdOn}}">{{review.reviewdOn | date: 'dd-MMM-yyyy hh:mm:ss a'}}</time>
+										</p>
+										<div class="description">
+											<p>{{review.reviewComment}}</p>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ol>
+					</div>
+				</section>
+			</div>
+			<!-- sidebar -->
+			<div class="grid-col grid-col-4 sidebar" style="margin-top:50px;">
+				<aside class="widget-course-details">
+					<!-- <a class="cws-button border-radius large bt-color-3 alt" href=""> Demo class </a> <br>
+					<a class="cws-button border-radius large bt-color-3 alt" href=""> Assistance </a>  <br> -->
+					<a ng-if="!showAddToCart" ng-href="#cart/{{course.id}}/{{course.courseName}}" rel="nofollow" data-product_id="70" data-product_sku="" class="cws-button border-radius icon-left alt large">
+					<i class="fa fa-shopping-cart"></i> Add to cart</a>
+				</aside>
+				<aside class="widget-event">
+					<h4 style="padding-top:20px;">Upcoming Batch Timings</h4>
+					<article class="clear-fix"  ng-repeat="batchTimings in upComingBatchTimings">
+						<div class="date"><div class="day">{{ batchTimings.startDate | date : "dd" }}</div><div class="month">{{ batchTimings.startDate | date :'MMM' }}</div></div>
+						<div class="event-description"><span>{{batchTimings.timings}}</span><p>{{batchTimings.description}} {{batchTimings.trainerName}}.</p></div>
+					</article>
+				</aside>
+				<!-- / widget event -->
+			</div>
+		</div>
+	</div>
+</div>

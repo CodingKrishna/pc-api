@@ -1,0 +1,63 @@
+<div class="page-content woocommerce">
+	<div class="container clear-fix">
+					<!-- Shop -->
+		<h3>Your order confirmation  has been sent to your mail successfully...</h3>
+		<div id="content" role="main">
+			<form action="#" method="post">
+				<table class="shop_table cart">
+					<thead>
+						<tr>
+							<th class="product-thumbnail"> Courses</th>
+							<th class="product-name">&nbsp;</th>
+							<th class="grid-col-2">price</th>
+						</tr>
+					</thead>
+					<tbody>								
+						<tr class="cart_item" ng-repeat="course in purchasedCoursesList">
+							<td class="product-thumbnail">
+								<a href="shop-single-item.html">
+									<img ng-src="{{course.courseId.imgPath}}"  class="attachment-shop_thumbnail wp-post-image" alt="">
+								</a>					
+							</td>
+							<td class="product-name grid-col-9">
+								<a href="shop-single-item.html">{{course.courseId.courseName}}</a>			
+							</td>
+							<td class="product-price grid-col-2">
+								<span class="amount"><i class="fa fa-rupee"> </i> {{course.courseId.price}}</span>			
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+		<div class="grid-md-4 pull-right">
+	<div class="cart_totals">	
+		<h3>Your order</h3>
+		<table>
+			<tbody>
+				<tr class="">
+					<th>Product</th>
+					<td>Total</td>
+				</tr>
+				<tr class="cart-subtotal">
+					<th>Cart Subtotal</th>
+					<td><span class="amount"><i class="fa fa-rupee"> </i>{{orderTotals}}</span></td>
+				</tr>
+				<tr class="order-total">
+					<th>Order Total</th>
+					<td><span class="amount"><i class="fa fa-rupee"> </i> {{orderTotals}}</span></td>
+				</tr>			
+			</tbody>
+		</table>
+	</div>
+	</div>
+</div>	
+</div>
+
+
+
+
+
+
+
+

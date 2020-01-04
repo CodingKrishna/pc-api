@@ -1,0 +1,89 @@
+<body class="shop">
+	<div class="page-content woocommerce">
+		<div class="container clear-fix">
+			<!-- Shop -->
+			<div class="title clear-fix border-bottom">
+				<h2 class="title-main">Cart</h2>
+				<a ng-click="changeState('courseshome')" class="button-back">Back to Courses<i class="fa fa-angle-double-right"></i></a>
+			</div>
+			<div id="content" role="main" ng-if="cartCourses.length">
+				<form action="#" method="post">
+					<table class="shop_table cart">
+						<thead>
+							<tr>
+								<th class="product-thumbnail">Course</th>
+								<th class="product-name">&nbsp;</th>
+								<th class="product-price">Price</th>
+								<th class="product-remove">Remove</th>
+							</tr>
+						</thead>
+						<tbody>								
+							<tr class="cart_item" ng-repeat="cartCourse in cartCourses">
+								<td class="product-thumbnail">
+									<a href="shop-single-item.html">
+										<img ng-src="{{cartCourse.imgPath}}"  class="attachment-shop_thumbnail wp-post-image" alt="">
+									</a>					
+								</td>
+								<td class="product-name grid-col-6">
+									<a href="shop-single-item.html">{{cartCourse.courseName}} </a>			
+								</td>
+								<td class="product-price">
+									<span class="amount"><i class="fa fa-rupee"> </i> {{cartCourse.price}}</span>			
+								</td>
+								<td class="product-remove">
+									<a ng-click="removeCourse($index)" class="remove" title="Remove this item"></a>	
+								</td>
+							</tr>
+							<tr>
+								<td colspan="6" class="actions">
+									<div class="coupon">
+										<label for="coupon_code">Coupon:</label> 
+										<input type="text" name="coupon_code" class="input-text corner-radius-top" id="coupon_code" value="" placeholder="Coupon code">
+										<input type="submit" class="cws-button corner-radius-bottom" name="apply_coupon" value="Apply Coupon">	
+									</div>
+									<input type="submit" class="cws-button bt-color-5" name="update_cart" value="Update Cart">
+									<a ng-click="proceedTOCheckOut()" class="cws-button bt-color-3">Proceed to Checkout</a>	
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+				<hr class="divider-color" />
+				<div class="cart-collaterals">	
+					<div class="grid-half"></div>
+					<div class="cart_totals ">	
+						<h3>Cart Totals</h3>
+						<table>
+							<tbody>
+								<tr class="cart-subtotal">
+									<th>Cart Subtotal</th>
+									<td><span class="amount"><i class="fa fa-rupee"> </i> {{orderTotals}}</span></td>
+								</tr>
+								<tr class="order-total">
+									<th>Order Total</th>
+									<td><span class="amount"><i class="fa fa-rupee"> </i> {{orderTotals}}</span></td>
+								</tr>			
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!--Shop -->
+			<div ng-if="!cartCourses.length" class="color-red">
+				<h4 class="color-red">Please add the Courses to Cart</h4>
+			</div>
+		</div>
+	</div>
+	<div class="overlay" ng-class="{'show':showPopup}" ng-click="toggleBoolean('showPopup')"></div>
+	<div class="popup popup-quiz" ng-class="{'show':showPopup}">
+		<div class="popup-content">
+			<div class="popup-close-btn"><img src="resources/img/home/x.png" class="pointer-cursor close-image" ng-click="toggleBoolean('showPopup')"></div>
+			<div class="mar-38px text-center">
+				<div class="color-brightgreen font-18 quiz-info-msg " ng-if="infoMsg">{{infoMsg}}</div>
+				<div>
+					<button type="button" class="cws-button border-radius bt-color-3 alt" ng-click="toggleBoolean('showPopup')">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

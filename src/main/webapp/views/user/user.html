@@ -1,0 +1,363 @@
+<style>
+	/* body {font-family: 'Open Sans','Segoe UI';} */
+	/* .grid-row {max-width: 80%!important;} */
+	.bg-darkblue {background-color: #00304c!important;}
+	a:focus, a:hover {color: #23527c; text-decoration: none!important;}
+	.lftNav a {text-decoration: none; color: inherit; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; -ms-transition: all 0.3s; transition: all 0.3s;
+    display:block; padding:15px;}
+	.page-content {overflow:hidden; background-color:#334060; background-image: url(resources/img/home/parallax-pro.png);}
+	
+    	
+	/* .container-user {width: 81%!important; margin:0 auto; padding: 0px 15px 15px 15px;} */
+	.user-content {padding: 50px 0px; height:100%;    min-height:10em; border-bottom-left-radius: 40px;  max-height: 150em; background-color: #fff; width: 20%; border-left: 1px solid #6d768c; -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+    	-moz-box-shadow: 0 0 10px 0 rgba(0,0,0,.2); box-shadow: 0 0 10px 0 rgba(0,0,0,.2);}
+	.profile-card .profile-pic {padding: 8px 0;position: relative;}
+	
+	
+	.profile-card .profile-pic img {float: none;  background-color: #D0CBC7; margin: 0 auto; width: 50%; height: 50%; -webkit-border-radius: 50%!important; -moz-border-radius: 50%!important;   border-radius: 50%!important;
+	    transition: transform 0.3s cubic-bezier(0, 0, 1, 2);}
+	.img-responsive { max-width: 100%; display: block;}
+	.main-nav>ul>li {float: left; line-height: 60px; color: #000;}
+	ul li, ol li.lftNav  {line-height: 18px; font-size:15px; padding-left: 0px!important; position: relative;  color: #737373;}
+	
+
+	.active-link {
+		/* background-color: #F27C66; */
+		color: black !important;
+	}
+	 .lftNav>li>a:hover{background-color: #F27C66;color: white;} 
+
+	
+	.profile-usertitle {text-align: center; margin-top: 10px; font-size:30px; color:#737373;}
+	.profile-usertitle .name {font-size: 20px; font-weight: 600; margin-bottom: 7px;}
+	.profile-usertitle .caption {text-transform: uppercase; font-size: 13px; font-weight: 800; margin-bottom: 7px;}
+	.profile-usermenu {margin-top: 30px;  padding-bottom: 20px}
+	
+	.rgt-cont-bg {background-color: rgba(255, 255, 255, 0.98);/* #eeeeee; */ width: 80%; height: 100%; min-height: 36.25em; border-bottom-right-radius: 40px;}
+	
+	.user-info-cards {width: 96%; margin: 2% auto; background-color:#fff;}	
+	
+	h3.pro-title { font-family: 'Open Sans','Segoe UI'; line-height: 34px; padding: 0 0 0 2%; margin: 0; float: left; text-align: left; font-weight: 700 !important; font-size: 16px;}
+	h3.edit-icon-txt { font-family: 'Open Sans','Segoe UI'; margin-right: 15px; font-weight: 700 !important;}
+	h3.edit-icon-txt-skill { font-family: 'Open Sans','Segoe UI'; width:10%; margin-right: 15px; font-weight: 700 !important;}
+	h3.selected-txt-skill {width:90%;}
+	
+	
+
+	.header-title-bdr {border-bottom: 3px solid #fff; background-color:#fff; clear:left; overflow:hidden; -webkit-box-shadow: 0 0 4px rgba(0,0,0,.3);
+    -moz-box-shadow: 0 0 4px rgba(0,0,0,.3);
+    box-shadow: 0 0 4px rgba(0,0,0,.3); }
+
+
+	.bordered-blue {border-color: #5db2ff !important;}
+	.bordered-orange {border-color: #ff5722 !important;}	
+	.bordered-purple {border-color: #aa00ff !important;}
+	.bordered-lightred {border-color: #e46f61 !important;}
+	.bordered-palegreen {border-color: #a0d468 !important;}
+	.bordered-pink {border-color: #e75b8d !important;}
+	.clr-red {color:#ff5722;}
+	
+	
+	
+	
+	
+	h3.pro-title-inner { font-family: 'Open Sans','Segoe UI'; overflow:hidden; color: #3b4b5a; font-size: 14px; font-weight: 600!important; padding: 0px 10px 0 5px; }
+	h3.pro-title-inner-below { font-family: 'Open Sans','Segoe UI'; overflow:hidden; color: #3b4b5a; font-size: 14px; font-weight: 600!important; padding: 0px 10px 0 12px; }
+	
+	.cont-data-pad { padding: 20px; margin-bottom:10px; overflow:hidden; background-color: #fbfbfb; -webkit-box-shadow: 1px 0 10px 1px rgba(0,0,0,.3); -moz-box-shadow: 1px 0 10px 1px rgba(0,0,0,.3);
+    box-shadow: 1px 0 10px 1px rgba(0,0,0,.3); padding: 12px;}
+    
+    
+    .cont-data-pad-pro { background-color: transparent;}
+    .accordion-content-pro {padding: 0 14px!important; margin: 0% 1.0%; background-color:transparent;}
+    .accordion-title-pro {padding:0; margin:0 2%;}
+    
+	.lft-box {width:49%; float:left; margin-right:1%; margin-bottom:3%;}
+	.rgt-box {width:49%; float:right; margin-bottom:3%;}
+	.float-right {float:right}
+	.float-left {float:left}
+	.pro-btn-edit {margin:0px 0 0 0; width:8%; }
+	
+	tags-input{display:block}
+	tags-input *,tags-input :after,tags-input :before{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+	tags-input .host{position:relative;margin-top:5px;margin-bottom:5px;height:100%}
+	tags-input .host:active{outline:0}
+	tags-input .tags{-moz-appearance:textfield;-webkit-appearance:textfield;padding:1%;overflow:hidden;word-wrap:break-word;cursor:text;background-color:#fff;border:1px solid #a9a9a9;box-shadow:1px 1px 1px 0 #d3d3d3 inset;height:100%}
+	tags-input .tags.focused{outline:0;-webkit-box-shadow:0 0 3px 1px rgba(5,139,242,.6);-moz-box-shadow:0 0 3px 1px rgba(5,139,242,.6);box-shadow:0 0 3px 1px rgba(5,139,242,.6); padding:1%;}
+	tags-input .tags .tag-list{margin:0;padding:0;list-style-type:none}
+	tags-input .tags .tag-item{margin:2px;padding:0 5px;  display:inline-block;float:left;position:inherit;font:14px "Helvetica Neue",Helvetica,Arial,sans-serif;height:26px;line-height:25px;border:1px solid #acacac;border-radius:3px;background:-webkit-linear-gradient(top,#f0f9ff 0,#cbebff 47%,#a1dbff 100%);background:linear-gradient(to bottom,#f0f9ff 0,#cbebff 47%,#a1dbff 100%)}
+	tags-input .tags .tag-item.selected{background:-webkit-linear-gradient(top,#febbbb 0,#fe9090 45%,#ff5c5c 100%); position:inherit; background:linear-gradient(to bottom,#febbbb 0,#fe9090 45%,#ff5c5c 100%)}
+	tags-input .tags .tag-item .remove-button{margin:0 0 0 5px;padding:0;border:none;background:0 0;cursor:pointer;vertical-align:middle;font:700 16px Arial,sans-serif;color:#585858}
+	tags-input .tags .input.invalid-tag,tags-input .tags .tag-item .remove-button:active{color:red}
+	tags-input .tags .input{border:0;outline:0;margin:2px;padding:0 0 0 5px;float:left;height:26px;font:14px "Helvetica Neue",Helvetica,Arial,sans-serif}
+	tags-input .tags .input::-ms-clear{display:none}
+	tags-input.ng-invalid .tags{-webkit-box-shadow:0 0 3px 1px rgba(255,0,0,.6);-moz-box-shadow:0 0 3px 1px rgba(255,0,0,.6);box-shadow:0 0 3px 1px rgba(255,0,0,.6)}
+	tags-input[disabled] .host:focus{outline:0}tags-input[disabled] .tags{background-color:#eee;cursor:default}
+	tags-input[disabled] .tags .tag-item{opacity:.65;background:-webkit-linear-gradient(top,#f0f9ff 0,rgba(203,235,255,.75) 47%,rgba(161,219,255,.62) 100%);background:linear-gradient(to bottom,#f0f9ff 0,rgba(203,235,255,.75) 47%,rgba(161,219,255,.62) 100%)}
+	tags-input[disabled] .tags .tag-item .remove-button{cursor:default}
+	tags-input[disabled] .tags .tag-item .remove-button:active{color:#585858}
+	tags-input[disabled] .tags .input{background-color:#eee;cursor:default}
+	tags-input .autocomplete{margin-top:5px;padding:5px 0;z-index:999;width:100%;background-color:#fff;border:1px solid rgba(0,0,0,.2);-webkit-box-shadow:0 5px 10px rgba(0,0,0,.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,.2);box-shadow:0 5px 10px rgba(0,0,0,.2)}
+	tags-input .autocomplete .suggestion-list{margin:0;padding:0;list-style-type:none!important; list-style:none!important;max-height:280px;overflow-y:auto;position:relative;}
+	tags-input .autocomplete .suggestion-item{padding:5px 10px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:16px "Helvetica Neue",Helvetica,Arial,sans-serif;color:#000;background-color:#fff;  padding-left:1%!Important}
+	tags-input .autocomplete .suggestion-item.selected,tags-input .autocomplete .suggestion-item.selected em{color:#fff;background-color:#0097cf}
+	tags-input .autocomplete .suggestion-item em{font:normal 700 16px "Helvetica Neue",Helvetica,Arial,sans-serif;color:#000;background-color:#fff}
+	
+	ul li.suggestion-item:before {content:""!important; padding-left:2%; }
+	ul li.autocomplete:before {content:""!important;  padding-left:2%; }
+	ul li.tag-item:before {content:""!important; padding-left:2%;}
+	li.tag-item:before {content:""!important; padding-left:2%;}
+	li.tag-item {text-align:center; padding:0% 1% 0 1%!Important; color:#000;}
+	
+	.readonly-mode-textarea {border: 1px solid #ececec!important; background-color:#f8f8f8; line-height: 34px; height: 100px; padding: 0 12px; font-size: 14px; color: #000; width: 100%; transition: all 0.3s;
+	-ms-transition: all 0.3s; -moz-transition: all 0.3s; -webkit-transition: all 0.3s; margin:0% 0 1% 0; float:left;}
+	
+	.readonly-mode {border: 1px solid #ececec; background-color:#f8f8f8; line-height:30px; min-height: 40px; padding: 0 12px; font-size: 14px; color: #000; width: 100%; transition: all 0.3s;
+	-ms-transition: all 0.3s; -moz-transition: all 0.3s; -webkit-transition: all 0.3s; margin:1% 0 1% 0; float:left;}
+	
+	.readonly-mode-pro-des-textarea {border: 1px solid #ececec; background-color:#f8f8f8; line-height: 25px; min-height: 40px; padding: 0 12px; font-size: 14px; color: #000; width: 100%; transition: all 0.3s;
+	-ms-transition: all 0.3s; -moz-transition: all 0.3s; -webkit-transition: all 0.3s; margin:1% 0 1% 0; float:left;}   
+	
+	textarea {border: 1px solid #ececec!important; background-color:#fff; max-width:100%; line-height: 30px; min-height: 100px; padding: 0 12px; font-size: 14px; color: #000; width: 100%; transition: all 0.3s;
+	-ms-transition: all 0.3s; -moz-transition: all 0.3s; -webkit-transition: all 0.3s; margin:0% 0 1% 0; float:left;}
+	input[type="text"], input[type="password"]  {border: 1px solid #ececec; background-color:#fff; line-height: 30px; height: 40px; padding: 0 12px; font-size: 14px; color: #000; width: 100%; transition: all 0.3s;
+	-ms-transition: all 0.3s; -moz-transition: all 0.3s; -webkit-transition: all 0.3s; margin:1% 0 1% 0; float:left;} 
+	select {border: 1px solid #ececec; line-height: 34px; background-color:#fff; height: 40px; padding: 0 12px; font-size: 14px; color: #000; width: 100%; transition: all 0.3s;
+	-ms-transition: all 0.3s; -moz-transition: all 0.3s; -webkit-transition: all 0.3s; margin:1% 0 1% 0; float:left;} 
+	accordion-item>accordion-content {background-color: #fff; transition: all 0.5s ease; overflow: hidden; font-size: 16px; line-height: 24px; padding: 0 15px;
+    height: 0;}
+	.your-name>input[type="text"], .your-email>input[type="text"] {
+    	    background-color: #2b3036 !important;
+    	    margin: 0px 0px 6px 0px !important;
+    }
+    
+    
+    .profile-pic-popup.popup {
+		left: 0;
+        width: 800px;
+		max-width: 100%;
+    }
+    .profile-pic>.change-profle-pic-container {
+	    position: absolute;
+	    bottom: 25px;
+	    text-align: center;
+	    left: 0;
+	    right: 0;
+	    color: #FFF;
+	}
+	
+	.change-profle-pic-container>.icon {
+	    width: 30px;
+	    height: 30px;
+	    cursor: pointer;
+	    line-height: 30px;
+	    border: 1px solid #FFF;
+}	
+	.input-error {
+		    left: 1%;
+		    clear: both;
+		    margin-top: 10% !important;
+	}
+	.tags-input-read{
+    margin: 2px;
+    padding: 0 5px;
+    display: inline-block;
+    float: left;
+    position: inherit;
+    font: 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
+    height: 26px;
+    line-height: 25px;
+    border: 1px solid #acacac!important;
+    border-radius: 3px!important;
+    background: -webkit-linear-gradient(top,#f0f9ff 0,#cbebff 47%,#a1dbff 100%)!important;
+    background: linear-gradient(to bottom,#f0f9ff 0,#cbebff 47%,#a1dbff 100%)!important;
+}
+ul.tag-item-read {list-style:1px solid #000;} 
+li.tag-item-read {
+    text-align: center;
+    padding: 0% 1% 0 1%!Important;
+    color: #000;
+}
+.success-msg{
+	display: inline-block;
+    width: 36%;
+    margin-left: 20%;
+    font-size: 19px;
+    font-weight: bold;
+    color: white;
+    background-color: #48ca48;
+    padding: 3px;
+    margin-top: 4px;
+    border-radius: 6px;
+}
+.btn-s {
+	padding: 3px 10px !important;
+	margin-top: 6px !important;
+   margin-right: 10px !important;
+}
+.color-1{
+	color:#ea1c1c;
+	border:2px solid #ea1c1c;
+}
+.color-2 {
+	color:#e20496;
+	border:2px solid #e20496;
+}
+.color-3 {
+	color:#6abbc1;
+	border:2px solid #6abbc1;
+}
+.color-4 {
+	color:#b54be4;
+	border:2px solid #b54be4;
+}
+	
+	
+    </style>
+<div class="container-user grid-row">
+	<div class="user-content pull-left">
+		<div class="card profile-card">
+			<div  class="profile-pic" ng-mouseenter="$profileHovered=true" ng-mouseleave="$profileHovered=false">
+				<img id="user_profile_pic" ng-src="user/getprofilepic?userId={{loggedInUser.id}}&folderPath={{folderPath}}" class="img-responsive" alt="UserPIC">
+				<div class="change-profle-pic-container animated {{$profileHovered? 'animated fadeInUp': 'animated fadeOutDown'}}">
+					<i class="fa fa-upload icon" ng-click="changePhoto('upload')"></i>
+					<i class="fa fa-camera icon" ng-click="changePhoto('take_photo')"></i>
+				</div>
+			</div>
+          <div class="profile-usertitle">
+            <div class="">{{loggedInUser.userName}}</div>
+          </div>
+          <div class="profile-usermenu">
+		  <aside class="widget-pages">
+				<!-- <h2>Complete Info</h2> -->
+				<hr class="divider-big">
+				<ul>
+					<li class="has-child"><a>My Profile</a>
+						<ul class="" style="display: none;">
+							 <li>
+				                <a data-ui-sref="user.profile" ui-sref-active="active-link">
+				                  <i class="fa fa-edit font-icon-pad" > </i> Update Profile
+				                </a>
+				              </li>
+				               <li>
+				                <a data-ui-sref="user.viewprofile" ui-sref-active="active-link">
+				                  <i class="fa fa-picture-o font-icon-pad" > </i> View Profile
+				                </a>
+				              </li>
+						</ul>
+					</li>
+					<li class="has-child"><a>Courses</a>
+						<ul class="" style="display: none;">
+							<li>
+								<a data-ui-sref="user.optedcourses" ui-sref-active="active-link">
+									<i class="icon-home fa fa-book font-icon-pad"></i> Purchased Courses
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="has-child" ng-if="loggedInUser.role.id==2"><a>WorkShop</a>
+						<ul class="" style="display: none;">
+							<li  ui-sref-active="active-link">
+								<a data-ui-sref="user.casestudies">
+									<i class="icon-home fa fa-tasks font-icon-pad" > </i> Case Studies
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="has-child" ng-if="loggedInUser.role.id==3"><a>Intern Tasks</a>
+						<ul class="" style="display: none;">
+							<li ui-sref-active="active-link">
+								<a data-ui-sref="user.mytasks">
+									<i class="icon-home fa fa-tasks font-icon-pad" > </i> My Tasks
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="has-child"><a>Exam</a>
+						<ul class="" style="display: none;">
+								<!-- 	<li>
+								<a data-ui-sref="user.onlineTest" ui-sref-active="active-link">
+									<i class="icon-home fa fa-book font-icon-pad"></i> Online Test
+								</a>
+							</li>
+							<li ng-if="loggedInUser.role.id==6" ui-sref-active="active-link">
+								<a data-ui-sref="user.mytasks">
+									<i class="icon-home fa fa-tasks font-icon-pad" > </i> My Tasks
+								</a>
+							</li>
+							 <li ng-if="loggedInUser.role.id==6" ui-sref-active="active-link">
+								<a data-ui-sref="user.mytests">
+									<i class="icon-home fa fa-tasks font-icon-pad"> </i> Coding Test
+								</a>
+							</li>
+							<li ng-if="loggedInUser.role.id==6" ui-sref-active="active-link">
+								<a data-ui-sref="user.testfromhr">
+									<i class="icon-home fa fa-tasks font-icon-pad"> </i> Test From HR
+								</a>
+							</li> -->
+							<li ui-sref-active="active-link">
+								<a data-ui-sref="user.userTest">
+									<i class="icon-home fa fa-tasks font-icon-pad"> </i> Online Test
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="has-child"><a>Results</a>
+						<ul class="" style="display: none;">
+							<li >
+								<a data-ui-sref="user.onlineTestResults" ui-sref-active="active-link">
+									<i class="icon-home fa fa-eye font-icon-pad"></i> Online Test Results
+								</a>
+							</li>
+							<li >
+								<a data-ui-sref="user.quiz" ui-sref-active="active-link">
+									<i class="icon-home fa fa-eye font-icon-pad"></i> Quiz Results
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="has-child"><a>Events</a>
+						<ul class="" style="display: none;">
+							<li>
+								<a data-ui-sref="user.bookedevents">
+									<i class="icon-home fa fa-calendar font-icon-pad"></i> Booked Events
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="has-child"><a>Other</a>
+						<ul class="" style="display: none;">
+							<li >
+								<a data-ui-sref="user.referral" ui-sref-active="active-link">
+									<i class="icon-home fa fa-users font-icon-pad"></i> Refer Friends
+								</a>
+							</li>
+							<li >
+								<a data-ui-sref="user.visibility" ui-sref-active="active-link">
+									<i class="icon-home fa fa-eye font-icon-pad"></i> Visibility Settings
+								</a>
+							</li>
+							
+						</ul>
+					</li>
+				</ul>
+			</aside> 
+         
+         
+          </div>
+        </div>
+    </div>
+  <div class="rgt-cont-bg pull-right"> <!--right content background-->
+	<ui-view/>
+  </div>
+	<div ng-click="changePhoto()" class="overlay {{profilePicChangeForm ? 'show' : ''}}"></div>
+	<div class="popup profile-pic-popup {{profilePicChangeForm ? 'show' : ''}}">
+		<div ng-if="profilePicChangeForm === 'take_photo'" ng-include="'./views/user/profile-pic-capture.html'"></div>
+		<div ng-if="profilePicChangeForm === 'upload'" ng-include="'./views/user/profile-pic-upload.html'"></div>
+	</div>
+<div class="overlay absolute {{serviceLoading ? 'show': ''}}">
+	<div class="content-loader></div>
+</div>
+ 
+					
+

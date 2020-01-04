@@ -1,0 +1,586 @@
+<!DOCTYPE HTML>
+<html>
+<style>
+	/* .list li:hover{
+		background-color:#18bb7c;
+		text-decoration:display;
+	} */
+	.header-top-panel ul li{
+		line-height:1.9;
+		position:relative;
+		padding: 0px 10px;
+	}
+	
+	.header-top-panel ul li:hover,.header-top-panel ul li.active{
+		line-height:1.9;
+		position:relative;
+		background-color:#18bb7c;
+		padding: 0px 10px;
+		courser:pionter;
+	}
+</style>
+<head>
+	
+<!-- SEO -->
+	<meta content='100% JOB Oriented Java Courses: Best Java Training institute in Bangalore with Placements  Marathahalli & BTM Layout Coaching Centers  LAB Facility, Courses like JSP,Servlets Struts,Hibernate,Springs' name='description'/>
+	
+	<meta name="keywords" lang="en" content="Java Training in Bangalore J2EE Servelts Hibernate training Institute and Java Courses Provider , JSP,Servlets Struts,Hibernate,Spring,JSF,EJB,Java SE, Java ME, Java EE, JavaFX and many more JAVA Concepts " />
+	
+	<meta name="robots" content="index,follow" />
+	
+	<meta name="title" content="Java Training Courses Bangalore, Best Java Training Institute in BTM & Marathahalli with JOB Placements" />
+	
+	<meta name="java-training-provider" content="www.pioneercoders.com" />
+	
+	<link href='http://www.pioneercoders.com' rel='canonical'/>
+	<meta content='width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1.0, user-scalable=0' name='viewport'/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=yes"/>
+	
+	<meta name="googlebot" content="NOODP" /><meta content='Best Java Training Institutes in Bangalore' property='og:title'/>
+    <meta name="twitter:card" content="summary">
+    <meta content='@pioneercoders' name='twitter:creator'/>
+    <meta name="twitter:site" content="@pioneercoders">
+    <meta name="twitter:image:src" content="http://www.pioneercoders.com">
+	<meta content='Pioneercoders is the Best Java Training Institute in Bangalore with 100% Placements in Courses: Core Java, Advanced Java  Servlets, JSP, JDBC,J2EE 
+	 Web Services, Struts, Hibernate, Spring, Android, IOS, C, C++, Embedded Systems
+	J2ME, DB  MySql, App. Servers' property='twitter:description'/>
+	
+	<meta property="og:title" content="Java Training Courses Bangalore, Best Java Training Institute in BTM & Marathahalli with JOB Placements" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://www.pioneercoders.com" />
+	<meta property="og:image" content="http://www.pioneercoders.com" />
+	<meta property="og:site_name" content="pioneer coders" />
+	<meta property="og:description" content="pioneercoders is the Best Java Training Institute in Bangalore with 100% Placements in Courses: Core Java, Advanced Java  Servlets, JSP, JDBC,J2EE
+	 Web Services, Struts, Hibernate, Spring, Android, IOS
+	J2ME, DB  MySql, App. Servers" />
+	<meta property="og:latitude" content="12.913965" />
+	<meta property="og:longitude" content=" 77.614835" />
+	<meta property="og:street-address" content="#97, First Floor, 20th Main, Near Gangotri Circle, Beside Indane Gas, BTM 1st Stage" />
+	<meta property="og:locality" content="Bangalore" />
+	<meta property="og:region" content="Karnataka" />
+	<meta property="og:postal-code" content="560068" />
+	<meta property="og:country-name" content="india" />
+	<meta property="og:email" content="contactus@pioneercoders.com" />
+	<meta property="og:phone_number" content="+080-421-649-99" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!-- SEO -->
+	<title>Pioneer Coders</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="resources/img/pclogo2.png"/>
+	<!-- style -->
+	<link rel="stylesheet" href="resources/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="resources/css/angular-carousel.min.css" />
+	<link rel="stylesheet" href="resources/css/angular-material.min.css" />
+	<link rel="stylesheet" href="resources/css/icon.css" />
+	<link rel="stylesheet" href="resources/css/rzslider.css" />
+	<link rel="stylesheet" href="resources/css/prism.css" />
+	<link rel="stylesheet" href="resources/css/animate.css" />
+	<link rel="stylesheet" href="resources/css/main.css" />
+	<link rel="stylesheet" href="resources/css/app.css" />
+	<link rel="stylesheet" href="resources/css/hr-portal.css" />
+	<link rel="stylesheet" href="resources/css/jquery.countdownTimer.css"/>
+	<style>
+		.loading-app .page-content,
+		.loading-app footer {
+			opacity: 0;
+			visibility: hidden;
+			tranition: all 0.4s ease;
+		}
+		body:not(.loading-app) .page-content,
+		body:not(.loading-app) footer {
+			opacity: 1;
+			visibility: visible;
+		}
+	</style>
+	<!--styles -->
+	<!-- <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=58d26aadd996840012c02825&product=sticky-share-buttons"></script> -->
+</head>
+<body data-ng-app="pcModule" data-ng-controller="pcCtrl" ng-class="loadingApp?'loading-app' : ''"  ng-cloak>
+	<div id="fb-root"></div>
+	<!-- page header -->
+	<header class="only-color">
+		<div class="grid-md-12 fixed bg-darkblue">
+		<!--Mini Heaader -->
+		<div class="page-header-top">
+			<div class="grid-row clear-fix">
+			<div class="row no-padding">
+			<div class="grid-md-8 no-padding">
+				<div class="header-top-panel tutorial-links">
+					<ul class="no-margin no-padding grid-md-12 list">
+						<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8" ng-class="{'active':selectedTopic=='htmlTopics'}" ng-click="changeState('tutorials', {technologyKey: 'htmlTopics'})"><a>HTML</a></li>
+						<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8" ng-class="{'active':selectedTopic=='cssTopics'}" ng-click="changeState('tutorials', {technologyKey: 'cssTopics'})"><a>CSS</a></li>
+						<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8" ng-class="{'active':selectedTopic=='jsTopics'}" ng-click="changeState('tutorials', {technologyKey: 'jsTopics'})"><a>JavaScript</a></li>
+						<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8" ng-class="{'active':selectedTopic=='angularjsTopics'}" ng-click="changeState('tutorials', {technologyKey: 'angularjsTopics'})"><a>Angular Js</a></li>
+						<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8" ng-class="{'active':selectedTopic=='javaTopics'}" ng-click="changeState('tutorials', {technologyKey: 'javaTopics'})"><a>Java</a></li>
+						<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8" ng-class="{'active':selectedTopic=='jdbcTopics'}" ng-click="changeState('tutorials', {technologyKey: 'jdbcTopics'})"><a>JDBC</a></li>
+						<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8" ng-class="{'active':selectedTopic=='servletsTopics'}" ng-click="changeState('tutorials', {technologyKey: 'servletsTopics'})"><a>Servlets</a></li>
+						<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8" ng-class="{'active':selectedTopic=='springTopics'}" ng-click="changeState('tutorials', {technologyKey: 'springTopics'})"><a>Spring</a></li>
+						<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8" ng-class="{'active':selectedTopic=='hibernateTopics'}" ng-click="changeState('tutorials', {technologyKey: 'hibernateTopics'})"><a>Hibernate</a></li>
+					</ul>
+				</div>
+				</div>
+				<div class="grid-md-4 no-padding">
+				<div class="header-top-panel">
+					<li class="login-btn"><a class="register-btn"ng-if="!loggedInUser" ng-click="openRegistraion()"  title="register">Register</a></li>
+					<li ng-if="!loggedInUser" ng-click="openLogin()" class="login-btn">Login<a><img class="header-log-svg" src="resources/img/login-icon.svg" ></a></li>
+					<a>
+						<div class="dropdown" ng-if="loggedInUser">
+						  	<div class="dropbtn"><img ng-src="user/getprofilepic?userId={{loggedInUser.id}}&folderPath={{folderPath}}" class="profile-img img-responsive" /></div>
+						  	<div class="dropdown-content">
+						    	<li ng-click="changeState('user.profile')" ng-hide="loggedInUser.role.id==7"><a>Profile</a></li>
+								<li id="logout-btn" ng-if="loggedInUser" ng-click="logout()" data-title="Sign Out"><a>Logout<img class="header-log-svg" src="resources/img/logout-icon.svg" ></a></li>
+						  	</div>
+						</div>
+					</a>
+					<a ng-hide="loggedInUser.role.id==7" ng-click="changeState('user.profile')" class="dropdown logged-user">{{loggedInUser.userName}}</a>	
+					<a ng-if="loggedInUser.role.id==7" data-ui-sref="hr.desktop" class="dropdown">{{loggedInUser.userName}}</a>			
+					<a ng-if="loggedInUser" ng-click="changeState('carthome')" class="m-r-5 fa fa-shopping-cart"></a>
+				</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<!--/Mini Heaader -->
+		<!-- Header  -->
+		<div class="sticky-wrapper">
+			<div class="sticky-menu">
+				<div class="grid-row clear-fix">
+					<!-- logo -->
+					<a data-ui-sref="home" class="logo">
+						<img src="resources/img/pc-logo.png">
+						<h1>Pioneer Coders</h1>
+					</a>
+					<!-- / logo -->
+					<nav class="main-nav">
+						<ul class="clear-fix" ng-class="{'xs-overflow-hidden':!hideMenu}">
+							<!-- <li ng-hide="loggedInUser.role.id==7" data-ui-sref="home" ng-click="hideMenu=false"><a>Home</a></li> -->
+							<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8" class="megamenu">
+								<a>Tutorials</a>
+								<ul class="clear-fix" ng-class="{'xs-hide':subMenu==false}">
+									<li data-ng-repeat="(menuTitle, menuItem) in tutorialMenu">
+										<div class="header-megamenu" ng-click="toggleNav($index)">{{menuTitle}}</div>
+										<ul ng-class="{'xs-hide':showMenu!=$index,'xs-show':showMenu==$index}">
+											<li ng-click="changeState('tutorials', {technologyKey: subMenuItem.ref});hideSubMenu()" data-ng-repeat="subMenuItem in menuItem"><a>{{subMenuItem.title}}</a></li>
+										</ul> 
+									</li>
+								</ul>
+							</li>
+							<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8" ng-click="changeState('courseshome');hideMenu=false"><a>Courses</a></li>
+							<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8"  data-ui-sref="hrhome" ng-click="hideMenu=false"><a>HR Recruiter</a></li>
+							<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8"  data-ui-sref="pohome" ng-click="hideMenu=false"><a>Placement Cell</a></li>
+							<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8" data-ui-sref="placements" ng-click="hideMenu=false"><a>Jobs</a></li>
+						<!-- 	<li ng-hide="loggedInUser.role.id==7" ng-click="changeState('support');hideMenu=false"><a>Consulting</a></li> -->
+							<li ng-hide="loggedInUser.role.id==7 || loggedInUser.role.id==8" data-ui-sref="events" ng-click="hideMenu=false"><a>Events</a></li>
+							<li ng-if="loggedInUser.role.id==7" data-ui-sref="hr.desktop" ng-click="hideMenu=false"><a>My Profile</a></li>
+							<li ng-if="loggedInUser.role.id==7" data-ui-sref="hrlanding" ng-click="hideMenu=false"><a>Job Seekers</a></li>
+							<!-- <li ng-if="!loggedInUser" ng-click="openLogin()"><a>Login</a></li>
+							<li ng-if="loggedInUser" ng-click="changeState('user.profile')"><a>{{loggedInUser.userName}}</a></li>
+							<li ng-if="loggedInUser" ng-click="logout()">
+								<a data-title="Sign Out"><i class="fa fa-power-off color-red"></i></a>
+							</li> -->
+						</ul>
+						<i class="mobile-menu-handler fa fa-bars" ng-click="toggleBoolean('hideMenu')"></i>
+					</nav>
+				</div>
+			</div>
+		</div>
+			<!--/Header-->
+		</div>
+	</header>
+	<!-- / page header -->
+	<!-- Loader Image -->
+	<img ng-show="loadingApp" src="resources/img/loader.gif" alt="Loading" style="margin: 25vh auto"/>
+	<!-- / Loader Image -->
+	
+	<!-- Page Content -->
+	<div class="page-content padding-none">
+		<ui-view />
+	</div>
+	<!-- / Page Content -->
+	<!-- Footer Start Here -->
+	<footer class="pc_footer">
+		<div class="grid-row">
+			<div class="row clear-fix pad-top-60">
+				<section class="grid-md-4 xs-100 footer-about">
+					<h2 class="corner-radius">About Us</h2>
+					<div>
+						<h3>Pioneer Coders is group of R&D team and we love to share our knowledge.</h3>
+						<!-- <p>We group of enthusiastic coders and market Leader's to make innovative products by doing R&D.
+						 </p> -->
+					</div>
+					<address>
+						<a href="tel:+91-8296488477" class="phone-number">+91-8296488477</a>
+						<br />
+						<a href="mailto:contactus@pioneercoders.com" class="email">contactus@pioneercoders.com</a>
+						<br />
+						<a href="www.pioneercoders.com" class="site">www.pioneercoders.com</a>
+						<br />
+						<a href="www.sample.com" class="address">#97, 1st Floor, 20th Main, BTM 1st Stage<br/>Near Indane Gas Agency, Bangalore-560068.</a>
+					</address>
+					<div class="footer-social">
+						<a href="http://facebook.com/pioneercoders" target="_blank" title="Facebook" class="fa fa-facebook"></a>
+						<a href="http://twitter.com/pioneercoders" target="_blank" title="Twitter" class="fa fa-twitter"></a>
+						<a href="" class="fa fa-skype" title="Skype"></a>
+						<a href="" class="fa fa-google-plus" title="Google+"></a>
+						<a href="" class="fa fa-rss" title="Rss"></a>
+						<a href="" class="fa fa-youtube" title="Youtube"></a>
+					</div>
+				</section>
+				<section class="grid-md-4 xs-100 footer-contact-form relative">
+					<div ng-if="contactUsFormMessage=='SUCCESS'" class="color-cornflowerblue font-16 text-bold text-center" style="position:absolute;margin-top:-54px;">
+						Thank you for contacting, We'll respond shortly</div>
+					<h2 class="corner-radius">Contact Us</h2>
+					<div class="email_server_responce"></div>
+					<form name="form.contactUsForm"  class="contact-form mar-25" method="post" novalidate="novalidate"   required>
+						<p>
+							<span class="your-name relative">
+								<input type="text" name="name" value="" size="40" placeholder="Name" aria-invalid="false"  data-ng-model="contactus.name" required>
+							</span>
+							<span class="error-msg absolute input-error" ng-if="form.contactUsForm.name.$dirty && form.contactUsForm.name.$error.required">Name is required</span>
+						</p>
+												
+						<p>
+							<span class="your-email relative">
+								<input type="text" name="phone" value="" size="40" placeholder="Phone" aria-invalid="false" required data-ng-model="contactus.mobileNo">
+							</span> 
+							<span class="error-msg absolute input-error" ng-if="form.contactUsForm.phone.$dirty && form.contactUsForm.phone.$error.required">Phone No is required</span>
+						</p>
+						<p>
+							<span class="your-email relative">
+								<input type="text" name="emailId" value="" size="40" placeholder="Email" aria-invalid="false" required data-ng-model="contactus.emailId">
+							</span> 
+							<span class="error-msg absolute input-error" ng-if="form.contactUsForm.emailId.$dirty && form.contactUsForm.emailId.$error.required">Email is required</span>
+						</p>
+						<p>
+							<span class="your-message relative">
+								<textarea name="comments" placeholder="Comments" cols="40" rows="5" aria-invalid="false" required  data-ng-model="contactus.comments"></textarea>
+							</span> 
+							<span class="absolute error-msg input-error" ng-if="form.contactUsForm.comments.$dirty && form.contactUsForm.comments.$error.required">Message is required</span>
+						</p>
+						<button type="submit" class="cws-button bt-color-3 border-radius alt icon-right" ng-disabled="form.contactUsForm.$invalid" data-ng-click="saveContactUs(contactus)">Submit <i class="fa fa-angle-right"></i></button>
+					</form>
+				</section>
+				<section class="grid-md-4 xs-100 footer-contact-form footer-instructor-form relative">
+					<div ng-if="instructorFormMessage=='SUCCESS'" class="color-cornflowerblue font-16 text-bold text-center" style="position:absolute;margin-top:-54px;">
+								Thank you for contacting, We'll respond shortly</div>
+					<h2 class="corner-radius">apply for instructor</h2>
+					<div class="email_server_responce"></div>
+					<form name="form.instructorForm" class="contact-form" method="post" novalidate="novalidate"  required>
+						<p>
+							<span class="your-name relative">
+								<input type="text" name="name" value="" size="40" placeholder="Name" aria-invalid="false" required  data-ng-model="instructor.name">
+							</span>
+							<span class="absolute error-msg input-error" ng-if="form.instructorForm.name.$dirty && form.instructorForm.name.$error.required">Name is required</span>
+						</p>
+						<p>
+							<span class="your-email relative">
+								<input type="text" name="phone" value="" size="40" placeholder="Phone" aria-invalid="false" required  data-ng-model="instructor.mobileNo">
+							</span> 
+							<span class="absolute error-msg input-error" ng-if="form.instructorForm.phone.$dirty && form.instructorForm.phone.$error.required">Phone No is required</span>
+						</p>
+						<p>
+							<span class="your-email relative">
+								<input type="text" name="email" value="" size="40" placeholder="Email" aria-invalid="false" required  data-ng-model="instructor.emailId">
+							</span> 
+							<span class="absolute error-msg input-error" ng-if="form.instructorForm.email.$dirty && form.instructorForm.email.$error.required">Email is required</span>
+						</p>
+						<p>
+							<span class="your-message">
+								<textarea name="message" placeholder="Comments" cols="40" rows="5" aria-invalid="false" required  data-ng-model="instructor.comments"></textarea>
+							</span> 
+							<span class="absolute error-msg input-error" ng-if="form.instructorForm.message.$dirty && form.instructorForm.message.$error.required">This field is required</span>
+						</p>
+						<button type="button" class="cws-button bt-color-3 border-radius alt icon-right" ng-disabled="form.instructorForm.$invalid" data-ng-click="saveInstructorInfo(instructor)">Submit <i class="fa fa-angle-right"></i></button>
+					</form>
+				</section>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="grid-row clear-fix">
+				<div class="copyright">pioneercoders.com<span></span> 2017 . All Rights Reserved</div>
+			</div>
+		</div>
+	<div class="overlay" ng-class="{'show':showpopup}" ng-click="toggleBoolean('showpopup')"></div>
+	<div class="popup log-popup grid-md-3 grid-lg-2 grid-xs-12" ng-class="{'show':showpopup}" style="z-index:99999">
+		<div class="slider-container p-0 login-bg">
+				<div class="slider-child-container p-0" ng-class="showLogin">
+					<div class="row p-0">
+						<div class="grid-md-6 grid-sm-6 grid-xs-6 field-container font-18 open-sans-bold m-0 text-center field-container-heading p-b-0">
+							<div class="relative row p-b-5">
+								<span>LOGIN</span>
+								<span class="pointer-cursor pull-right p-r-10" ng-click="toggleBoolean('showpopup')"><img src="resources/img/home/x.png"></span>
+							</div>
+						</div>
+						<div class="grid-md-6 grid-sm-6 grid-xs-6 field-container font-18 open-sans-bold m-0 text-center field-container-heading p-b-0">
+							<div class="row relative p-t-0 p-b-0">
+								<div class="grid-md-12 p-b-5">REGISTRATION<span class="pointer-cursor pull-right p-r-10" ng-click="toggleBoolean('showpopup')"><img src="resources/img/home/x.png"></span></div>
+							</div>
+						</div>
+					</div>
+					<div class="slider-child">
+						<div class="login-logo">
+							<img src="resources/img/pc-logo.png" alt="Pioneer Coders Logo"/>
+						</div>
+						<div class="login-title text-center no-margin">
+							<!-- <h3>LOGIN</h3> -->
+							<!-- <h4>Please login here to proceed</h4> -->
+							<div class="no-padding no-margin min-height-30">
+								<div class="log-error-msg" ng-if="logFormMessage=='Invalid Credentials'" ng-class="{'err':logFormMessage=='Invalid Credentials','suc':logFormMessage=='SUCCESS'}" style="margin: 6% auto 0px auto !important;"><span>{{logFormMessage}}</span></div>
+								<div class="log-error-msg" ng-if="logFormMessage=='SUCCESS'" ng-class="{'err':logFormMessage=='Invalid Credentials','suc':logFormMessage=='SUCCESS'}"><span>{{logFormMessage}}</span></div>
+							</div>
+						</div>
+						<form name="loginForm" novalidate>
+							<div class="field-container">
+								<!-- <label>Email <span>*</span></label> -->
+								<input type="text" placeholder="Enter Email" ng-model="login.emailId" name="userName" required><span class="input-field-icon-area"><i class="fa fa-user input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="loginForm.userName.$error.required && loginForm.userName.$dirty">Email is required</div>
+							</div>
+							<div class="field-container">
+								<!-- <label>Password <span>*</span></label> -->
+								<input type="password" placeholder="Enter Password" ng-model="login.password" name="password" required="required"><span class="input-field-icon-area"><i class="fa fa-lock input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="loginForm.password.$error.required && loginForm.password.$dirty">Password is required</div>
+							</div>
+							<div class="field-container">
+								<label></label>
+								<button id="login-btn" class="button-fullwidth cws-button bt-color-3 border-radius alt full-width" type="button" ng-disabled="loginForm.$invalid" ng-click="doLogin()">Login</button>
+							</div>
+						</form>
+						<div class="field-container m-t-5">
+							<span class="grid-md-6"><a ui-sref="sendmail" class="color-blue" target="_blank">Forgot Password?</a></span>
+							<span class="grid-md-6 pull-right text-right pointer-cursor color-blue" id="register" ng-click="slideToRegistration()">Register
+								 <i class="fa fa-arrow-circle-right"></i>
+							</span>
+						</div>
+					</div>
+					<div class="slider-child">
+						<div class="no-padding">
+						<div ng-if="regFormMessage=='SUCCESS'" class="success-txt-p">
+							<span class="text-center">Thanks for Joining with us.</span><br/> <span class="color-blue">A Verification mail was sent to {{userEmailId}}, open this email and click the link to activate your account.</span>
+						</div>
+						<div class="no-padding no-margin">
+							<div class="log-error-msg" ng-class="{'err':regFormMessage=='FAILED','err':regFormMessage=='Passwords not Matched'}" ng-if=" regFormMessage=='Passwords not Matched'">{{regFormMessage}}</div>
+							<div class="log-error-msg" ng-class="{'err':regFormMessage=='EmailId is already exist'}" ng-if="regFormMessage=='EmailId is already exist'">{{regFormMessage}}</div>
+							<div class="log-success-msg" ng-if="regFormMessage=='SUCCESS'"><span ng-class="{'suc':regFormMessage=='SUCCESS'}" ng-if=" regFormMessage=='SUCCESS'">{{regFormMessage}}</span></div>
+						</div>
+						
+						
+						<form name="form.registration" novalidate ng-if="regFormMessage!='SUCCESS'">
+							<div class="field-container">
+								<!-- <label>Name <span>*</span></label> -->
+								<input type="text" placeholder="Name" ng-model="student.userName" name="name" required>
+								<span class="input-field-icon-area"><i class="fa fa-user input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="form.registration.name.$error.required && form.registration.name.$dirty">Name Is Required</div>
+							</div>
+							<div class="field-container">
+								<!-- <label>Mobile No <span>*</span></label> -->
+								<input type="text" placeholder="mobile No" ng-model="student.mobileNo" ng-pattern="/^[0-9]{10,10}$/"  ng-maxlength="10" maxlength="10" name="mobileNo" required>
+								<span class="input-field-icon-area"><i class="fa fa-phone input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="form.registration.mobileNo.$error.required && form.registration.mobileNo.$dirty">MobileNo Is Required</div>
+								<div class="error-msg absolute" ng-if="form.registration.mobileNo.$error.pattern">Enter 10 digit mobile Number</div>
+							</div>
+							<div class="field-container">
+								<!-- <label>Email ID <span>*</span></label> -->
+								<input type="text" placeholder="Email" ng-model="student.emailId" ng-pattern="/^[a-zA-Z]+[a-zA-Z0-9._-]+@[a-z]+\.[a-z]{2,5}$/" name="email" required>
+								<span class="input-field-icon-area"><i class="fa fa-envelope input-field-icon" style="margin-left:7px;"></i></span>
+								<div class="error-msg absolute" ng-if="form.registration.email.$error.required && form.registration.email.$dirty">Email Is Required</div>
+								<div class="error-msg absolute" ng-if="form.registration.email.$error.pattern">Invalid Email</div>
+							</div>
+							<div class="field-container">
+								<!-- <label>Password<span>*</span></label> -->
+								<input type="password" placeholder="Password" ng-minlength="6" minlength="6" ng-model="student.password" name="password" required="required">
+								<span class="input-field-icon-area" ><i class="fa fa-lock input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="form.registration.password.$error.required && form.registration.password.$dirty">Password Is Required</div>
+								<div class="error-msg absolute" ng-if="form.registration.password.$dirty && form.registration.password.$error.minlength">Password should be minimum 6 characters</div>
+							</div>
+							<div class="field-container">
+								<!-- <label>Confirm Password<span>*</span></label> -->
+								<input type="password" placeholder="Confirm Password" ng-minlength="6" minlength="6" ng-model="student.confirmPassword" ng-match="student.password" name="confirmPassword" required="required">
+								<span class="input-field-icon-area">
+								<i class="fa fa-lock input-field-icon"></i></span>
+								<div class="error-msg absolute" ng-if="form.registration.confirmPassword.$error.required && form.registration.confirmPassword.$dirty">Confirm paswword Is Required</div>
+								<div class="error-msg absolute" ng-if="form.registration.confirmPassword.$dirty && form.registration.confirmPassword.$error.minlength">Password should be minimum 6 characters</div>
+								<div class="error-msg absolute" ng-if="form.registration.confirmPassword.$error.match">passwords are not matched</div>
+							</div>
+							<div  class="field-container">
+								<div class="row no-padding">
+								<div class="grid-md-2 no-padding">&nbsp;</div>
+								<div class="grid-md-4 no-padding radio">
+									<input type="radio" class="grid-md-1 mar-top-12" id="student" ng-value="1" ng-model="student.role.id">
+									<label class="grid-md-1" for="student" class="visible-label"> User</label>
+								</div>
+								<div class="grid-md-4 no-padding radio m-t-0">
+									<input type="radio" class="grid-md-1 mar-top-12" id="hr" ng-value="7" ng-model="student.role.id">
+									<label class="grid-md-1" for="hr" class="visible-label"> HR</label>
+								</div>
+							</div>
+							</div>
+							<div class="field-container">
+								<label></label>
+								<button class="button-fullwidth cws-button bt-color-3 border-radius alt full-width" type="button" ng-disabled="form.registration.$invalid" ng-click="registerUser()">Register</button>
+							</div>
+						</form>
+						<div class="overlay absolute regform-height" ng-class="{'show':formLoader}"></div>
+						<div class="content-loader" ng-class="{'show':formLoader}"><i class="fa fa-spin fa-spinner"></i></div>
+						</div>
+						<div class="field-container" ng-if="regFormMessage!='SUCCESS'">
+							<div class="row no-padding">
+								<span ng-click="slideToLogin()" class="grid-md-12 pointer-cursor color-blue ">
+									<i class="fa fa-arrow-circle-left"> </i> Login
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+		<div class="overlay" ng-class="{'show':openReg}" ng-click="toggleBoolean('openReg')"></div>
+		<div class="popup log-popup grid-md-3 grid-lg-2 grid-xs-12" ng-class="{'show':openReg}" style="z-index:99999">
+			<div class="row p-0">
+				<div class="grid-md-12 grid-sm-6 grid-xs-6 field-container font-18 open-sans-bold m-0 text-center field-container-heading p-b-0">
+					<div class="relative row p-b-5 clear-fix">
+						<span>Registration</span>
+						<span class="pointer-cursor pull-right p-r-10" ng-click="toggleBoolean('openReg')"><img src="resources/img/home/x.png"></span>
+					</div>
+				</div>
+				<div class="row min-height-494 clear-fix">
+					<ng-include src="'views/home/registration-template.html'"></ng-include>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Go to www.addthis.com/dashboard to customize your tools-->  
+	<!-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d276027823303c"></script> -->  
+</body>
+
+<!-- lib Start -->
+<script type="text/javascript" src="resources/js/lib/jquery.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-messages.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/jquery.countdownTimer.min.js"></script>
+<script src="resources/js/lib/ui-bootstrap-tpls-2.2.0.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/prism.js"></script>
+<script type="text/javascript" src="resources/js/lib/countUp.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-md5.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-touch.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/rzslider.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-carousel.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/tags-input.js"></script>
+<script type="text/javascript" src="resources/js/lib/webcam.js"></script>
+<script type="text/javascript" src="resources/js/lib/webcam-directive.js"></script>
+<script type="text/javascript" src="resources/js/lib/editor.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-animate.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-aria.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-material.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/jQuery.datatables.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-datatables.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/ui-bootstrap-tpls-2.2.0.min.js"></script>
+<script type="text/javascript" src="resources/js/lib/angular-resource.min.js"></script>
+
+
+
+<!-- lib End-->
+
+<!-- Modules Start-->
+<script type="text/javascript" src="resources/js/app.js"></script>
+<script type="text/javascript" src="resources/js/route.js"></script>
+<!-- Modules End-->
+
+<!-- Directives Starts -->
+<script type="text/javascript" src="resources/js/directives/utilDirectives.js"></script>
+<!-- Directives Ends -->
+
+<!-- Services Start-->
+<script type="text/javascript" src="resources/js/services/commonService.js"></script>
+<script type="text/javascript" src="resources/js/services/userService.js"></script>
+<script type="text/javascript" src="resources/js/services/contactusService.js"></script>
+<script type="text/javascript" src="resources/js/services/instructorService.js"></script>
+<script type="text/javascript" src="resources/js/services/profileService.js"></script>
+<script type="text/javascript" src="resources/js/services/evaluationService.js"></script>
+<script type="text/javascript" src="resources/js/services/eventService.js"></script>
+
+<script type="text/javascript" src="resources/js/services/supportService.js"></script>
+<script type="text/javascript" src="resources/js/services/referralService.js"></script>
+
+<script type="text/javascript" src="resources/js/services/referralService.js"></script>
+<script type="text/javascript" src="resources/js/services/onlineTestService.js"></script>
+<!--HR PORTAL  -->
+<script type="text/javascript" src="resources/js/hrportal/services/hrCommonService.js"></script>
+<script type="text/javascript" src="resources/js/hrportal/services/desktopService.js"></script>
+<script type="text/javascript" src="resources/js/hrportal/services/hrService.js"></script>
+<script type="text/javascript" src="resources/js/hrportal/services/studentDetailsService.js"></script>
+<!-- PO service -->
+<script type="text/javascript" src="resources/js/po/services/poService.js"></script>
+<!-- Services End-->
+
+<!-- Controllers Start-->
+<script type="text/javascript" src="resources/js/controllers/tutorialCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/trainingCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/trainingDetailsCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/placementCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/profileCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/mytasksCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/casesheetCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/evaluationCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/quizCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/landingCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/userCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/supportCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/userDashboardCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/cartCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/eventsCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/orderConfirmCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/referralCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/eventBookingCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/myTestsCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/onlineTestCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/onlineTestCtrl.js"></script>
+<script type="text/javascript" src="resources/js/controllers/changePwdCtrl.js"></script>
+<!--HR PORTAL  -->
+<script type="text/javascript" src="resources/js/hrportal/pcHrCtrl.js"></script>
+<script type="text/javascript" src="resources/js/hrportal/ctrls/hrLandingCtrl.js"></script>
+<script type="text/javascript" src="resources/js/hrportal/ctrls/hrCtrl.js"></script>
+<script type="text/javascript" src="resources/js/hrportal/ctrls/desktopCtrl.js"></script>
+<script type="text/javascript" src="resources/js/hrportal/ctrls/companyCtrl.js"></script>
+<script type="text/javascript" src="resources/js/hrportal/ctrls/hrProfileCtrl.js"></script>
+<script type="text/javascript" src="resources/js/hrportal/ctrls/studentDetailsCtrl.js"></script>
+<script type="text/javascript" src="resources/js/hrportal/ctrls/planDetailsCtrl.js"></script>
+<script type="text/javascript" src="resources/js/hrportal/ctrls/assignmentCtrl.js"></script>
+<!-- PO -->
+<script type="text/javascript" src="resources/js/po/ctrls/poCtrl.js"></script>
+<script type="text/javascript" src="resources/js/po/pcPOCtrl.js"></script>
+<script type="text/javascript" src="resources/js/po/ctrls/poStudentCtrl.js"></script>
+<!-- Controllers End-->
+
+<!-- Utils Start -->
+<script type="text/javascript" src="resources/js/constants.js"></script>
+<script type="text/javascript" src="resources/js/util.js"></script>
+<script type="text/javascript" src="resources/js/components.js"></script>
+<!-- Utils Ends -->
+
+<script type="text/javascript" src="resources/js/lib/jdoodle-dynamic.js"></script>
+
+<!--  ace editor for code  -->
+<script type="text/javascript" src="https://rawgithub.com/ajaxorg/ace-builds/v1.1.1/src-min-noconflict/ace.js"></script>
+<script type="text/javascript" src="resources/js/directives/ui-ace.js"></script>
+      
+
+<!-- Chat Integration Code -->
+<!--Start of Tawk.to Script-->
+<!-- <script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/58ce5b876b2ec15bd902c594/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script> -->
+<!--End of Tawk.to Script-->
+</html>

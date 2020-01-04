@@ -1,0 +1,124 @@
+<style>
+/* Table Start */
+.pc-table {
+	border: 1px solid #18bb7c;
+	margin-bottom: 10px;
+}
+
+.pc-table tr:first-child {
+	background:#18bb7c;
+	color: #fff;
+	font-weight: 500;
+}
+
+.pc-table tr:nth-child(odd):not(:first-child) {
+    background:#F5F5F5;
+}
+
+.pc-table tr th,.pc-table tr td {
+	padding: 8px;
+	text-align:left;
+	vertical-align: middle;
+}
+.placed-student-pic img {
+	width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    display: initial;
+}
+/* Table End */
+.apply-link:hover {
+	text-decoration:underline;
+}
+.job-profile {
+	background-color: #2d3339;
+    color: white;
+    border: 1px solid #2d3339;
+}
+.job-profile div h3 {
+	color:white;
+	border-bottom: 2px solid white;
+}
+</style>
+<div class="page-content">
+	<div class="grid-row">
+		<!-- tabs -->
+		<div class="tabs">
+			<div class="block-tabs-btn clear-fix">
+				<div class="tabs-btn active" data-tabs-id="tabs1">Job Openings</div>
+				<div class="tabs-btn" data-tabs-id="tabs2">Placed Students</div>
+				<!-- <div class="tabs-btn" data-tabs-id="tabs3">support</div> -->
+			</div>
+			<!-- tabs keeper -->
+			<div class="tabs-keeper">
+				<!-- tabs container -->
+				<div class="container-tabs active" data-tabs-id="cont-tabs1" > 
+					<div class="row">
+						<table class="pc-table">
+							<tr>
+								<th>Company</th>
+								<th>Designation</th>
+								<th>Location</th>
+								<th>Last Date</th>
+								<th>Experience</th>
+								<th>View</th>
+							</tr>
+							<tr ng-repeat-start="job in jobOpenings">
+								<td>{{job.companyName}}</td>
+								<td>{{job.designation}}</td>
+								<td>{{job.interviewLocation}}</td>
+								<td>{{job.LastDateToApply}}</td>
+								<td>{{job.experience}}</td>
+								<td><span ng-click="toggleRowExpansion($index)" class="color-blue pointer-cursor"><i class="fa fa-eye"> View</i></span></td>
+							</tr>
+								<tr ng-repeat-end ng-if="$expanded === $index">
+									<td colspan="6" class="job-profile">
+										<div>
+											<h3>Job Complete Profile</h3>
+											<div class="row no-padding">
+												<label class="grid-md-2">Eligibility:</label>
+												<div class="grid-md-4"> {{job.eligibility}}</div>
+											</div>
+											<div class="row no-padding">
+												<label class="grid-md-2">Skillset: </label>
+												<div class="grid-md-4">{{job.skills}}</div>
+											</div>
+											<div><a class="cws-button border-radius bt-color-3 pull-right" ng-click="applyJob()">Apply</a></div>
+										</div>
+									</td>
+								</tr>
+						</table>				
+					</div>
+				</div>
+				<!--/tabs container -->
+				
+				<!-- tabs container -->
+				<div class="container-tabs" data-tabs-id="cont-tabs2">
+					<table class="pc-table">
+						<tr>
+							<th></th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Placed In</th>
+							<th>Course Taken</th>
+						</tr>
+						<tr ng-repeat="student in placedStudents">
+							 <td class="placed-student-pic"><img ng-src="{{student.imgPath}}"></td>
+							<td>{{student.studentName}}</td>
+							<td>{{student.emailId}}</td>
+							<td>{{student.placedCompany}}</td>
+							<td>{{student.courseTaken}}</td>
+						</tr>
+					</table>
+				</div>
+				<!--/tabs container -->
+				<!-- tabs container -->
+				<!-- <div class="container-tabs" data-tabs-id="cont-tabs3" >
+				</div> -->
+				<!--/tabs container -->
+			</div>
+			<!--/tabs keeper -->
+		</div>
+		<!-- /tabs -->
+	</div>
+</div>

@@ -1,0 +1,49 @@
+<head>
+<style>
+img{
+	height:80%;
+	width:45%;  
+}
+</style>
+</head>
+<div class="container no-padding">
+	<div class="row profile-card ">
+		<div class="user-info-cards">
+			<div class=" header-title-bdr bordered-blue"><h3 class="pro-title">Case Studies</h3></div>
+			<div class="cont-data-pad">
+				<section>
+					<div class="tabs">
+						<div class="block-tabs-btn clear">
+							<div class="tabs-btn active" data-tabs-id="tabs1">HTML</div>
+							<div class="tabs-btn" data-tabs-id="tabs2">CSS</div>
+							<div class="tabs-btn" data-tabs-id="tabs3">JavaScript</div>
+							<div class="tabs-btn" data-tabs-id="tabs4">Programming</div>
+						</div>
+					 	<!-- tab layout start -->
+						<div class="tabs-keeper refer-btn">
+							<div class="container-tabs active" data-tabs-id="cont-tabs1">
+								<html-template content="caseStudiesTemplates.html"></html-template>
+							</div>
+							<div class="container-tabs" data-tabs-id="cont-tabs2">
+								<html-template content="caseStudiesTemplates.css"></html-template>
+							</div>  
+							<div class="container-tabs" data-tabs-id="cont-tabs3">
+								<html-template content="caseStudiesTemplates.js"></html-template>
+							</div>
+							<div class="container-tabs" data-tabs-id="cont-tabs4">
+								<html-template content="caseStudiesTemplates.programming"></html-template>
+							</div>  
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>	
+</div>
+<div class="overlay" ng-class="{'show':openedPopup}" ng-click="togglePopup()"></div>
+<div class="popup popup-height popup-msg text-center" ng-class="{'show':openedPopup === '$infoMsg'}">
+	<div class="popup-text">{{infoMsg}}</div>
+	<div>
+		<button  type="button" class="btn btn-sm btn-theme m-t-15" ng-click="togglePopup()">OK</button>
+	</div>
+</div>

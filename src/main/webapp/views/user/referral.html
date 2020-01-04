@@ -1,0 +1,75 @@
+<style>
+	.panel{
+		border: 1px solid grey;
+	 }
+	  .panel-heading{
+ 	    background-color: #30434a;
+	    color: white;
+	    padding: 5px;
+	    font-weight: bold;
+	 }
+	  .panel-heading h4 {
+	  	color:white;
+	  	margin-bottom: 3px;
+	  }
+	  .panel-body{
+	  	 padding: 20px;
+	  }
+	  .ref-suc-msg{
+	  	color:green;
+	  	text-align:center;
+	  	font-size:17px;
+	  	font-weight:800;
+	  	margin:2% auto;
+	  }
+	  .form-col {width:34%; margin-right:1%; float:left;}
+	  .form-col-mob {width:23%; margin-right:1%; float:left;}
+	  .form-col-rem {width:2%; margin-right:1%; float:left;}
+	  .mar-t-37{
+	  	    margin-top: 14px;
+	  }
+</style>
+<div class="container no-padding">
+	<div class="row profile-card ">
+			<div class="ref-suc-msg" ng-if="successMsg">{{successMsg}}</div>
+			<div class="user-info-cards">
+				<div class=" header-title-bdr bordered-blue"><h3 class="pro-title">Invite your Friends</h3></div>
+				<div class="cont-data-pad">
+					<div class="row" ng-repeat="refer in refferalData track by $index">
+						<form name="referFriendForm" novalidate>
+							<div class="form-col">
+								<label input-container>
+									<input type="text" class="form-control" placeholder="Enter friend name"ng-model="refer.referralName" name="referralName" required />
+								</label>
+							</div>
+							<div class="form-col">
+								<label input-container>
+									<input type="text" class="form-control" placeholder="Enter friend email" ng-model="refer.emailId" name="emailId" required />
+								</label>
+							</div>
+							<div class="form-col-mob">
+								<label input-container>
+									<input type="text" class="form-control" placeholder="Enter friend Mobile Number" ng-model="refer.mobileNo" name="mobileNo" required />
+								</label>
+							</div>
+							<div class="form-col-rem mar-t-37">
+								<span class="pointer-cursor" ng-click="removeReferPanel($index)" title="remove"><i class="fa fa-times"></i></span>
+							</div>
+							
+							<br>
+						</form>
+					</div>
+					<div class="row">
+						<div class="grid-md-2">
+							<button type="button" class="cws-button bt-color-3 border-radius alt icon-right" ng-click="addFriend()">Add Friend</button>
+						</div>
+						<div class="grid-md-8">&nbsp;</div>
+						<div class="grid-md-2">
+							<button type="button" class="cws-button bt-color-3 border-radius alt icon-right" ng-click="saveReferral()">Invite</button>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>	
+</div>

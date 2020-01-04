@@ -1,0 +1,26 @@
+<h4>Supports List</h4>
+<!-- {{supportsList}} -->
+<div class="row search-input"><input type="text"  class=" search-tab" ng-model="searchText" placeholder="Search Supports List" /></div><br>
+<table class="row tc-table" datatable="ng">
+	<thead>
+		<tr>
+			<th class="grid-md-1">S.No</th>
+			<th class="grid-md-2">Name</th>
+			<th class="grid-md-2">Email</th>
+			<th class="grid-md-2">Mobile No</th>
+			<th class="grid-md-2">Required Technology</th>
+			<th class="grid-md-3">Description</th>
+		</tr>
+	</thead>
+	<tbody>	
+		<tr data-ng-repeat="support in supportsList| filter:searchText">
+			<td class="grid-md-1">{{$index+1}}</td>
+			<td class="grid-md-2">{{support.name}}</td>
+			<td class="grid-md-2">{{support.emailId}}</td>
+			<td class="grid-md-2">{{support.mobileNo}}</td>
+			<td class="grid-md-2">{{support.requiredTechnology}}</td>
+			<td class="grid-md-3">{{support.desc}}</td>
+			
+		</tr>
+	</tbody>	
+</table>

@@ -1,0 +1,337 @@
+<div>
+	<div class="jumbotron color-white">
+		<div class="grid-row">
+			<div class="row profile n-p-b n-p-l">
+				<div class="grid-md-8 std-info n-p-l">
+					<div class="row no-padding">
+						<div class="student-img grid-md-1">
+							<img src="resources/img/user.png">
+						</div>
+						<div class="grid-md-11 profile-left-area">
+							<div class="row n-p-t">
+								<div class="grid-md-12 student-name no-padding"><h3 class="n-m-t">{{candidateProfile.user.userName}}</h3></div>
+								<span ng-if="currentEmployer">{{currentEmployer.designation}} at {{currentEmployer.employer}}</span>
+								<nav class="grid-md-12 student-social-nav no-padding">
+									<ul>
+										<li><a href="https://www.facebook.com/{{candidateProfile.social.socialInfo.facebookId}}" target="_blank"><span><i class="fa fa-facebook color-fb"></i></span></a></li>
+										<li><a href="https://twitter.com/{{candidateProfile.social.socialInfo.twitterId}}" target="_blank"><span><i class="fa fa-twitter color-twitter"></i></span></a></li>
+										<li><a href="https://www.linkedin.com/in/{{candidateProfile.social.socialInfo.linkedIn}}" target="_blank"><span><i class="fa fa-linkedin color-linkedin"></i></span></a></li>
+										<li><a href="https://web.skype.com/{{candidateProfile.social.socialInfo.skypeId}}" target="_blank"><span><i class="fa fa-skype color-skype"></i></span></a></li>
+										
+										<li class="download-cv"><span><l class="fa fa-download"></l> Download CV</span>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="grid-md-4 no-padding add-field">
+						<div class="p-t-66"><span><i class="fa fa-clock-o"></i> </span> Member Since, {{candidateProfile.user.createdOn | date:'dd'}} {{candidateProfile.user.createdOn | date:'MMMM'}}, {{candidateProfile.user.createdOn | date:'yyyy'}}</div>
+						<div class="m-t-10px "><span><i class="fa fa-map-marker"></i> </span> {{candidateProfile.user.address.present.address}}</div>
+				</div>
+				<!-- <div class="grid-md-8 no-padding">
+					<nav class="row profile-nav no-padding">
+						<ul>
+							<li><a href="#about">About</a><li>
+							<li><a href="#education">Education</a><li>
+							<li><a href="#workexp">Work Experience</a><li>
+							<li><a href="#professionalskills">Professional Skills</a><li>
+							<li><a href="#awards">Awards</a></li>
+						</ul>
+					</nav>
+				</div> -->
+				<!-- <div class="grid-md-4 no-padding">
+					<div class="std-contact-heading">
+						Contact {{candidateProfile.user.userName}}
+					</div>
+				</div> -->
+			</div>
+		</div>
+	</div>
+<div class="bg-white">
+	<div class="grid-row">
+		<div class="row n-p-t">
+			<div class="page-content grid-md-8 clear-fix">
+					<div class="row no-padding">
+					<div class="grid-md-12 no-padding">
+						<div class="row about-panel no-padding">
+							<div class="grid-md-4 experience">
+								<div class="listing-inner">
+									<div class="row ex-text">
+										<i class="grid-md-2 about-panel-icon fa fa-clock-o"></i>
+										 <span class="grid-md-10  no-padding">Experience</span> 		
+										 <strong class="grid-md-10 no-padding">
+											{{candidateProfile.userBasicInfo.exp}}
+										 </strong>
+									</div>
+								</div>
+							</div>
+							<div class="grid-md-4 experience">
+								<div class="listing-inner">
+									<div class="row ex-text">
+										<i class="grid-md-2 about-panel-icon fa fa-area-chart"></i>
+										 <span class="grid-md-10  no-padding">Age</span> 		
+										 <strong class="grid-md-10 no-padding">
+											{{userAge}} Years.
+										 </strong>
+									</div>
+								</div>
+							</div>
+							<div class="grid-md-4 experience">
+								<div class="listing-inner">
+									<div class="row ex-text">
+										<i class="grid-md-2 about-panel-icon fa fa-inr"></i>
+										 <span class="grid-md-10  no-padding">Current Salary</span> 		
+										 <strong class="grid-md-10 no-padding">
+											{{candidateProfile.work.curentSalry}}
+										 </strong>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row about-panel no-padding">
+							<div class="grid-md-4 experience">
+								<div class="listing-inner">
+									<div class="row ex-text">
+										<i class="grid-md-2 about-panel-icon fa fa-rocket"></i>
+										 <span class="grid-md-10  no-padding">Expected Salary</span> 		
+										 <strong class="grid-md-10 no-padding">
+											{{candidateProfile.work.expectedSalary}}
+										 </strong>
+									</div>
+								</div>
+							</div>
+							<div class="grid-md-4 experience">
+								<div class="listing-inner">
+									<div class="row ex-text">
+										<i class="grid-md-2 about-panel-icon fa fa-globe"></i>
+										 <span class="grid-md-10  no-padding">Languages</span> 		
+										 <strong class="grid-md-10 no-padding">
+											<span ng-repeat="lan in candidateProfile.userBasicInfo.languages" ng-if="candidateProfile.userBasicInfo.languages">{{lan.text}}, </span>
+										 </strong>
+									</div>
+								</div>
+							</div>
+							<div class="grid-md-4 experience">
+								<div class="listing-inner">
+									<div class="row ex-text">
+										<i class="grid-md-2 about-panel-icon fa fa-graduation-cap"></i>
+										 <span class="grid-md-10  no-padding">Education Levels</span> 		
+										 <strong class="grid-md-10 no-padding">
+											Certificate
+										 </strong>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row about-desc">
+					<p class="grid-md-12 justify">
+						
+					</p>
+				</div>
+				<div class="row" id="professionalskills">
+					<div class="heading">
+						<span class="details-icon"><i class="fa fa-briefcase"></i></span> 
+					PROFESSIONAL SKILLS
+					</div>
+					<div class="edu-desc relative">
+						<div class="row tech-skills">
+							<span class="tech-skill" ng-repeat="skill in candidateProfile.skillset.skills" ng-class="coursesBgColors[($index%4)]">
+								{{skill.text}}
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="row" id="education">
+					<div class="heading">
+						<span class="details-icon"><i class="fa fa-graduation-cap"></i></span> 
+						EDUCATION
+					</div>
+					<div class="edu-desc relative">
+						<ul>
+							<li ng-repeat="edu in candidateProfile.education.educationInfo">
+								<div class="row edu-title no-padding text-bold">
+								  <h6 class="inline-block no-margin text-bold">{{edu.educationType}}: {{edu.branch}} </h6><span class="text-bold"> {{edu.yearOfPassing}}</span>
+								  <span class="edu-institute block">{{edu.instituteName}}</span>
+								</div>
+							<!-- 	<p class="justify">
+									Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement irresistibly fussy penguin insect
+									additionally wow absolutely crud meretriciously hastily dalmatian a glowered. outside ignobly allegedly more when oh arrogantly vehement.
+								</p> -->
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="row" id="project">
+					<div class="heading">
+						<span class="details-icon"><i class="fa fa-briefcase"></i></span> 
+						Projects
+					</div>
+					<div class="edu-desc relative">
+						<ul>
+							<li ng-repeat="project in candidateProfile.project.projectInfo">
+								<div class="row edu-title no-padding">
+								  <h6 class="inline-block no-margin text-bold">{{project.projectTitle}} </h6><span>( {{project.startDate}} - {{project.endDate}} )</span>
+								  <span class="edu-institute block">{{project.instituteName}}</span>
+								</div>
+								<p class="justify">
+									{{project.desc}}
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="row" id="workexp" ng-if ="candidateProfile.work.workExp">
+					<div class="heading">
+						<span class="details-icon"><i class="fa fa-briefcase"></i></span> 
+						Work Experience
+					</div>
+					<div class="edu-desc relative">
+						<ul>
+							<li ng-repeat="work in candidateProfile.work.workExp">
+								<div class="row edu-title no-padding">
+								  <h6 class="inline-block no-margin text-bold">{{work.designation}} </h6><span>( {{work.monthStart}} {{work.yearStart}} - {{work.monthEnd}} {{work.yearEnd}} )</span>
+								  <span class="edu-institute block text-bold">{{work.employer}}</span>
+								</div>
+								<p class="justify">
+									{{work.jobProfile}}
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- <div class="row" id="awards">
+					<div class="heading">
+						<span class="details-icon"><i class="fa fa-trophy"></i></span> 
+						Achievements
+					</div>
+					<div class="edu-desc relative">
+						<ul>
+							<li>
+								<div class="row edu-title no-padding">
+								  <h6 class="inline-block no-margin">Masters in Fine Arts</h6><span> 2002 - 2004</span>
+								  <span class="edu-institute block">Walters University</span>
+								</div>
+								<p class="justify">
+									Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement irresistibly fussy penguin insect
+									additionally wow absolutely crud meretriciously hastily dalmatian a glowered. outside ignobly allegedly more when oh arrogantly vehement.
+								</p>
+							</li>
+							<li>
+								<div class="row edu-title no-padding">
+								  <h6 class="inline-block no-margin">TOMMERS COLLEGE</h6><span> 2012 - 2015</span>
+								  <span class="edu-institute block">Bachlors in Fine Arts</span>
+								</div>
+								<p class="justify">
+									Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement irresistibly fussy penguin i
+									nsect additionally wow absolutely.
+								</p>
+							</li>
+							<li>
+								<div class="row edu-title no-padding">
+								  <h6 class="inline-block no-margin">DIPLOMA IN FINE ARTS</h6><span> 2014 - 2015</span>
+								  <span class="edu-institute block">Imperieal Institute of Art Direction</span>
+								</div>
+								<p class="justify">
+									Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement irresistibly fussy penguin insect additionally wow absolutely crud meretriciously hastily dalmatian a glowered. 
+									outside ignobly allegedly more when oh arrogantly vehement.
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div> -->
+			</div>
+			<div class="grid-md-4 bordered no-padding">
+				<div class="row">
+				<div class="tabs">	
+					<div class="block-tabs-btn clear">
+						<div class="tabs-btn active" data-tabs-id="tabs1">
+							Send Mail
+						</div>
+						<div class="tabs-btn" data-tabs-id="tabs2">
+							Send SMS
+						</div>
+					</div>
+					<div class="tabs-bordered container-tabs  active" data-tabs-id="cont-tabs1">
+						<div class="row no-padding">
+							<form name="form.emailForm">
+								<div class="input-group relative row">
+									<label class="grid-md-3">Name :</label>
+									<div class="grid-md-9">{{studentInfo.name}}</div>
+									<!-- <input type="text" name="hrName" ng-model="studentInfo.name" class="grid-md-12" placeholder="Enter your name">
+									<span class="absolute details-input-icon"><i class="fa fa-user"></i></span> -->
+								</div>
+								<div class="input-group relative row">
+									<label class="grid-md-3">Email ID :</label>
+									<div class="grid-md-9">{{studentInfo.emailId}}</div>
+									<!-- <input type="text" name="hrName" ng-model="studentInfo.emailId" class="grid-md-12" placeholder="Email Address">
+									<span class="absolute details-input-icon"><i class="fa fa-envelope"></i></span> -->
+								</div>
+								<div class="input-group relative">
+									<textarea type="text" name="hrName" ng-model="studentInfo.message" class="grid-md-12" rows="5" placeholder="Message Should have more then 50 characters"></textarea>
+								</div>
+								<div class="input-group relative">
+									<button type="button" class="grid-md-12 cws-button bt-color-3 border-radius alt icon-right" ng-click="sendEmail()">Send Request</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="tabs-bordered container-tabs" data-tabs-id="cont-tabs2">
+						<div class="row no-padding">
+							<form name="form.smsForm">
+								<div class="input-group relative row">
+									<label class="grid-md-3">Name :</label>
+									<div class="grid-md-9">{{student.name}}</div>
+									<!-- <input type="text" name="hrName" ng-model="student.name" class="grid-md-12" placeholder="Enter your name">
+									<span class="absolute details-input-icon"><i class="fa fa-user"></i></span> -->
+								</div>
+								<div class="input-group relative row">
+									<label class="grid-md-3">Mobile No :</label>
+									<div class="grid-md-9">{{student.mobileNo}}</div>
+									<!-- <input type="text" name="hrName" ng-model="student.mobileNo" class="grid-md-12" placeholder="Phone Number">
+									<span class="absolute details-input-icon"><i class="fa fa-phone"></i></span> -->
+								</div>
+								<div class="input-group relative">
+									<textarea type="text" name="hrName" ng-model="student.message" class="grid-md-12" rows="5" placeholder="Message Should have more then 50 characters"></textarea>
+								</div>
+								<div class="input-group relative">
+									<button type="button" class="grid-md-12 cws-button bt-color-3 border-radius alt icon-right" ng-click="sendSms()">Send Request</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+						
+			</div>
+			<div class="input-group relative">
+				<button type="button" class="grid-md-12 cws-button bt-color-3 border-radius alt icon-right" ng-click="shortList()">Short List</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="overlay" ng-class="{'show':showPopup}" ng-click="toggleBoolean('showPopup')"></div>	
+		<div class="popup short-list grid-md-4 grid-lg-2 grid-xs-12 no-padding" ng-class="{'show':showPopup}" style="z-index:99999">
+			<div class="row no-padding panel">
+					<div class="panel-heading grid-md-12 p-b-5 p-l-8 ">Short List {{candidateProfile.user.userName}}<span class="pointer-cursor pull-right p-r-10" ng-click="toggleBoolean('showPopup')"><img src="resources/img/home/x.png"></span></div>
+					<div class="grid-md-12 panel-body" ng-if="jobsList.length">
+						<table class="jobslist-table">
+							<tr>
+								<th>S.No</th>
+								<th>Job</th>
+								
+							</tr>
+							<tr ng-repeat="job in jobsList" ng-click="shortListCandidate(job)" class="pointer-cursor">
+								<td>{{$index+1}}</td>
+								<td>{{job.jobTitle}}</td>
+							</tr>
+						</table>
+					</div>
+					<div class="grid-md-12 panel-body card-height card-height text-bold color-red text-center pad-10" ng-if="!jobsList.length">
+						<span class="">You have not created any Jobs</span>
+					</div>
+				</div>
+		</div>
+</div>
+</div>

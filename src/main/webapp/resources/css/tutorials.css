@@ -1,0 +1,171 @@
+/************************ code block css **************************/
+.tutorial-bg {
+	background-color: #fff;
+}
+
+.tutorial-bg .container {
+	/* 	background-color:#002147; 	 */
+}
+
+.tutorial-title {
+	color: #4d8bc6;
+	padding: 8px 15px;
+	margin: 0 0 5px 0;
+	background-color: #EFEFEF;
+}
+
+.output-panel {
+	border: 1px solid #18bb7c;
+	padding: 10px;
+	border-top-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	position: relative;
+}
+
+.output-panel p:first-child {
+	margin-top: 30px;
+}
+
+.output-panel:before {
+	content: 'Output';
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	padding: 7px 10px;
+	border-bottom: 1px solid #18bb7c;
+	border-top-right-radius: 15px;
+	width: calc(100% + -20px);
+	background: #00966d;
+	color: #fff;
+	font-weight: 600;
+}
+
+.info.output-panel {
+	border: 1px solid #0093dc;
+}
+
+.info.output-panel:before {
+	border-bottom: 1px solid #0093dc;
+	background: #0093dc;
+}
+
+/* Table Start */
+.pc-table {
+	border: 1px solid rgba(236, 61, 8, 0.69);
+	margin-bottom: 10px;
+}
+
+.pc-table tr:first-child {
+	background:rgba(236, 61, 8, 0.69);
+	color: #fff;
+	font-weight: 500;
+}
+
+.pc-table tr:nth-child(odd):not(:first-child) {
+    background:rgba(255, 234, 183, 0.28);
+}
+
+.pc-table tr th,.pc-table tr td {
+	padding: 8px;
+}
+/* Table End */
+
+/* Lists start*/
+ul li, ol li {
+	line-height: 1.5;
+	padding-left: 20px;
+	position: relative;
+}
+ul li:before{
+	content: "";
+}
+ol li {
+	padding-left: 0;
+	color: #000;
+	font-weight: 500;
+}
+/* Lists end*/
+html-template img {
+	max-width: 99%;
+	max-height: 500px;
+}
+.m-l-17{
+	margin-left:17x;
+}
+/* Live Editor Styles */
+.play-ground {
+  background: #fff;
+  width: 100%;
+  min-height: 100%;
+  padding: 15px;
+  margin: 0;
+  box-shadow: rgba(0,0,0,.15) 0 15px 50px;
+  position: relative;
+}
+
+.clearLink {
+  /* position: absolute; */
+  top: 15px;
+  right: 15px;
+  padding: 5px;
+  background: #eaeaea;
+  color: #777;
+  border: 1px solid #cdcdcd;
+  border-radius: 3px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 10pt;
+  text-shadow: rgba(255,255,255,0.5) 0 1px 2px;
+  text-decoration: none;
+  outline: none;
+}
+
+.clearLink:hover {
+  background: #f0f0f0;
+}
+
+.textarea-editor {
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  width: 32%;
+  min-height: 150px;
+  margin: 15px 2% 0 0;
+  float: left;
+  font-size: 10pt;
+  line-height: 14pt;
+  font-weight: 200;
+  padding: 10px;
+  color: #333;
+  border: 1px solid #cdcdcd;
+  background: #fff;
+  box-shadow: inset rgba(0,0,0,.05) 0 3px 10px;
+  border-radius: 3px;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.textarea-editor:focus {
+  border-color: #33dd33;
+}
+
+.textarea-editor#js {
+  margin: 15px 0 0 0;
+}
+
+iframe {
+  width: 100%;
+  /* margin: 15px 0; */
+  border: 1px solid #cdcdcd;
+  border-radius: 3px;
+ /*  min-height: 250px; */
+ /*  margin: 15px 0 0 0; */
+}
+
+
+/**.ace_editor  {
+		    min-height : 200px;
+}*/
+.ace_scrollbar {
+    display: none !important;
+}
+
