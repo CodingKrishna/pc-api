@@ -49,8 +49,8 @@ public class UserDaoImpl implements UserDao{
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	@Autowired
-	InterviewDao inteviewDao;
+//	@Autowired
+//	InterviewDao inteviewDao;
 	
 	private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
 	
@@ -1499,13 +1499,13 @@ public class UserDaoImpl implements UserDao{
 				interviewGroupsCandidatesEntityList = query.list();
 				for(int m=0;m<interviewGroupsCandidatesEntityList.size();m++){
 					Long groupId = interviewGroupsCandidatesEntityList.get(m).getGroupId();
-					List<SelectedGroupsForInterviewEntity> testList = inteviewDao.getSelectedGroupsForInterviewByGroupId(groupId);
+					List<SelectedGroupsForInterviewEntity> testList = null; //inteviewDao.getSelectedGroupsForInterviewByGroupId(groupId);
 					for(int k=0;k<testList.size();k++){
 						int results = 0;
 						InterviewAssignToUsersEntity assigntouser = new InterviewAssignToUsersEntity();
 						assigntouser.setTest(testList.get(k).getInterview());
 						assigntouser.setUser(userentity);
-						results = inteviewDao.getInterviewAssignToUsersByUserIdandTestId(assigntouser.getUser().getId(),assigntouser.getTest().getId());
+						results = 0; //inteviewDao.getInterviewAssignToUsersByUserIdandTestId(assigntouser.getUser().getId(),assigntouser.getTest().getId());
 						if(results == 0){
 						session.save(assigntouser);
 						}

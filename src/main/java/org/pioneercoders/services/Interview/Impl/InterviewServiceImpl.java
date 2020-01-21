@@ -85,8 +85,8 @@ public class InterviewServiceImpl implements InterviewService{
 	@Autowired
 	ObjectiveQstnUserAnsDao objQstnUserAnsDao;
 	
-	@Autowired
-	UserDao userDao;
+//	@Autowired
+//	UserDao userDao;
 	
 	@Autowired
 	TaskDao taskDao;
@@ -601,7 +601,7 @@ public class InterviewServiceImpl implements InterviewService{
 			pocollegeDto = DozerBeanMapperSingletonWrapper.getInstance().map(poentity, InstituteDto.class);
 			if(pocollegeDto.getUniversity().getId() != null){
 				Long uniId = pocollegeDto.getUniversity().getId();
-				UniversityEntity universityentity = userDao.getuniversitydetailsbyid(uniId);
+				UniversityEntity universityentity = null;//userDao.getuniversitydetailsbyid(uniId);
 				UniversityDto universityDto = DozerBeanMapperSingletonWrapper.getInstance().map(universityentity, UniversityDto.class);
 				pocollegeDto.setUniversity(universityDto);
 			}
@@ -623,7 +623,7 @@ public class InterviewServiceImpl implements InterviewService{
 			}
 			if(pocollegeDto.getUniversity().getId() != null){
 				Long uniId = pocollegeDto.getUniversity().getId();
-				UniversityEntity universityentity = userDao.getuniversitydetailsbyid(uniId);
+				UniversityEntity universityentity = null;//userDao.getuniversitydetailsbyid(uniId);
 				UniversityDto universityDto = DozerBeanMapperSingletonWrapper.getInstance().map(universityentity, UniversityDto.class);
 				pocollegeDto.setUniversity(universityDto);
 			}

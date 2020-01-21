@@ -1,17 +1,18 @@
 package org.pioneercoders.utils;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+//import java.sql.Connection;
+//import java.sql.Date;
+//import java.sql.DriverManager;
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
+//import java.sql.Statement;
+//
+//import org.json.JSONArray;
+//import org.json.JSONObject;
 
 public class JsonArrayJdbc {
 	public static void main(String[] args) {
+		/*
 		try {
 	        Connection con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/pioneercoderslive_backup","root","root");
 	        Connection con1 = DriverManager.getConnection( "jdbc:mysql://localhost:3306/pioneercoders_production","root","root");
@@ -57,6 +58,6 @@ public class JsonArrayJdbc {
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
-		}
+		}*/
 	}
 }
