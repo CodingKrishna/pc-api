@@ -288,7 +288,7 @@ public class UserController {
 	public void getProfilePic(@RequestParam("userId") Long userId,
 			@RequestParam("folderPath") String folderPath,
 			HttpServletResponse response) {
-		String fileFolderPath = appConfig.getProfileInfo().concat("\\").concat(folderPath);
+		/*String fileFolderPath = appConfig.getProfileInfo().concat("\\").concat(folderPath);
 		String[] files = new File(fileFolderPath)
 				.list();// PROFILE_PICS_ROOT_PATH
 		String fileName = null;
@@ -307,7 +307,7 @@ public class UserController {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 	}
 
