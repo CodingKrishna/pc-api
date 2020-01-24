@@ -153,7 +153,8 @@ public class UserServiceImpl implements UserService {
 		UserDto finalUserDto=null;
 		try {
 			if(userDao.getUserDetailsByEmailOrMobile(userDto.getEmailId(), userDto.getMobileNo())==null){
-				userDto.setStatus(Constants.STATUS_PENDING);
+				//userDto.setStatus(Constants.STATUS_PENDING);
+				userDto.setStatus(Constants.STATUS_ACTIVE);
 				userDto.setCreatedOn(Constants.CREATED_ON());
 				userDto.setIsVisible(true);
 				UserEntity userEntity = DozerBeanMapperSingletonWrapper.getInstance().map(userDto, UserEntity.class);
@@ -161,7 +162,7 @@ public class UserServiceImpl implements UserService {
 				finalUserDto.setPassword(null);
 				// send SMS and Email on successful creation of user in DB.
 				if(finalUserDto.getId()!=0){
-					sendSMSandEmail(activateBaseUrl, finalUserDto);
+					//sendSMSandEmail(activateBaseUrl, finalUserDto);
 					if(finalUserDto.getRole().getId() == UserRoles.INTERVIEW.getValue()){
 						userDao.updateUserInInterviewCandidates(finalUserDto);
 					}
